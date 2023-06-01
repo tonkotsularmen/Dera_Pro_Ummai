@@ -1,5 +1,5 @@
-# 　サイト名
-　Dera_Pro_Ummai!(DePU)
+# サイト名
+Dera_Pro_Ummai!(DePU)
 
 ## サイトテーマ
 ボディメイクで自分の理想とする姿に近づく努力をしているユーザーがボディメイクの過程を
@@ -43,7 +43,6 @@
 - 使用検討中です。
 
 ## 参考
-- Yahoo! JAPANニュース
-- 厚生労働省　生活習慣病予防のための健康情報サイト
-- 厚生労働省　我が国社会保障制度の構成と概況
-- スポーツ庁　令和４年度「スポーツの実施状況等に関する世論調査」報道発表
+- [厚生労働省　生活習慣病予防のための健康情報サイト](https://www.e-healthnet.mhlw.go.jp/information/hale/h-01-002.html)
+- [厚生労働省　我が国社会保障制度の構成と概況](https://www.mhlw.go.jp/stf/newpage_21511.html)
+- [スポーツ庁　令和４年度「スポーツの実施状況等に関する世論調査」報道発表](https://www.mext.go.jp/sports/b_menu/toukei/chousa04/sports/1415963_00008.htm)
