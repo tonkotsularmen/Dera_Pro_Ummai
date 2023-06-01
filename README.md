@@ -1,5 +1,5 @@
 # サイト名
-　Dera_Pro_Ummai!(DePU)
+Dera_Pro_Ummai!(DePU)
 ## サイト概要
 ボディメイクに挑戦している人たちの情報共有SNSアプリ。
 ### サイトテーマ
