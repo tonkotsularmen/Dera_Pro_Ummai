@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   #ユーザー
   scope module: :public do
     root to: 'homes#top'
+    get '/about' => 'homes#about'
+    get '/newcomer' => 'homes#newcomer'
+    resources :users, only: [:show, :edit]
+    resources :posts, only: [:new, :create, :index, :show, :destroy]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
