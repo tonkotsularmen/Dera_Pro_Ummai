@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    <% @posts.each do |post| %>
     <div class="col mx-auto">
       <div class="card-wrap">
+        <% @posts.each do |post| %>
         <div class="card">
           <div class="card-header align-items-center d-flex">
             <!--ユーザー画像-->
@@ -32,8 +32,8 @@
             <p class="card-text"><%= post.caption %></p>
           </div>
         </div>
+        <% end %>
       </div>
     </div>
-    <% end %>
   </div>
 </div>
