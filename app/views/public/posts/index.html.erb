@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <% @posts.each do |post| %>
+    <div class="col mx-auto">
+      <div class="card-wrap">
+        <div class="card">
+          <div class="card-header align-items-center d-flex">
+            <!--ユーザー画像-->
+            <%= link_to user_path(post.user) do %>
+              <%= image_tag post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+            <% end %>
+            <!--ユーザーネーム-->
+            <%= link_to user_path(post.user) do %>
+              <strong><%= post.user.user_name %></strong>
+            <% end %>
+            <!--削除アイコン-->
+            <% if post.user_id == current_user.id %>
+              <%= link_to post_path(post.id), method: :delete, class: "d-flex justify-content-end" do %>
+                <i class="fa-solid fa-trash"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <%= link_to post_path(post.id) do %>
+            <%= image_tag post.image, size: "200x100" %>
+          <% end %>
+          <div class="card-body">
+            <div class="row">
+              <!--いいね-->
+              <div><i class="fa-regular fa-heart"></i></div>
+            </div>
+            <h5 class="card-title"><%= post.title %></h5>
+            <p class="card-text"><%= post.caption %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
