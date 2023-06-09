@@ -34,10 +34,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :user_name, null: false, unique: true
       t.integer :user_status, null: false, default: 1
       t.integer :user_type, null: false, default: 0
-      t.text :goal, null: false
-      t.integer :protein, null: false, default: ""
-      t.integer :fat, null: false, default: ""
-      t.integer :carbo, null: false, default: ""
+      t.text :goal
+      t.integer :protein, null: false, default: 0
+      t.integer :fat, null: false, default: 0
+      t.integer :carbo, null: false, default: 0
       t.timestamps null: false
     end
 

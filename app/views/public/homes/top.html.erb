@@ -1,2 +1,18 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>
+        <strong>Welcome to DePU!</strong>
+      </h1>
+    </div>
+  </div>
+  <div class="row">
+    <% unless user_signed_in? %>
+      <div class="col">
+        <!--ゲストログイン機能-->
+        <%= link_to "Log in", new_user_session_path, class: "ml-3 btn btn-primary" %>
+        <%= link_to "Sign Up", new_user_registration_path, class: "ml-3 btn btn-info" %>
+      </div>
+    <% end %>
+  </div>
+</div>
