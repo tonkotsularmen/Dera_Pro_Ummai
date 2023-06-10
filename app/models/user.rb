@@ -3,10 +3,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
-  has_many :posts, dependent: :destroy
+         
   has_one_attached :profile_image
-
+  has_many         :posts,    dependent: :destroy
+  has_many         :comments, dependent: :destroy
+  
   validates :protein, numericality: { in: 0..999 }
   validates :fat, numericality: { in: 0..999 }
   validates :carbo, numericality: { in: 0..999 }
