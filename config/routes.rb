@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get '/about' => 'homes#about'
     get '/newcomer' => 'homes#newcomer'
-    resources :users, only: [:show, :edit]
+    resources :users, only: [:show, :edit, :update]
     resources :posts, only: [:new, :create, :index, :show, :destroy]
   end
 

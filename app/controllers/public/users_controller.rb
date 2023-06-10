@@ -1,22 +1,25 @@
 class Public::UsersController < ApplicationController
-  
+
   def show
     @user = User.find(params[:id])
-  end 
-  
+    @post = @user.posts
+  end
+
   def edit
-    user = User.new(user_params)
-    user.save
+    @user = User.find(params[:id])
+  end
+
+  def update
+    user = User.find(params[:id])
+    user.update(user_params)
     redirect_to user_path(user.id)
   end
-  
-  def update
-  end 
-  
-  
+
+
   private
-  
+
     def user_params
-      params.require(:users).permit(:user_name, :email, :goal, :protein, :fat, :carbo)
-    end 
+      params.require(:user).permit(:user_name, :email, :profile_image, :goal, :protein, :fat, :carbo)
+    end
+
 end

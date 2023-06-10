@@ -7,6 +7,13 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_one_attached :profile_image
 
+  validates :protein, numericality: { in: 0..999 }
+  validates :fat, numericality: { in: 0..999 }
+  validates :carbo, numericality: { in: 0..999 }
+
+
+
+
   def get_profile_image
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
