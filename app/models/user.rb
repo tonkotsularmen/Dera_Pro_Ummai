@@ -5,8 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_one_attached :profile_image
-  has_many         :posts,    dependent: :destroy
+  has_many         :posts   , dependent: :destroy
   has_many         :comments, dependent: :destroy
+  has_many         :likes   , dependent: :destroy
   
   validates :protein, numericality: { in: 0..999 }
   validates :fat, numericality: { in: 0..999 }
