@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-9">
+      <div class" border">
+        <div class="media">
+          <%= image_tag @user.get_profile_image, size: "64x64", class: "mr-3" %>
+          <div class="media-body">
+            <div class="row d-flex justify-content-between">
+              <div class="col-2">
+                <h5 class="mt-0"><%= @user.user_name %></h5>
+              </div>
+              <div class="col-2">
+                <h5 class="mt-0">P:<%= @user.protein %>g</h5>
+              </div>
+              <div class="col-2">
+                <h5 class="mt-0">F:<%= @user.fat %>g</h5>
+              </div>
+              <div class="col-2">
+                <h5 class="mt-0">C:<%= @user.carbo %>g</h5>
+              </div>
+              <div class="col-2">
+                 <%= link_to edit_user_path(@user.id) do %>
+                <i class="fa-solid fa-user-gear fa-lg"></i>
+              <% end %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h5 class"mt-0">あなたの理想は　<%= @user.goal %>　です</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">投稿<%= @post.count.to_s %>件</div>
+              <div class="col-4">サポーター５人</div>
+              <div class="col-4">サポート中５人</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--投稿一覧-->
+  <div class="row">
+    <div class="col-7 offset-1 mx-auto">
+      <% @post.each do |post| %>
+        <div class="card">
+          <div class="card-header align-items-center d-flex">
+            <!--ユーザー画像-->
+            <%= link_to user_path(post.user) do %>
+              <%= image_tag post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+            <% end %>
+            <!--ユーザーネーム-->
+            <%= link_to user_path(post.user) do %>
+              <strong><%= post.user.user_name %></strong>
+            <% end %>
+            <!--削除アイコン-->
+            <% if post.user_id == current_user.id %>
+              <%= link_to post_path(post.id), method: :delete, class: "d-flex justify-content-end" do %>
+                <i class="fa-solid fa-trash"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <%= link_to post_path(post.id) do %>
+            <%= image_tag post.image, size: "200x100" %>
+          <% end %>
+          <div class="card-body">
+            <div class="row">
+              <!--いいね-->
+              <div><i class="fa-regular fa-heart"></i></div>
+            </div>
+            <h5 class="card-title"><%= post.title %></h5>
+            <p class="card-text"><%= post.caption %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-3">
+      
+    </div>
+  </div>
+</div>
