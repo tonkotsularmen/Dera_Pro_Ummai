@@ -28,7 +28,6 @@ class Public::UsersController < ApplicationController
 
   def withdrawal
     @user = User.find(params[:id])
-    # user_statusカラムを0に変更することにより削除フラグを立てる
     @user.update(user_status: 0)
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
