@@ -17,14 +17,17 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
   def destroy
-    
+    post = Post.find(params[:id])
+    post.destroy
+    redirect_to posts_path
   end
 
   private
-  
+
     def post_params
       params.require(:post).permit(:title, :caption, :image)
     end
