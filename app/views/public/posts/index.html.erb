@@ -1,5 +1,14 @@
 <div class="container">
   <div class="row">
+    <h2>検索</h2>
+      <!-- form_with url: search_posts_path, method: :get do |f| -->
+      <%= search_form_for @q, url: search_posts_path do |f| %>
+        <%= f.search_field :title_or_caption_or_user_user_name_cont %>
+        <br>
+        <%= f.submit '検索' %>
+      <% end %>
+  </div>
+  <div class="row">
     <div class="col mx-auto">
       <div class="card-wrap">
         <% @posts.each do |post| %>
