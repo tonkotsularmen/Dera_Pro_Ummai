@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   #管理者
   namespace :admin do
     root to: 'homes#top'
+    resources :users, only: [:show, :index, :destroy]
   end
 
 
