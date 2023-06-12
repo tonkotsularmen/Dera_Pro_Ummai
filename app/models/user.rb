@@ -57,7 +57,7 @@ class User < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["goal","user_name"]
+    ["user_name"]
   end
 end
 
