@@ -14,9 +14,10 @@
           <li class="list-group-item"><%= f.text_field :protein %></li>
           <li class="list-group-item"><%= f.text_field :fat %></li>
           <li class="list-group-item"><%= f.text_field :carbo %></li>
-          <li class="list-group-item"><%= f.submit '保存' %></li>
         </ul>
+        <%= f.submit '保存' %>
         <% end %>
+        <%= link_to "退会確認画面", unsubscribe_path(current_user), class: "btn btn-warning" %>
       </div>
     </div>
   </div>

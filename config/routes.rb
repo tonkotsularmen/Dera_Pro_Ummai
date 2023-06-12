@@ -22,6 +22,10 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get '/about' => 'homes#about'
     get '/newcomer' => 'homes#newcomer'
+    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+     # 退会確認画面
+    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+     # アカウント削除
     resources :users, only: [:show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
     	get 'followings' => 'relationships#followings', as: 'followings'
