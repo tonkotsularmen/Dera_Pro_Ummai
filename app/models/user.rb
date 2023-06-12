@@ -51,9 +51,13 @@ class User < ApplicationRecord
     profile_image
   end
 
+  #退会機能
   def active_for_authentication?
     super && (user_status == 1)
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["user_name"]
+  end
 end
 
