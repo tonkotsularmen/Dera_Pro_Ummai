@@ -19,9 +19,11 @@
                 <h5 class="mt-0">C:<%= @user.carbo %>g</h5>
               </div>
               <div class="col-2">
+                <% if current_user.user_name != "guestuser" %>
                   <%= link_to admin_user_path(@user), method: :delete, data: { confirm: "本当に消しますか？間違えていませんか？" } do %>
                     <i class="fa-solid fa-trash fa-shake"></i>
                   <% end %>
+                <% end %>
               </div>
             </div>
             <div class="row">
@@ -75,9 +77,11 @@
               <strong><%= post.user.user_name %></strong>
             <% end %>
             <!--削除アイコン-->
+            <% if current_user.user_name != "guestuser" %>
               <%= link_to admin_post_path(post.id), method: :delete, class: "d-flex justify-content-end" do %>
                 <i class="fa-solid fa-trash"></i>
               <% end %>
+            <% end %>
           </div>
           <%= link_to admin_post_path(post.id) do %>
             <%= image_tag post.image, size: "200x100" %>
