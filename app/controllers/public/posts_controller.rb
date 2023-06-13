@@ -1,6 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:new, :create, :destroy]
+  before_action :ensure_correct_user, only: [:destroy]
   before_action :set_q, only: [:index, :search]
 
   def new
