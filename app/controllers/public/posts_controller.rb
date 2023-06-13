@@ -2,6 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:destroy]
   before_action :set_q, only: [:index, :search]
+  before_action :ensure_guest_user, only: [:new]
 
   def new
     @post = Post.new
@@ -48,5 +49,11 @@ class Public::PostsController < ApplicationController
 
     def set_q
       @q = Post.ransack(params[:q])
+    end
+
+    def ensure_guest_user
+      if current_user.user_name == "guestuser"
+        redirect_to posts_path , notice: 'ゲストユーザーは新規投稿できません。'
+      end
     end
 end
