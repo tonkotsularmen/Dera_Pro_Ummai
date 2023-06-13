@@ -55,9 +55,17 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && (user_status == 1)
   end
-
+  #ransackの引数の設定
   def self.ransackable_attributes(auth_object = nil)
     ["user_name"]
   end
+
+  #ゲストログイン
+  def self.guest
+    find_or_create_by!(user_name: 'guestuser' ,email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
+
 end
 

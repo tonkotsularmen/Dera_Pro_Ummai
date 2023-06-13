@@ -6,10 +6,18 @@ Rails.application.routes.draw do
     sessions: "public/sessions"
   }
 
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'public/users/sessions#guest_sign_in'
+  end
+
   #管理者
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
+  
+  devise_scope :admin do
+    post 'admin/guest_sign_in', to: 'admin/users/sessions#guest_sign_in'
+  end
 
   #管理者
   namespace :admin do
@@ -17,7 +25,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :index, :destroy]
     resources :posts, only: [:show, :destroy] do
       resources :comments, only: [:destroy]
-    end 
+    end
   end
 
 

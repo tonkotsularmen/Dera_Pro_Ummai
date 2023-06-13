@@ -12,7 +12,7 @@
   <div class="row">
     <% unless user_signed_in? %>
       <div class="col">
-        <!--ゲストログイン機能-->
+        <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
         <%= link_to "Log in", new_user_session_path, class: "ml-3 btn btn-primary" %>
         <%= link_to "Sign Up", new_user_registration_path, class: "ml-3 btn btn-info" %>
       </div>
