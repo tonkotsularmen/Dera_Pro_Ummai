@@ -9,7 +9,20 @@
       <% end %>
   </div>
   <div class="row">
-    <div class="col mx-auto">
+    <div class="col-4">
+      <div class="row">
+        <%= link_to user_path(current_user) do %>
+          <%= image_tag current_user.get_profile_image, size: "100x100", class: "rounded-circle" %>
+        <% end %>
+      </div>
+      <div class="row"><%= current_user.user_name %></div>
+      <div class="row"><%= current_user.goal %></div>
+      <div class="row">P<%= current_user.protein %>:F<%= current_user.fat %>:C<%= current_user.carbo %></div>
+      <div class="row">挫折しそうボタン</div>
+      <div class="row">食欲やばいボタン</div>
+      <div class="row"><%= link_to "投稿する", new_post_path, class: "btn btn-success" %></div>
+    </div>
+    <div class="col-8 mx-auto">
       <div class="card-wrap">
         <% @posts.each do |post| %>
         <div class="card">

@@ -1,0 +1,24 @@
+<div>
+  <%= image_tag @post.image, width: "300px", height: "200px" %>
+  <p>ユーザーネーム：<%= @post.user.user_name %></p>
+  <p>タイトル：<%= @post.title %></p>
+  <p>投稿説明：<%= @post.caption %></p>
+  <p>投稿ユーザー画像：<%= image_tag @post.user.get_profile_image, size: "64x64" %></p>
+  <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+    <%= link_to "削除", admin_post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+</div>
+
+<div>
+  <p>コメント件数：<%= @post.comments.count %></p>
+    <% @post.comments.each do |comment| %>
+      <p><%= image_tag comment.user.get_profile_image, size: "64x64" %></p>
+      <%= comment.user.user_name %>
+      <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+      <%= link_to "削除", admin_post_comment_path(comment.post, comment), method: :delete %>
+    <% end %>
+</div>
+<div>
+  <p>
+    <%= @post.likes.count %> マッチョだね
+  </p>
+</div>

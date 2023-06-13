@@ -67,19 +67,19 @@
         <div class="card">
           <div class="card-header align-items-center d-flex">
             <!--ユーザー画像-->
-            <%= link_to user_path(post.user) do %>
+            <%= link_to admin_user_path(post.user) do %>
               <%= image_tag post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
             <% end %>
             <!--ユーザーネーム-->
-            <%= link_to user_path(post.user) do %>
+            <%= link_to admin_user_path(post.user) do %>
               <strong><%= post.user.user_name %></strong>
             <% end %>
             <!--削除アイコン-->
-              <%= link_to post_path(post.id), method: :delete, class: "d-flex justify-content-end" do %>
+              <%= link_to admin_post_path(post.id), method: :delete, class: "d-flex justify-content-end" do %>
                 <i class="fa-solid fa-trash"></i>
               <% end %>
           </div>
-          <%= link_to post_path(post.id) do %>
+          <%= link_to admin_post_path(post.id) do %>
             <%= image_tag post.image, size: "200x100" %>
           <% end %>
           <div class="card-body">
