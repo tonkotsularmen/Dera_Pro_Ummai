@@ -90,6 +90,7 @@ class User < ApplicationRecord
                      OR user_id = :user_id", user_id: id)
   end
   
+
   #フォロー時の通知
   def create_notification_follow!(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow' ])
@@ -101,6 +102,6 @@ class User < ApplicationRecord
       notification.save if notification.valid?
     end 
   end 
-  
+ 
 end
 
