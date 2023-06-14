@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many         :posts   , dependent: :destroy
   has_many         :comments, dependent: :destroy
   has_many         :likes   , dependent: :destroy
-
+  
   has_many :active_relationships,  class_name: "Relationship",
                                   foreign_key: "follower_id",
                                     dependent: :destroy
@@ -22,6 +22,17 @@ class User < ApplicationRecord
 
   has_many :followers,                through: :passive_relationships,
                                        source: :follower
+
+  #自分から相手への通知
+  has_many :active_notifications,  class_name: 'Notification',
+                                  foreign_key: 'visitor_id',
+                                    dependent: :destroy
+  
+  #自分が相手からの通知
+  has_many :passive_notifications, class_name: 'Notification', 
+                                  foreign_key: 'visited_id', 
+                                    dependent: :destroy
+
 
   validates :protein, numericality: { in: 0..999 }
   validates :fat, numericality: { in: 0..999 }
@@ -79,5 +90,18 @@ class User < ApplicationRecord
                      OR user_id = :user_id", user_id: id)
   end
   
+
+  #フォロー時の通知
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow' ])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end 
+  end 
+ 
 end
 
