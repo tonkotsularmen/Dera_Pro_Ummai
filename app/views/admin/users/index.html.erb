@@ -33,9 +33,7 @@
             </td>
             <td><%= link_to "詳細へ", admin_user_path(user), class: "btn btn-info" %></td>
             <td>
-              <% if current_user.user_name != "guestuser" %>
                 <%= link_to "消す", admin_user_path(user), method: :delete, data: { confirm: "本当に消しますか？間違えていませんか？" }, class: "btn btn-danger" %>
-              <% end %>
             </td>
           </tr>
           <% end %>

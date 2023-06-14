@@ -15,9 +15,6 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   
-  devise_scope :admin do
-    post 'admin/guest_sign_in', to: 'admin/users/sessions#guest_sign_in'
-  end
 
   #管理者
   namespace :admin do
