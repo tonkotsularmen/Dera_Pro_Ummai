@@ -5,9 +5,7 @@
   <p>投稿説明：<%= @post.caption %></p>
   <p>投稿ユーザー画像：<%= image_tag @post.user.get_profile_image, size: "64x64" %></p>
   <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-    <% if current_user.user_name != "guestuser" %>
-      <%= link_to "削除", admin_post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-    <% end %>
+  <%= link_to "削除", admin_post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 </div>
 
 <div>
@@ -16,9 +14,7 @@
       <p><%= image_tag comment.user.get_profile_image, size: "64x64" %></p>
       <%= comment.user.user_name %>
       <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-      <%= if current_user.user_name != "guestuser" %>
         <%= link_to "削除", admin_post_comment_path(comment.post, comment), method: :delete %>
-      <% end %>
     <% end %>
 </div>
 <div>
