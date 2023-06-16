@@ -9,26 +9,19 @@
     <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
   <% end %>
 </div>
-
-<div>
-  <p>コメント件数：<%= @post.comments.count %></p>
-    <% @post.comments.each do |comment| %>
-      <p><%= image_tag comment.user.get_profile_image, size: "64x64" %></p>
-      <%= comment.user.user_name %>
-      <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-      <% if comment.user == current_user %>
-        <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
-      <% end %>
-    <% end %>
+<!--コメント件数-->
+<div id="comments_count">
+  <%= render partial: "public/comments/comments_count", locals: { post: @post } %>
 </div>
-
-<div>
-    <%= form_with model: [@post, @comment] do |f| %>
-      <%= f.text_area :comment, rows: '3', placeholder: "コメントをここに" %>
-      <%= f.submit "送信する", class:"btn btn-info mt-2" %>
-    <% end %>
+<!--投稿されたコメントを表示-->
+<div id="comments_area">
+  <%= render partial: "public/comments/comments", locals: { post: @post } %>
 </div>
-
+<!--コメントを入力するフォーム-->
+<div id="comments_form">
+    <%= render partial: "public/comments/comments_form", locals: { post: @post, comment: @comment } %>
+</div>
+<!--いいね-->
 <div id="like_buttons_<%= @post.id %>">
   <%= render partial: "public/likes/likes", locals: { post: @post } %>
 </div>
