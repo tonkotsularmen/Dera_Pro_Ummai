@@ -52,7 +52,9 @@
           <div class="card-body">
             <div class="row">
               <!--いいね-->
-              <div><i class="fa-regular fa-heart"></i></div>
+              <div id="like_buttons_<%= post.id %>">
+                <%= render partial: "public/likes/likes", locals: { post: post } %>
+              </div>
             </div>
             <h5 class="card-title"><%= post.title %></h5>
             <p class="card-text"><%= post.caption %></p>
