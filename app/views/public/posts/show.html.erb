@@ -29,18 +29,6 @@
     <% end %>
 </div>
 
-<div>
-    <% if @post.liked_by?(current_user) %>
-    <p>
-      <%= link_to post_likes_path(@post), method: :delete do %>
-        <i class="fa-solid fa-heart"></i></i><%= @post.likes.count %> マッチョだね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to post_likes_path(@post), method: :post do %>
-        <i class="fa-regular fa-heart"></i><%= @post.likes.count %> マッチョだね
-      <% end %>
-    </p>
-    <% end %>
+<div id="like_buttons_<%= @post.id %>">
+  <%= render partial: "public/likes/likes", locals: { post: @post } %>
 </div>
