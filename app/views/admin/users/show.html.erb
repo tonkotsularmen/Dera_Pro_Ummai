@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-9">
+      <div class" border">
+        <div class="media">
+          <%= image_tag @user.get_profile_image, size: "64x64", class: "mr-3" %>
+          <div class="media-body">
+            <div class="row d-flex justify-content-between">
+              <div class="col-2">
+                <h5 class="mt-0"><%= @user.user_name %></h5>
+              </div>
+              <div class="col-2">
+                <h5 class="mt-0">P:<%= @user.protein %>g</h5>
+              </div>
+              <div class="col-2">
+                <h5 class="mt-0">F:<%= @user.fat %>g</h5>
+              </div>
+              <div class="col-2">
+                <h5 class="mt-0">C:<%= @user.carbo %>g</h5>
+              </div>
+              <div class="col-2">
+                <%= link_to admin_user_path(@user), method: :delete, data: { confirm: "本当に消しますか？間違えていませんか？" } do %>
+                  <i class="fa-solid fa-trash fa-shake"></i>
+                <% end %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h5 class"mt-0">
+                  <% if @user.goal.nil? %>
+                    あなたはまだ目標を定めていません
+                  <% else %>
+                    あなたの理想は　<%= @user.goal %>　です
+                  <% end %>
+                </h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-2">投稿<%= @post.count %>件</div>
+              <div class="col-2">
+               <%= @user.likes.count %> マッチョ
+              </div>
+              <div class="col-2 p-0">
+                <% if @user.followers.exists? %>
+                  <h6>サポーター<%= @user.followers.count %>人</h6>
+                <% else %>
+                  <h6>サポーター0人</h6>
+                <% end %>
+              </div>
+              <div class="col-2 p-0">
+                <% if @user.following.exists? %>
+                  <h6>サポート中<%= @user.following.count %>人</h6>
+                <% else %>
+                  <h6>サポート中0人</h6>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--投稿一覧-->
+  <div class="row">
+    <div class="col-7 offset-1 mx-auto">
+      <% @post.each do |post| %>
+        <div class="card">
+          <div class="card-header align-items-center d-flex">
+            <!--ユーザー画像-->
+            <%= link_to admin_user_path(post.user) do %>
+              <%= image_tag post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+            <% end %>
+            <!--ユーザーネーム-->
+            <%= link_to admin_user_path(post.user) do %>
+              <strong><%= post.user.user_name %></strong>
+            <% end %>
+            <!--削除アイコン-->
+              <%= link_to admin_post_path(post.id), method: :delete, class: "d-flex justify-content-end" do %>
+                <i class="fa-solid fa-trash"></i>
+              <% end %>
+          </div>
+          <%= link_to admin_post_path(post.id) do %>
+            <%= image_tag post.image, size: "200x100" %>
+          <% end %>
+          <div class="card-body">
+            <div class="row">
+              <!--いいね-->
+              <div><i class="fa-regular fa-heart"></i></div>
+            </div>
+            <h5 class="card-title"><%= post.title %></h5>
+            <p class="card-text"><%= post.caption %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-3">
+    </div>
+  </div>
+</div>

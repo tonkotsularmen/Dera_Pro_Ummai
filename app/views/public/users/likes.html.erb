@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <% if @like_posts.count == 0 %>
+      あなたはまだ誰にもマッチョしていません
+    <% end %>
+    <% @like_posts.each do |like_post| %>
+    <div class="col-4">
+      <%= image_tag like_post.image, size: "200x100" %>
+      <%= like_post.user.user_name %>
+      <%= like_post.title %>
+    </div>
+    <% end %>
+  </div>
+</div>

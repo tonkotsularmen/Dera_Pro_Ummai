@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      <div class="card" style="width: 18rem;">
+        <div class="card-header">
+          ユーザー情報編集
+        </div>
+        <%= form_with model: @user do |f| %>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><%= f.file_field :profile_image, accept: "image/*" %></li>
+          <li class="list-group-item"><%= f.email_field :email %></li>
+          <li class="list-group-item"><%= f.text_field :user_name %></li>
+          <li class="list-group-item"><%= f.text_field :goal %></li>
+          <li class="list-group-item"><%= f.text_field :protein %></li>
+          <li class="list-group-item"><%= f.text_field :fat %></li>
+          <li class="list-group-item"><%= f.text_field :carbo %></li>
+        </ul>
+        <%= f.submit '保存' %>
+        <% end %>
+        <%= link_to "退会確認画面", unsubscribe_path(current_user), class: "btn btn-warning" %>
+      </div>
+    </div>
+  </div>
+</div>
