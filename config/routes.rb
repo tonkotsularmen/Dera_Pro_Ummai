@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
-  
+
 
   #管理者
   namespace :admin do
@@ -37,10 +37,15 @@ Rails.application.routes.draw do
      # アカウント削除
     resources :users, only: [:show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
-    	get 'followings' => 'relationships#followings', as: 'followings'
-    	get 'followers' => 'relationships#followers', as: 'followers'
+      
     	member do
         get :likes
+      end
+      
+      member do
+        get :following, :followers
+        # GET /users/1/following
+        # GET /users/1/followers
       end
     end
 
