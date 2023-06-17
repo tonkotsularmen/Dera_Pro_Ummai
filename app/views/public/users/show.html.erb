@@ -86,7 +86,7 @@
             <% end %>
             <!--削除アイコン-->
             <% if post.user_id == current_user.id %>
-              <%= link_to post_path(post.id), method: :delete, class: "d-flex justify-content-end" do %>
+              <%= link_to post_path(post.id), method: :delete,"data-confirm" => "本当に削除しますか？", class: "d-flex justify-content-end" do %>
                 <i class="fa-solid fa-trash"></i>
               <% end %>
             <% end %>
