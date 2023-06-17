@@ -11,8 +11,13 @@ class Public::PostsController < ApplicationController
   def create
     post = Post.new(post_params)
     post.user_id = current_user.id
-    post.save
-    redirect_to post_path(post.id)
+    if post.save
+      flash[:notice] = "投稿が成功しました"
+      redirect_to post_path(post.id)
+    else
+      flash[:notice] = "投稿が失敗しました"
+      redirect_to new_post_path
+    end
   end
 
   def index
@@ -41,9 +46,9 @@ class Public::PostsController < ApplicationController
     end
 
     def ensure_correct_user
-      @user = User.find(params[:id])
-      unless @user == current_user
-        redirect_to user_path(current_user)
+      @post = Post.find(params[:id])
+      unless @post.user == current_user
+        redirect_to posts_path
       end
     end
 
