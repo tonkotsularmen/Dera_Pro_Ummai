@@ -16,8 +16,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    #@posts = Post.all.order(created_at: :desc)
-    @posts = current_user.feed.order(created_at: :desc)
+    @posts = Post.page(params[:page]).per(12).order(created_at: :desc)
   end
 
   def show
