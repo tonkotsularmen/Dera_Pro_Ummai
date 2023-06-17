@@ -26,9 +26,14 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id])
-    user.update(user_params)
-    redirect_to user_path(user.id)
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:notice] = "情報が更新されました"
+      redirect_to user_path(@user.id)
+    else 
+      flash[:notice] = "情報の更新に失敗しました"
+      redirect_to edit_user_path(@user)
+    end 
   end
 
   def likes
