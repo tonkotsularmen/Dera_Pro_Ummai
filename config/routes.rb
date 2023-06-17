@@ -35,13 +35,13 @@ Rails.application.routes.draw do
      # 退会確認画面
     patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
      # アカウント削除
-    resources :users, only: [:show, :edit, :update] do
+    resources :users, only: [:index, :show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
-      
+
     	member do
         get :likes
       end
-      
+
       member do
         get :following, :followers
         # GET /users/1/following
