@@ -13,7 +13,7 @@ class Public::PostsController < ApplicationController
     @post.user_id = current_user.id
     if @post.save
       flash[:notice] = "投稿が成功しました"
-      redirect_to post_path(post.id)
+      redirect_to post_path(@post.id)
     else
       redirect_to new_post_path, flash: { error: @post.errors.full_messages }
     end
