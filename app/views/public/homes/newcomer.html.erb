@@ -1,28 +1,21 @@
 <main class="page-about mb-auto vh-100">
-  <div class="col-md-6 mx-auto">
-    <h1><strong>初めての方へ</strong></span></h1>
-    <p><span class="glyphicon glyphicon-book"></span></p>
-    <p>
-      このサイトはダイエット初心者や運動初心者、ボディメイク初心者が運動や筋トレ
-      を継続し、目標に達することなく挫折しないように、同じ目的を持った仲間同士で
-      支え合うためのSNSサイトです。登録している方は同じ志を持つ仲間です。支え合っ
-      て目標を達成することがこのサイトの意味です。絶対に仲間を誹謗中傷するような
-      言動や発言はしないでください。利用される場合は公序良俗に反した一切の言動発
-      信をしないでください。また、成果を発信する際など極端な露出は控えてください
-      。また、こちらは初心者がお互いに支え合ってゴールに近づくためのサイトです。
-      「初心者じゃないよ。」「俺（私）の自慢の体を他の人に見て欲しい」というよう
-      なすでに芸術作品に仕上がっている方は他のサービスをご利用ください。もし芸術
-      作品の方でも頑張っている人を応援したいという方は、ぜひ応援してください。
-    </p>
-    <p class="d-flex flex-row-reverse"><strong>by DePU</strong></p>
+  <div class="container-lg mt-4">
     <div class="row">
-      <div class="mb-5">
-        <% if user_signed_in? %>
-          <%= link_to "Home", posts_path, class: "btn btn-outline-secondary" %>
-        <% else %>
-          <%= link_to "Log in", new_user_session_path, class: "ml-3 btn btn-outline-secondary" %>
-          <%= link_to "Sign Up", new_user_registration_path, class: "ml-3 btn btn-outline-secondary" %>
-        <% end %>
+      <div class="col-lg-3">
+      </div>
+      <div class="offset-1 col-lg-7">
+        <div class="border-bottom border-secondary pb-2 mb-3 d-flex align-items-center justify-content-between">
+          <h3 class="m-0">ご利用上の注意</h3>
+        </div>
+        <div>
+          <ul>
+            <li>人を誹謗中傷することはやめましょう</li>
+            <li>人を不快にする発信はやめましょう</li>
+            <li>露出の高い画像や人を不快にさせる画像の投稿はやめましょう</li>
+            <li>運動やトレーニングに関係のある発信をお願いします</li>
+            <li>運動やトレーニングとは無関係の発信をしたい方は他のサービスをご利用ください</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
