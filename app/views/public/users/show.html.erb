@@ -1,26 +1,18 @@
 <main class="page-users-show">
-  <div class="container">
+  <div class="container-lg">
     <div class="row d-flex justify-content-center">
       <%= flash[:notice]%>
-      <div class="col-lg-9">
+      <div class="col">
         <div class" border">
           <div class="media">
             <%= image_tag @user.get_profile_image, size: "64x64", class: "mr-3" %>
             <div class="media-body">
-              <div class="row d-flex justify-content-between">
-                <div class="col-2">
-                  <h5 class="mt-0"><%= @user.user_name %></h5>
-                </div>
-                <div class="col-2">
-                  <h5 class="mt-0">P:<%= @user.protein %>g</h5>
-                </div>
-                <div class="col-2">
-                  <h5 class="mt-0">F:<%= @user.fat %>g</h5>
-                </div>
-                <div class="col-2">
-                  <h5 class="mt-0">C:<%= @user.carbo %>g</h5>
-                </div>
-                <div class="col-2">
+              <div class="row">
+                <span><%= @user.user_name %></span>
+                <span>P:<%= @user.protein %>g</span>
+                <span>F:<%= @user.fat %>g</span>
+                <span>C:<%= @user.carbo %>g</span>
+                <span>
                   <% if @user.user_name != "guestuser" %>
                     <% if current_user == @user%>
                       <%= link_to edit_user_path(@user.id) do %>
@@ -28,43 +20,33 @@
                       <% end %>
                     <% end %>
                   <% end %>
-                </div>
+                </span>
               </div>
               <div class="row">
-                <div class="col">
-                  <h5 class"mt-0">
-                    <% if @user.goal.blank? %>
-                      あなたはまだ目標を定めていません
-                    <% else %>
-                      あなたの理想は　<%= @user.goal %>　です
-                    <% end %>
-                  </h5>
-                </div>
+                <% if @user.goal.blank? %>
+                  あなたはまだ目標を定めていません
+                <% else %>
+                  あなたの理想は　<%= @user.goal %>　です
+                <% end %>
               </div>
               <div class="row">
-                <div class="col-2">投稿<%= @post.count %>件</div>
-                <div class="col-2">
+                <span>投稿<%= @post.count %>件　｜　</span>
+                <span>
                   <%= link_to likes_user_path(@user) do %>
-                    <i class="fa-regular fa-heart"></i><%= @user.likes.count %> マッチョ
-                  <% end %>
-                </div>
-                <!--フォローされている人の数-->
-                <div class="col-2 p-0">
-                  <div id="follower_count">
-                    <%= render partial: "public/relationships/follower_count", locals: { user: @user } %>
-                  </div>
-                </div>
-                <!--フォローしている人の数-->
-                <div class="col-2 p-0">
-                  <div id="following_count">
-                    <%= render partial: "public/relationships/following_count", locals: { user: @user } %>
-                  </div>
-                </div>
-                <!--フォロー-->
-                <div class="col-4">
-                  <div id="user_follow_btn">
-                    <%= render partial: "public/relationships/follow_btn", locals: { user: @user } %>
-                  </div>
+                    <i class="fa-sharp fa-solid fa-medal" aria-hidden="true" style="color: gold;"></i><%= @user.likes.count %>
+                  <% end %>　｜　
+                </span>
+                
+                <span id="follower_count"><!--フォローされている人の数-->
+                  <%= render partial: "public/relationships/follower_count", locals: { user: @user } %>　｜　
+                </span>
+                <span id="following_count"><!--フォローしている人の数-->
+                  <%= render partial: "public/relationships/following_count", locals: { user: @user } %>　
+                </span>
+                <span id="user_follow_btn"><!--フォローボタン-->
+                  <%= render partial: "public/relationships/follow_btn", locals: { user: @user } %>
+                </span>
+              </div>
                 </div>
               </div>
             </div>
@@ -74,43 +56,6 @@
     </div>
     <!--投稿一覧-->
     <div class="row">
-      <div class="col-7 offset-1 mx-auto">
-        <% @post.each do |post| %>
-          <div class="card">
-            <div class="card-header align-items-center d-flex">
-              <!--ユーザー画像-->
-              <%= link_to user_path(post.user) do %>
-                <%= image_tag post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
-              <% end %>
-              <!--ユーザーネーム-->
-              <%= link_to user_path(post.user) do %>
-                <strong><%= post.user.user_name %></strong>
-              <% end %>
-              <!--削除アイコン-->
-              <% if post.user_id == current_user.id %>
-                <%= link_to post_path(post.id), method: :delete,"data-confirm" => "本当に削除しますか？", class: "d-flex justify-content-end" do %>
-                  <i class="fa-solid fa-trash"></i>
-                <% end %>
-              <% end %>
-            </div>
-            <%= link_to post_path(post.id) do %>
-              <% if post.image.present? %>
-                <%= image_tag post.image, size: "200x100" %>
-              <% else %>
-                <%= image_tag 'no_image.jpg', width: "100%", height: "100%" %>
-              <% end %>
-            <% end %>
-            <div class="card-body">
-              <div class="row">
-                <!--いいね-->
-                <div><i class="fa-regular fa-heart"></i></div>
-              </div>
-              <h5 class="card-title"><%= post.title %></h5>
-              <p class="card-text"><%= post.caption %></p>
-            </div>
-          </div>
-        <% end %>
-      </div>
       <div class="col-3">
       </div>
     </div>

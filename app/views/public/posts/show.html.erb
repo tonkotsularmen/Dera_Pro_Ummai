@@ -16,18 +16,26 @@
                   <% end %>
                 </p>
                 <p class="card-title">説明：<%= @post.caption %></p>
-                <span><i class="fas fa-user"></i> By <%= @post.user.user_name %> ｜ </span>
+                <span><i class="fas fa-user"></i>
+                By <%= link_to "#{@post.user.user_name}", user_path(@post.user) %> ｜ </span>
                 <span><i class="fa fa-calendar"></i> <%= @post.created_at.strftime('%Y/%m/%d') %> ｜ </span>
-                <span><i class="fa fa-comment"></i> <%= link_to "#{@post.comments.count}", post_path(@post.id), class:"text-dark" %> ｜ </span>
+                <span id="comments_count" class="mt-3">
+                  <i class="fa fa-comment"></i>
+                  <%= render partial: "public/comments/comments_count", locals: { post: @post } %>
+                　｜　
+                </span>
                 <span id="like_buttons_<%= @post.id %>"><%= render partial: "public/likes/likes", locals: { post: @post } %></span>
                 <% if @post.user == current_user %>
-                  <span> ｜ </span><%= link_to "削除", post_path(@post), class:"text-dark", method: :delete %>
+                  <span> ｜
+                    <%= link_to post_path(@post), method: :delete, class:"text-dark", data: { confirm: "本当に消しますか？間違えていませんか？" } do %>
+                      <i class="fa-solid fa-trash-can"></i>
+                    <% end %>
+                  </span>
                 <% end %>
               </div>
             </div>
             <hr>
             <div class="comments card-text">
-              <h4 id="comments_count" class="mt-3"><%= render partial: "public/comments/comments_count", locals: { post: @post } %></h4>
               <p id="comments_area"><%= render partial: "public/comments/comments", locals: { post: @post } %></p>
             </div>
             <hr>
