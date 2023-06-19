@@ -1,62 +1,72 @@
-<div class="container">
-  <div class="row">
-    <div class="col-4">
-      <div class="row">
-        <%= link_to user_path(current_user) do %>
-          <%= image_tag current_user.get_profile_image, size: "100x100", class: "rounded-circle" %>
-        <% end %>
+<main class="page-users-index">
+  <div class="container-fluid">
+    <%= flash[:notice]%>
+    <div class="row">
+      <div class="offset-lg-1 col-lg-3">
+        <%= render 'public/users/info' %>
       </div>
-      <div class="row"><%= current_user.user_name %></div>
-      <div class="row"><%= current_user.goal %></div>
-      <div class="row">P<%= current_user.protein %>:F<%= current_user.fat %>:C<%= current_user.carbo %></div>
-      <div class="row">挫折しそうボタン</div>
-      <div class="row">食欲やばいボタン</div>
-      <div class="row">
-        <% if current_user.user_name != "guestuser" %>
-          <%= link_to "投稿する", new_post_path, class: "btn btn-success" %>
-        <% end %>
-      </div>
-    </div>
-    <div class="col-8 mx-auto">
-      <div class="card-wrap">
+      <div class="col-lg-5">
+        <div class="row border-bottom my-4">
+          <% @users.each do |user| %>
+            <%= link_to user_path(user) do %>
+                <%= image_tag user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+            <% end %>
+          <% end %>
+        </div>
         <% @posts.each do |post| %>
-        <div class="card">
-          <div class="card-header align-items-center">
+        <div class="card border-0 mb-3">
+          <div class="card-header p-0 d-flex align-items-center bg-white">
             <!--ユーザー画像-->
-            <%= link_to user_path(post.user) do %>
-              <%= image_tag post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
-            <% end %>
-            <!--ユーザーネーム-->
-            <%= link_to user_path(post.user) do %>
-              <strong><%= post.user.user_name %></strong>
-            <% end %>
-            <!--削除アイコン-->
-            <% if post.user_id == current_user.id %>
-              <%= link_to post_path(post.id), method: :delete, class: "d-flex justify-content-end" do %>
-                <i class="fa-solid fa-trash"></i>
+              <%= link_to user_path(post.user) do %>
+                <%= image_tag post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+              <% end %>
+              <!--ユーザーネーム-->
+              <%= link_to user_path(post.user) do %>
+                <strong><%= post.user.user_name %></strong>
+              <% end %>
+              <span>
+                <% if (@now - post.created_at) <= 60 * 60 %>
+                  <%=((@now - post.created_at) / 60).to_i.to_s + "分前" %>
+                <% elsif (@now - post.created_at) <= 60 * 60 * 24 %>
+                  <%=((@now - post.created_at) / 3600).to_i.to_s + "時間前" %>
+                <% elsif (@today - post.created_at.to_date) <= 30 %>
+                  <%= (@today - post.created_at.to_date).to_i.to_s + "日前" %>
+                <% else %>
+                  <%= t.created_at.strftime('%Y-%m-%d') %>
+                <% end %>
+              </span>
+          </div>
+          <div class="post-image bd-placeholder-img card-img-top">
+            <%= link_to post_path(post.id) do %>
+              <% if post.image.present? %>
+                <%= image_tag post.image, width: "100%", height: "600px" %>
+              <% else %>
+                <%= image_tag 'no_image.jpg', width: "100%", height: "600px" %>
               <% end %>
             <% end %>
           </div>
-          <%= link_to post_path(post.id) do %>
-            <% if post.image.present? %>
-              <%= image_tag post.image, width: "100%", height: "100%" %>
-            <% else %>
-              <%= image_tag 'no_image.jpg', width: "100%", height: "100%" %>
-            <% end %>
-          <% end %>
-          <div class="card-body">
-            <div class="row">
+          <div class="card-body py-1">
+            <div class="row m-0">
               <!--いいね-->
-              <div id="like_buttons_<%= post.id %>">
+              <div id="like_buttons_<%= post.id %>" class="mr-3">
                 <%= render partial: "public/likes/likes", locals: { post: post } %>
               </div>
+              <%= link_to post_path(post) do %>
+                <i class="fa-regular fa-message fa-lg"></i>
+              <% end %>
             </div>
-            <h5 class="card-title"><%= post.title %></h5>
-            <p class="card-text"><%= post.caption %></p>
+            <div class="row"><h5 class="card-title"><%= post.title %></h5></div>
+            <div class="row">メダル<%= render partial: "public/likes/likes_count", locals: { post: post } %>件</h5></div>
+          </div>
+
+          <div class="card-footer text-muted border-top-0 border-bottom bg-white pt-1">
+            <div id="comments_form">
+              <%= render partial: "public/comments/comments_form", locals: { post: post, comment: @comment } %>
+            </div>
           </div>
         </div>
         <% end %>
       </div>
     </div>
   </div>
-</div>
+</main>

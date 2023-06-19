@@ -1,115 +1,79 @@
-<div class="container">
-  <div class="row d-flex justify-content-center">
-    <div class="col-lg-9">
-      <div class" border">
-        <div class="media">
-          <%= image_tag @user.get_profile_image, size: "64x64", class: "mr-3" %>
-          <div class="media-body">
-            <div class="row d-flex justify-content-between">
-              <div class="col-2">
-                <h5 class="mt-0"><%= @user.user_name %></h5>
-              </div>
-              <div class="col-2">
-                <h5 class="mt-0">P:<%= @user.protein %>g</h5>
-              </div>
-              <div class="col-2">
-                <h5 class="mt-0">F:<%= @user.fat %>g</h5>
-              </div>
-              <div class="col-2">
-                <h5 class="mt-0">C:<%= @user.carbo %>g</h5>
-              </div>
-              <div class="col-2">
-                <% if @user.user_name != "guestuser" %>
-                  <% if current_user == @user%>
-                    <%= link_to edit_user_path(@user.id) do %>
-                    <i class="fa-solid fa-user-gear fa-lg"></i>
-                    <% end %>
-                  <% end %>
+<main class="page-users-show">
+  <div class="container">
+    <%= flash[:notice]%>
+    <div class="row mt-2 border-bottom">
+      <!--プロフィール画像-->
+      <div class="col-4 text-center">
+        <%= image_tag @user.get_profile_image, size: "120x120", class: "rounded-circle" %>
+      </div>
+      <!--プロフィール-->
+      <div class="col-8">
+        <div class="row mt-2">
+          <h3 class="mt-1"><%= @user.user_name %></h3>
+          <span class="ml-3 mt-2">
+            <% if @user.user_name != "guestuser" %>
+              <% if current_user == @user%>
+                <%= link_to edit_user_path(@user.id) do %>
+                  <i class="fa-solid fa-user-gear fa-lg"></i>
                 <% end %>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <h5 class"mt-0">
-                  <% if @user.goal.nil? %>
-                    あなたはまだ目標を定めていません
-                  <% else %>
-                    あなたの理想は　<%= @user.goal %>　です
-                  <% end %>
-                </h5>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-2">投稿<%= @post.count %>件</div>
-              <div class="col-2">
-                <%= link_to likes_user_path(@user) do %>
-                  <i class="fa-regular fa-heart"></i><%= @user.likes.count %> マッチョ
+              <% end %>
+            <% end %>
+          </span>
+          <span class="ml-3 mt-2">P:<%= @user.protein %>g</span>
+          <span class="ml-3 mt-2">F:<%= @user.fat %>g</span>
+          <span class="ml-3 mt-2">C:<%= @user.carbo %>g</span>
+        </div>
+        <div class="row">
+          <span>
+            <% if @user.goal.blank? %>
+              さあ、Goalを決めて一歩踏み出しましょう！
+            <% else %>
+              あなたの理想は　<%= @user.goal %>　です
+            <% end %>
+          </span>
+        </div>
+        <div class="row">
+          <span>投稿　<%= @posts.count %>　件　</span>
+          <!--いいね-->
+          <span>
+            <%= link_to likes_user_path(@user) do %>
+              <i class="fa-sharp fa-solid fa-medal" aria-hidden="true" style="color: gold;"></i>
+              <span style="color: gold;"><%= @user.likes.count %>　</span>
+            <% end %>
+          </span>
+          <span id="follower_count"><!--フォローされている人の数-->
+            　<%= render partial: "public/relationships/follower_count", locals: { user: @user } %>
+          </span>
+          <span id="following_count"><!--フォローしている人の数-->
+            　<%= render partial: "public/relationships/following_count", locals: { user: @user } %>
+          </span>
+          <span id="user_follow_btn"><!--フォローボタン-->
+            　<%= render partial: "public/relationships/follow_btn", locals: { user: @user } %>
+          </span>
+        </div>
+      </div>
+    </div>
+    <!--投稿一覧-->
+    <div class="row">
+      <div class="offset-2 col-8">
+        <div class="row">
+            <% @posts.each do |post| %>
+            <div class="col-4 pt-1 px-2">
+              <div class="card border-0">
+                <% if post.image.present? %>
+                  <%= image_tag post.image, width: "100%", height: "200px" %>
+                <% else %>
+                  <%= image_tag 'no_image.jpg', width: "100%", height: "200px" %>
                 <% end %>
-              </div>
-              <!--フォローされている人の数-->
-              <div class="col-2 p-0">
-                <div id="follower_count">
-                  <%= render partial: "public/relationships/follower_count", locals: { user: @user } %>
-                </div>
-              </div>
-              <!--フォローしている人の数-->
-              <div class="col-2 p-0">
-                <div id="following_count">
-                  <%= render partial: "public/relationships/following_count", locals: { user: @user } %>
-                </div>
-              </div>
-              <!--フォロー-->
-              <div class="col-4">
-                <div id="user_follow_btn">
-                  <%= render partial: "public/relationships/follow_btn", locals: { user: @user } %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= post.title %></h5>
                 </div>
               </div>
             </div>
-          </div>
+            <% end %>
         </div>
       </div>
     </div>
   </div>
-  <!--投稿一覧-->
-  <div class="row">
-    <div class="col-7 offset-1 mx-auto">
-      <% @post.each do |post| %>
-        <div class="card">
-          <div class="card-header align-items-center d-flex">
-            <!--ユーザー画像-->
-            <%= link_to user_path(post.user) do %>
-              <%= image_tag post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
-            <% end %>
-            <!--ユーザーネーム-->
-            <%= link_to user_path(post.user) do %>
-              <strong><%= post.user.user_name %></strong>
-            <% end %>
-            <!--削除アイコン-->
-            <% if post.user_id == current_user.id %>
-              <%= link_to post_path(post.id), method: :delete, class: "d-flex justify-content-end" do %>
-                <i class="fa-solid fa-trash"></i>
-              <% end %>
-            <% end %>
-          </div>
-          <%= link_to post_path(post.id) do %>
-            <% if post.image.present? %>
-              <%= image_tag post.image, size: "200x100" %>
-            <% else %>
-              <%= image_tag 'no_image.jpg', width: "100%", height: "100%" %>
-            <% end %>
-          <% end %>
-          <div class="card-body">
-            <div class="row">
-              <!--いいね-->
-              <div><i class="fa-regular fa-heart"></i></div>
-            </div>
-            <h5 class="card-title"><%= post.title %></h5>
-            <p class="card-text"><%= post.caption %></p>
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <div class="col-3">
-    </div>
-  </div>
-</div>
+</main>
+

@@ -1,21 +1,31 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <div>
-        <%= flash[:notice] %>
+<main class="page-top">
+  <div class="container-lg ">
+    <div class="row">
+      <div class="col">
+        <div><%= flash[:notice] %></div>
+          <div class="row mt-3 pb-3">
+            <div class="col d-flex justify-content-center">
+              <div class="row"></div>
+              <h1><strong>Welcome to DePU!</strong></h1>
+            </div>
+          </div>
+          <div class="row d-flex justify-content-center text-center">
+            このサイトはダイエット初心者や運動初心者、ボディメイク初心者が、<br>
+            運動や筋トレを継続し同じ目的を持った仲間同士で支え合うためのSNSサイトです。
+          </div>
+          <div class="row d-flex justify-content-center text-center">
+            <div>
+              登録前にぜひ
+              <%= link_to 'こちら', about_path %>
+              もお読みください。
+            </div>
+          </div>
+          <% unless user_signed_in? %>
+          <div class="row d-flex justify-content-center my-4">
+            <div><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-outline-secondary", method: :post %></div>
+          </div>
+          <% end %>
       </div>
-      <h1>
-        <strong>Welcome to DePU!</strong>
-      </h1>
     </div>
   </div>
-  <div class="row">
-    <% unless user_signed_in? %>
-      <div class="col">
-        <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
-        <%= link_to "Log in", new_user_session_path, class: "ml-3 btn btn-primary" %>
-        <%= link_to "Sign Up", new_user_registration_path, class: "ml-3 btn btn-info" %>
-      </div>
-    <% end %>
-  </div>
-</div>
+</main>

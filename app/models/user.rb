@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many         :posts   , dependent: :destroy
   has_many         :comments, dependent: :destroy
   has_many         :likes   , dependent: :destroy
-  
+
   has_many :active_relationships,  class_name: "Relationship",
                                   foreign_key: "follower_id",
                                     dependent: :destroy
@@ -27,13 +27,13 @@ class User < ApplicationRecord
   has_many :active_notifications,  class_name: 'Notification',
                                   foreign_key: 'visitor_id',
                                     dependent: :destroy
-  
+
   #自分が相手からの通知
-  has_many :passive_notifications, class_name: 'Notification', 
-                                  foreign_key: 'visited_id', 
+  has_many :passive_notifications, class_name: 'Notification',
+                                  foreign_key: 'visited_id',
                                     dependent: :destroy
 
-
+  validates :user_name, length: { minimum: 2, maximum: 30 }, uniqueness: true
   validates :protein, numericality: { in: 0..999 }
   validates :fat, numericality: { in: 0..999 }
   validates :carbo, numericality: { in: 0..999 }
@@ -77,7 +77,7 @@ class User < ApplicationRecord
       user.password = SecureRandom.urlsafe_base64
     end
   end
-  
+
   # ユーザーのステータスフィードを返す
   def feed
     #Post.where("user_id IN (?) OR user_id = ?",
@@ -89,7 +89,7 @@ class User < ApplicationRecord
     Post.where("user_id IN (#{following_ids})
                      OR user_id = :user_id", user_id: id)
   end
-  
+
 
   #フォロー時の通知
   def create_notification_follow!(current_user)
@@ -100,8 +100,8 @@ class User < ApplicationRecord
         action: 'follow'
       )
       notification.save if notification.valid?
-    end 
-  end 
- 
+    end
+  end
+
 end
 
