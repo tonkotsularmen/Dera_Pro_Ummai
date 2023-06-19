@@ -1,13 +1,13 @@
 <% if post.liked_by?(current_user) %>
 <p>
   <%= link_to post_likes_path(post), method: :delete, remote: true do %>
-    <i class="fa-solid fa-heart" aria-hidden="true" style="color: red;"></i><%= post.likes.count %> マッチョだね
+    <i class="fa-sharp fa-solid fa-medal" aria-hidden="true" style="color: gold;"></i>
   <% end %>
 </p>
 <% else %>
 <p>
   <%= link_to post_likes_path(post), method: :post, remote: true do %>
-    <i class="fa-regular fa-heart"aria-hidden="true"></i><%= post.likes.count %> マッチョだね
+    <i class="fa-sharp fa-solid fa-medal" aria-hidden="true" style="color: silver;"></i>
   <% end %>
 </p>
 <% end %>

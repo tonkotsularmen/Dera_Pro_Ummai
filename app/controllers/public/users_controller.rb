@@ -4,8 +4,13 @@ class Public::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
   before_action :set_user, except: [:index, :update, :unsubscribe ]
   
+
   def index
     @posts = current_user.feed.order(created_at: :desc)
+    @users = current_user.following
+    @comment = Comment.new
+    @today = Date.today #今日の日付を取得
+    @now = Time.now     #現在時刻を取得
   end 
   
   def show
