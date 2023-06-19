@@ -1,9 +1,9 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :ensure_correct_user, only: [:edit, :update, :unsubscribe, :withdrawal]
   before_action :ensure_guest_user, only: [:edit]
   before_action :set_user, except: [:index, :update, :unsubscribe ]
-  
+
 
   def index
     @posts = current_user.feed.order(created_at: :desc)
@@ -11,10 +11,10 @@ class Public::UsersController < ApplicationController
     @comment = Comment.new
     @today = Date.today #今日の日付を取得
     @now = Time.now     #現在時刻を取得
-  end 
-  
+  end
+
   def show
-    @post = @user.posts
+    @posts = @user.posts
   end
 
   def following
@@ -35,10 +35,10 @@ class Public::UsersController < ApplicationController
     if @user.update(user_params)
       flash[:notice] = "情報が更新されました"
       redirect_to user_path(@user.id)
-    else 
+    else
       flash[:notice] = "情報の更新に失敗しました"
       redirect_to edit_user_path(@user)
-    end 
+    end
   end
 
   def likes
@@ -75,8 +75,8 @@ class Public::UsersController < ApplicationController
         redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
       end
     end
-    
+
     def set_user
       @user = User.find(params[:id])
-    end 
+    end
 end

@@ -1,16 +1,32 @@
 <main class="page-users-likes">
   <div class="container">
     <div class="row">
-      <% if @like_posts.count == 0 %>
-        あなたはまだ誰にもマッチョしていません
-      <% end %>
-      <% @like_posts.each do |like_post| %>
-      <div class="col-4">
-        <%= image_tag like_post.image, size: "200x100" %>
-        <%= like_post.user.user_name %>
-        <%= like_post.title %>
+      <div class="offset-2 col-8">
+        <div class="row">
+          <% if @like_posts.count == 0 %>
+            あなたはまだ誰にもマッチョしていません
+          <% end %>
+          <% @like_posts.each do |like_post| %>
+          <div class="col-4 pt-1 px-2">
+            <div class="card border-0">
+              <% if like_post.image.present? %>
+                <%= image_tag like_post.image, width: "100%", height: "200px" %>
+              <% else %>
+                <%= image_tag 'no_image.jpg', width: "100%", height: "200px" %>
+              <% end %>
+              <div class="card-body">
+                <h5 class="card-title"><%= like_post.title %></h5>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
       </div>
-      <% end %>
     </div>
   </div>
 </main>
+
+
+
+
+

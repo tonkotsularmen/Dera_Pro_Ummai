@@ -33,7 +33,7 @@ class User < ApplicationRecord
                                   foreign_key: 'visited_id',
                                     dependent: :destroy
 
-  validates :user_name, length: { minimum: 5, maximum: 30 }, uniqueness: true
+  validates :user_name, length: { minimum: 2, maximum: 30 }, uniqueness: true
   validates :protein, numericality: { in: 0..999 }
   validates :fat, numericality: { in: 0..999 }
   validates :carbo, numericality: { in: 0..999 }

@@ -1,63 +1,79 @@
 <main class="page-users-show">
-  <div class="container-lg">
-    <div class="row d-flex justify-content-center">
-      <%= flash[:notice]%>
-      <div class="col">
-        <div class" border">
-          <div class="media">
-            <%= image_tag @user.get_profile_image, size: "64x64", class: "mr-3" %>
-            <div class="media-body">
-              <div class="row">
-                <span><%= @user.user_name %></span>
-                <span>P:<%= @user.protein %>g</span>
-                <span>F:<%= @user.fat %>g</span>
-                <span>C:<%= @user.carbo %>g</span>
-                <span>
-                  <% if @user.user_name != "guestuser" %>
-                    <% if current_user == @user%>
-                      <%= link_to edit_user_path(@user.id) do %>
-                      <i class="fa-solid fa-user-gear fa-lg"></i>
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                </span>
-              </div>
-              <div class="row">
-                <% if @user.goal.blank? %>
-                  あなたはまだ目標を定めていません
-                <% else %>
-                  あなたの理想は　<%= @user.goal %>　です
+  <div class="container">
+    <%= flash[:notice]%>
+    <div class="row mt-2 border-bottom">
+      <!--プロフィール画像-->
+      <div class="col-4 text-center">
+        <%= image_tag @user.get_profile_image, size: "120x120", class: "rounded-circle" %>
+      </div>
+      <!--プロフィール-->
+      <div class="col-8">
+        <div class="row mt-2">
+          <h3 class="mt-1"><%= @user.user_name %></h3>
+          <span class="ml-3 mt-2">
+            <% if @user.user_name != "guestuser" %>
+              <% if current_user == @user%>
+                <%= link_to edit_user_path(@user.id) do %>
+                  <i class="fa-solid fa-user-gear fa-lg"></i>
                 <% end %>
-              </div>
-              <div class="row">
-                <span>投稿<%= @post.count %>件　｜　</span>
-                <span>
-                  <%= link_to likes_user_path(@user) do %>
-                    <i class="fa-sharp fa-solid fa-medal" aria-hidden="true" style="color: gold;"></i><%= @user.likes.count %>
-                  <% end %>　｜　
-                </span>
-                
-                <span id="follower_count"><!--フォローされている人の数-->
-                  <%= render partial: "public/relationships/follower_count", locals: { user: @user } %>　｜　
-                </span>
-                <span id="following_count"><!--フォローしている人の数-->
-                  <%= render partial: "public/relationships/following_count", locals: { user: @user } %>　
-                </span>
-                <span id="user_follow_btn"><!--フォローボタン-->
-                  <%= render partial: "public/relationships/follow_btn", locals: { user: @user } %>
-                </span>
-              </div>
-                </div>
-              </div>
-            </div>
-          </div>
+              <% end %>
+            <% end %>
+          </span>
+          <span class="ml-3 mt-2">P:<%= @user.protein %>g</span>
+          <span class="ml-3 mt-2">F:<%= @user.fat %>g</span>
+          <span class="ml-3 mt-2">C:<%= @user.carbo %>g</span>
+        </div>
+        <div class="row">
+          <span>
+            <% if @user.goal.blank? %>
+              さあ、Goalを決めて一歩踏み出しましょう！
+            <% else %>
+              あなたの理想は　<%= @user.goal %>　です
+            <% end %>
+          </span>
+        </div>
+        <div class="row">
+          <span>投稿　<%= @posts.count %>　件　</span>
+          <!--いいね-->
+          <span>
+            <%= link_to likes_user_path(@user) do %>
+              <i class="fa-sharp fa-solid fa-medal" aria-hidden="true" style="color: gold;"></i>
+              <span style="color: gold;"><%= @user.likes.count %>　</span>
+            <% end %>
+          </span>
+          <span id="follower_count"><!--フォローされている人の数-->
+            　<%= render partial: "public/relationships/follower_count", locals: { user: @user } %>
+          </span>
+          <span id="following_count"><!--フォローしている人の数-->
+            　<%= render partial: "public/relationships/following_count", locals: { user: @user } %>
+          </span>
+          <span id="user_follow_btn"><!--フォローボタン-->
+            　<%= render partial: "public/relationships/follow_btn", locals: { user: @user } %>
+          </span>
         </div>
       </div>
     </div>
     <!--投稿一覧-->
     <div class="row">
-      <div class="col-3">
+      <div class="offset-2 col-8">
+        <div class="row">
+            <% @posts.each do |post| %>
+            <div class="col-4 pt-1 px-2">
+              <div class="card border-0">
+                <% if post.image.present? %>
+                  <%= image_tag post.image, width: "100%", height: "200px" %>
+                <% else %>
+                  <%= image_tag 'no_image.jpg', width: "100%", height: "200px" %>
+                <% end %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= post.title %></h5>
+                </div>
+              </div>
+            </div>
+            <% end %>
+        </div>
       </div>
     </div>
   </div>
 </main>
+
