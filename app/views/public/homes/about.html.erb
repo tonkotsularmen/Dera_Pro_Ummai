@@ -1,26 +1,22 @@
-<div class="col-md-6 mx-auto mt-5">
-  <h1>welcome to <strong>Dera_Pro_Ummai</strong>  !!</span></h1>
-  <p><span class="glyphicon glyphicon-book"></span><strong>DePU</strong></p>
-  <p>
-    このサイトはダイエット初心者や運動初心者、ボディメイク初心者が運動や筋トレを継続し、
-    目標に達することなく挫折しないように、同じ目的を持った仲間同士で支え合うためのSNSサ
-    イトです。登録している方は同じ志を持つ仲間です。支え合って目標を達成しましょう。必ず
-    、仲間を誹謗中傷するような言動や発言は控えてください。また、こちらは初心者がお互いに
-    支え合ってゴールに近づくためのサイトです。「初心者じゃないよ。」「俺（私）の自慢の体
-    を他の人に見て欲しい」というようなすでに芸術作品に仕上がっている方は他のサービスをご
-    利用ください。もし芸術作品の方でも頑張っている人を応援したいという方は、ぜひ応援して
-    ください。世の中の右を見ても左を見てもマッチョマン、マッチョウーマンという時代の到来
-    を願って！
-  </p>
-  <p class="d-flex flex-row-reverse"><strong>by DePU</strong></p>
-  <div class="row">
-    <div class="mb-5">
-      <% if user_signed_in? %>
-        <%= link_to "Home", posts_path, class: "btn btn-primary" %>
-      <% else %>
-        <%= link_to "Log in", new_user_session_path, class: "ml-3 btn btn-primary" %>
-        <%= link_to "Sign Up", new_user_registration_path, class: "ml-3 btn btn-info" %>
-
-      <% end %>
+<main class="page-about">
+  <div class="container-lg mx-auto">
+    <div class="row">
+      <div class="offset-lg-2 col-lg-8 mt-5">
+        <h1>About</h1>
+          <p><strong>DePUとは</strong></p>
+          <p>
+            運動や筋トレを始めたけれど、自分一人じゃなかなか継続できないという人に、
+            おすすめのサイトです。登録しているユーザーは目的や目標は違えど、同じ運動
+            や筋トレを継続したいという気持ちを持った仲間たちです。その仲間たちで支え
+            合い運動や筋トレの継続に成功し、理想の自分に近づく一助になれば幸いです。
+            そのため、「初心者じゃないよ。」「俺（私）の自慢の体を他の人に見て欲しい
+            」というすでに芸術作品に仕上がっている方は他のサービスをご利用ください。
+            もし芸術作品の方でも頑張っている人を応援したいという方は、ぜひ応援して
+            ください。人々がボディメイクや運動で理想の自分を手に入れる日が来ることを
+            願って<span>!</span>
+          </p>
+          <p class="d-flex flex-row-reverse"><strong>by DePU</strong></p>
+      </div>
     </div>
   </div>
+</main>

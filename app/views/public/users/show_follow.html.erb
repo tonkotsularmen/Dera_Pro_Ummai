@@ -1,24 +1,26 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <table class="table table-hover">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">user_name</th>
-            <th scope="col">showリンク</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users.each do |user| %>
-          <tr>
-            <th scope="row"><%= image_tag user.get_profile_image, size: "64x64", class: "rounded-circle" %></th>
-            <td><%= user.user_name %></td>
-            <td><%= link_to "詳細へ", user_path(user), class: "btn btn-info" %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+<main class="page-users-main">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">user_name</th>
+              <th scope="col">showリンク</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+            <tr>
+              <th scope="row"><%= image_tag user.get_profile_image, size: "64x64", class: "rounded-circle" %></th>
+              <td><%= user.user_name %></td>
+              <td><%= link_to "詳細へ", user_path(user), class: "btn btn-info" %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-</div>
+</main>

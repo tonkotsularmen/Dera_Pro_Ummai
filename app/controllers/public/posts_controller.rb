@@ -9,19 +9,18 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
-    post.user_id = current_user.id
-    if post.save
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    if @post.save
       flash[:notice] = "投稿が成功しました"
-      redirect_to post_path(post.id)
+      redirect_to post_path(@post.id)
     else
-      flash[:notice] = "投稿が失敗しました"
-      redirect_to new_post_path
+      redirect_to new_post_path, flash: { error: @post.errors.full_messages }
     end
   end
 
   def index
-    @posts = Post.page(params[:page]).per(12).order(created_at: :desc)
+    @posts = Post.all.page(params[:page]).per(12).order(created_at: :desc)
   end
 
   def show
@@ -32,7 +31,7 @@ class Public::PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    redirect_to posts_path
+    redirect_to users_path
   end
 
   def search
