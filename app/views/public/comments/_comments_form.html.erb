@@ -1,4 +1,4 @@
 <%= form_with model: [post, comment], local: false do |f| %>
-  <%= f.text_area :comment, rows: '3', placeholder: "メッセージをここに" %>
+  <%= f.text_area :comment, rows: '5', class: "form-control", placeholder: "メッセージをここに" %>
   <%= f.submit "送信する", class:"btn btn-info mt-2" %>
 <% end %>
