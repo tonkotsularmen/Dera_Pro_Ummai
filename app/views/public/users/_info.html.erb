@@ -1,45 +1,47 @@
-<table class='table'>
-  <tr>
-    <%= link_to user_path(current_user) do %>
-      <%= image_tag current_user.get_profile_image, size: "100x100", class: "rounded-circle" %>
-    <% end %>
-  </tr>
-  <tr>
-	  <th>name</th>
-	  <th><%= current_user.user_name %></th>
-  </tr>
-  <tr>
-	  <th>Your Goal</th>
-	  <th>
-	    <% if current_user.goal.blank? %>
+<div class="row mt-3">
+  <div class="col-8"><!--時間あればプレビュー機能-->
+    <span>
+      <%= link_to user_path(current_user) do %>
+        <%= image_tag current_user.get_profile_image, size: "100x100", class: "rounded-circle" %>
+      <% end %>
+    </span>
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col-8">
+    <span><%= current_user.user_name %></span>
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col-8">
+    <span>
+      <% if current_user.goal.blank? %>
         あなたはまだ目標を定めていません
       <% else %>
         あなたの理想は　<%= current_user.goal %>　です
       <% end %>
-	  </th>
-  </tr>
-  <tr>
-    <th>タンパク質</th>
-    <th>
-      <%= current_user.protein %>
-    </th>
-  </tr>
-  <tr>
-    <th>脂質</th>
-    <th>
-      <%= current_user.fat %>
-    </th>
-  </tr>
-  <tr>
-    <th>炭水化物質</th>
-    <th>
-      <%= current_user.carbo %>
-    </th>
-  </tr>
-</table>
-
-<% if current_user.user_name != "guestuser" %>
-<div class='row'>
-  <%= link_to "投稿する", new_post_path %>
+    </span>
+  </div>
 </div>
-<% end %>
+<div class="row mt-3">
+  <div class="col-8">
+    <span><%= current_user.protein %></span>
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col-8">
+    <span><%= current_user.fat %></span>
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col-8">
+    <span><%= current_user.carbo %></span>
+  </div>
+</div>
+<div class="row mt-3">
+  <% if current_user.user_name != "guestuser" %>
+    <div class='row'>
+    <%= link_to "投稿する", new_post_path %>
+    </div>
+  <% end %>
+</div>
