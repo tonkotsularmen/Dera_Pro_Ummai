@@ -42,13 +42,15 @@
             <% end %>
           </span>
           <span id="follower_count"><!--フォローされている人の数-->
-            　<%= render partial: "public/relationships/follower_count", locals: { user: @user } %>
+          　<%= render partial: "public/relationships/follower_count", locals: { user: @user } %>
           </span>
+          　
           <span id="following_count"><!--フォローしている人の数-->
-            　<%= render partial: "public/relationships/following_count", locals: { user: @user } %>
+          　<%= render partial: "public/relationships/following_count", locals: { user: @user } %>
           </span>
+          　
           <span id="user_follow_btn"><!--フォローボタン-->
-            　<%= render partial: "public/relationships/follow_btn", locals: { user: @user } %>
+          　<%= render partial: "public/relationships/follow_btn", locals: { user: @user } %>
           </span>
         </div>
       </div>

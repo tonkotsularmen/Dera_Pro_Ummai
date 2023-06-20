@@ -1,25 +1,33 @@
-<main class="page-users-main">
+<main>
   <div class="container">
+    <div class="row mt-2 border-bottom bg-primary">
+
+      <div class="col-4 text-center bg-secondary">
+        こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。
+      </div>
+      <div class="col-8">
+        こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。
+      </div>
+    </div>
     <div class="row">
-      <div class="col">
-        <table class="table table-hover">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">user_name</th>
-              <th scope="col">showリンク</th>
-            </tr>
-          </thead>
+      <div class="col-2 bg-danger">
+        こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。
+      </div>
+      <div class="col-8">
+        <table class="table table-success table-striped table-hover border-0">
           <tbody>
             <% @users.each do |user| %>
             <tr>
-              <th scope="row"><%= image_tag user.get_profile_image, size: "64x64", class: "rounded-circle" %></th>
-              <td><%= user.user_name %></td>
-              <td><%= link_to "詳細へ", user_path(user), class: "btn btn-info" %></td>
+              <th scope="row" class="p-1 text-center"><%= image_tag user.get_profile_image, size: "40x40", class: "rounded-circle" %></th>
+              <td class="text-center"><%= user.user_name %></td>
+              <td class="text-center"><%= user.introduction %></td>
             </tr>
             <% end %>
           </tbody>
         </table>
+      </div>
+      <div class="col-2 bg-warning">
+        こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。
       </div>
     </div>
   </div>
