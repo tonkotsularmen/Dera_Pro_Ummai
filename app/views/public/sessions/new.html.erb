@@ -1,39 +1,43 @@
 <main class="page-sessions-new">
   <div class="container">
     <div class="row">
-      <h2>Log in</h2>
-    </div>
-    <div class="row">
+      <div class="offset-2 col-8">
+        <div class="row border-bottom">
+          <h3 class="mx-auto mt-5 mb-0">ログイン</h3>
+        </div>
         <%= form_with model: @user, url: user_session_path do |f| %>
-          <div class="field">
-            <%= f.label :email %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= render "public/shared/error_messages", resource: resource %>
+        <div class="row mt-3">
+          <div class="offset-1 col-3">
+            <span>メールアドレス</span>
           </div>
-  
-          <div class="field">
-            <%= f.label :password %><br />
-            <%= f.password_field :password, autocomplete: "current-password" %>
+          <div class="col-8">
+            <span><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></span>
           </div>
-  
-          <% if devise_mapping.rememberable? %>
+        </div>
+        <div class="row mt-3">
+          <div class="offset-1 col-3">
+            <span>パスワード</span>
+          </div>
+          <div class="field col-8">
             <div class="field">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
+              <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
             </div>
-          <% end %>
-  
-          <div class="actions">
-            <%= f.submit "Log in" %>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="offset-4 col-4 d-flex justify-content-center">
+            <div class="actions"><%= f.submit "Log in", class: "btn btn-outline-success" %></div>
           </div>
         <% end %>
-    </div>
-    <div class="row">
-      <%= render "public/shared/links" %>
-    </div>
-    <div class="row">
-      <div class="col">
-        
+        </div>
+        <div class="row mt-3">
+          <div class="col d-flex justify-content-center">
+            アカウント登録がまだの方は<%= link_to "こちら", new_registration_path(resource_name) %>
+          </div>
+        </div>
       </div>
+      <div class="col-2"></div>
     </div>
   </div>
 </main>

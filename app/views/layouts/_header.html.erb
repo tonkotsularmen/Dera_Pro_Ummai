@@ -43,7 +43,39 @@
               Log out
             <% end %>
           </li>
-          <% else %><!--ログインしてないならendまでの処理-->
+
+          <!--adminログイン済み-->
+          <% elsif admin_signed_in? %>
+          <li class="nav-item">
+            <%= link_to admin_root_path, class:"nav-link text-light" do %>
+              <i class="fas fa-home"></i>
+              管理画面
+            <% end %>
+          </li>
+          &nbsp;
+          <li class="nav-item">
+            <%= link_to posts_path, class:"nav-link text-light" do %>
+              <i class="fa-solid fa-book-open"></i>
+              投稿一覧
+            <% end %>
+          </li>
+          &nbsp;
+          <li class="nav-item">
+            <%= link_to newcomer_path, class:"nav-link text-light" do %>
+              <i class="fas fa-book-open"></i>
+              ルールブック
+            <% end %>
+          </li>
+          &nbsp;
+          <li class="nav-item">
+            <%= link_to destroy_user_session_path, method: :delete, class:"nav-link text-light" do %>
+              <i class="fas fa-sign-out-alt"></i>
+              Log out
+            <% end %>
+          </li>
+
+          <!--未ログイン-->
+          <% else %>
           <li class="nav-item">
             <%= link_to root_path, class:"nav-link text-light" do %>
               <i class="fas fa-home"></i>
