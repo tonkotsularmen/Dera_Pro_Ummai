@@ -19,13 +19,14 @@ Rails.application.routes.draw do
   #管理者
   namespace :admin do
     root to: 'users#index'
-    resources :users, only: [:show, :index, :edit, :destroy] do
+    get 'admin/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    resources :users, only: [:show, :index, :edit, :update, :destroy] do
       member do
         get :following, :followers
         # GET /users/1/following
         # GET /users/1/followers
       end
-      
+
     end
     resources :posts, only: [:show, :destroy] do
       resources :comments, only: [:destroy]
