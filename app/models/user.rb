@@ -37,7 +37,7 @@ class User < ApplicationRecord
   validates :protein, numericality: { in: 0..999 }
   validates :fat, numericality: { in: 0..999 }
   validates :carbo, numericality: { in: 0..999 }
-
+  validates :introduction, length: { maximum: 100 }
 
   # ユーザーをフォローする
   def follow(other_user)
