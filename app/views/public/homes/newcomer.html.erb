@@ -1,7 +1,7 @@
 <main class="page-about mb-auto vh-100">
   <div class="container-lg mt-4">
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-lg-2">
       </div>
       <div class="col-lg-8">
         <div class="border-bottom border-secondary pb-2 mb-3 d-flex align-items-center justify-content-between">
@@ -12,14 +12,17 @@
             <li>人を誹謗中傷することはやめましょう</li>
             <li>人を不快にする発信はやめましょう</li>
             <li>露出の高い画像や人を不快にさせる画像の投稿はやめましょう</li>
+            <li>明らかなアダルト画像や、社会的に不適切な投稿はやめましょう</li>
             <li>運動やトレーニングに関係のある発信をお願いします</li>
             <li>運動やトレーニングとは無関係の発信をしたい方は他のサービスをご利用ください</li>
+            <li>管理側が不適切と判断した場合、投稿やメッセージの削除、アカウントの凍結を行います</li>
+            <li>また、これらの行為が確認された場合、法的手段や措置を検討し対処させていただきます</li>
           </ul>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-lg-2">
       </div>
       <div class="col-lg-8">
         <div class="border-bottom border-secondary pb-2 mb-3 d-flex align-items-center justify-content-between">
@@ -27,15 +30,31 @@
         </div>
         <div>
           <ul>
-            <li>人を誹謗中傷することはやめましょう</li>
-            <li>人を不快にする発信はやめましょう</li>
-            <li>露出の高い画像や人を不快にさせる画像の投稿はやめましょう</li>
-            <li>運動やトレーニングに関係のある発信をお願いします</li>
-            <li>運動やトレーニングとは無関係の発信をしたい方は他のサービスをご利用ください</li>
+            <li>まずは、ゴールを明確にしましょう</li>
+            <li>次は、誰かをフォローしてあげてください</li>
+            <li>フォローされた人はフォローバックしてあげましょう</li>
+            <li>お互いにサポートしながらゴールに近づいていきましょう</li>
+            <li>トレーニングや運動の成果や頑張ったことを発信しましょう</li>
+            <li>
+              仲間の頑張りをメダル <i class="fa-sharp fa-solid fa-medal" aria-hidden="true" style="color: gold;"></i> や
+              メッセージ <i class="fa-regular fa-message fa-lg"></i> で応援したり、褒めてあげましょう！
+            </li>
+            <li>もし仲間が挫折しそうな時や食欲と戦っている時はサポートしてあげましょう</li>
+            <li>週１回、月１回、歩く、その場で自体重スクワット、なんでもいいので体を動かしましょう</li>
+            <li>少しずつ頻度や強度を高めていけば大丈夫です</li>
+            <li>そしてその記録を仲間に発信して褒めてもらいましょう</li>
           </ul>
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-lg-2">
+      </div>
+      <div class="col-lg-8 mt-3">
+        <%= link_to user_path(current_user) do %>
+          <i class="fa-regular fa-user"></i>マイページ
+        <% end %>
+      </div>
     </div>
   </div>
 </main>
