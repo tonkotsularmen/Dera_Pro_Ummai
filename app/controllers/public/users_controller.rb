@@ -14,7 +14,7 @@ class Public::UsersController < ApplicationController
   end
 
   def show
-    @posts = @user.posts
+    @posts = @user.posts.order(created_at: :desc)
   end
 
   def following
@@ -59,7 +59,7 @@ class Public::UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:user_name, :email, :introduction, :profile_image, :goal, :protein, :fat, :carbo)
+      params.require(:user).permit(:user_name, :email, :introduction, :profile_image, :goal, :protein, :fat, :carbo, :user_type)
     end
 
     def ensure_correct_user

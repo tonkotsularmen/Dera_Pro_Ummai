@@ -64,6 +64,14 @@
         </div>
         <div class="row mt-3">
           <div class="offset-1 col-3">
+            <span>会員カテゴリ</span>
+          </div>
+          <div class="col-8">
+            <span><%= f.select :user_type, User.user_types.keys.map {|k| [k, k]}, {}, { class: 'form-control' , required: true, data: {} } %></span>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="offset-1 col-3">
             <span>自己紹介</span>
           </div>
           <div class="col-8">

@@ -39,6 +39,8 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get '/about' => 'homes#about'
     get '/newcomer' => 'homes#newcomer'
+    get '/posts/new/yabai' => 'posts#shokuyoku_new', as: 'new_shokuyoku_post'
+    get '/posts/new/zasetsu' => 'posts#zasetsu_new', as: 'new_zasetsu_post'
     get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
      # 退会確認画面
     patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'

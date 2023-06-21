@@ -60,8 +60,11 @@
           </div>
 
           <div class="card-footer text-muted border-top-0 border-bottom bg-white pt-1">
-            <div id="comments_form">
-              <%= render partial: "public/comments/comments_form", locals: { post: post, comment: @comment } %>
+            <div id="comments_form_group">
+              <%= form_with model: [post, @comment], local: false do |f| %>
+                <%= f.text_area :comment, rows: '1', class: "indexcomment form-control", placeholder: "メッセージをここに(120文字)" %>
+                <%= f.submit "メッセージを届ける", class:"btn btn-outline-info mt-2" %>
+              <% end %>
             </div>
           </div>
         </div>

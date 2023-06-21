@@ -31,10 +31,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-      t.string :user_name, null: false, unique: true
+      t.string :user_name, null: false, unique: true, limit: 30
       t.integer :user_status, null: false, default: 1
       t.integer :user_type, null: false, default: 0
-      t.text :goal
+      t.text :goal, limit: 50
       t.integer :protein, null: false, default: 0
       t.integer :fat, null: false, default: 0
       t.integer :carbo, null: false, default: 0
