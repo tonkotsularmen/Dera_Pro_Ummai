@@ -7,8 +7,8 @@ class Post < ApplicationRecord
   has_many   :notifications, dependent: :destroy
 
   validates :image,   presence: true
-  validates :title,   presence: true
-  validates :caption, presence: true
+  validates :title,   presence: true, length: { maximum: 30 }
+  validates :caption, presence: true, length: { maximum: 150 }
 
   def liked_by?(user)
     likes.exists?(user_id: user.id)

@@ -1,0 +1,21 @@
+<main class="page-users-unsubscribe">
+  <div class="container">
+    <div class="row d-flex justify-cnotent-center">
+      <div class="col my-4">
+        <h2>本当にこの会員を削除しますか？</h2>
+        <p>
+           削除処理した場合は、会員の記録を復旧することができません。<br>
+           よろしいですか？
+        </p>
+      </div>
+    </div>
+    <div class="row justify-cnotent-center">
+      <div class="col-2">
+        <%= link_to "削除処理を行わない", admin_user_path(@user), class:"btn btn-sm btn-primary" %>
+      </div>
+      <div class="col-2">
+        <%= link_to "削除処理を行う", admin_user_path, method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger" %>
+      </div>
+    </div>
+  </div>
+</main>
