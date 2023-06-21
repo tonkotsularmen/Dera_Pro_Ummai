@@ -1,0 +1,7 @@
+<% if user.following.exists? %>
+  <%= link_to following_admin_user_path(user) do %>
+    サポート中<%= user.following.count %>人
+  <% end %>
+<% else %>
+  サポート中0人
+<% end %>

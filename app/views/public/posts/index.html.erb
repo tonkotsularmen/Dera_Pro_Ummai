@@ -13,9 +13,9 @@
           <div class="col-lg-4 p-1">
             <%= link_to post_path(post.id) do %>
               <% if post.image.present? %>
-                <%= image_tag post.image, width: "100%", height: "150px" %>
+                <%= image_tag post.image, class: "img-fluid" %>
               <% else %>
-                <%= image_tag 'no_image.jpg', width: "100%", height: "150px" %>
+                <%= image_tag 'no_image.jpg', class: "img-fluid" %>
               <% end %>
             <% end %>
           </div>

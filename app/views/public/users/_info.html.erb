@@ -1,5 +1,5 @@
 <div class="row mt-3">
-  <div class="col-8"><!--時間あればプレビュー機能-->
+  <div class="col-8">
     <span>
       <%= link_to user_path(current_user) do %>
         <%= image_tag current_user.get_profile_image, size: "100x100", class: "rounded-circle" %>
@@ -18,30 +18,33 @@
       <% if current_user.goal.blank? %>
         あなたはまだ目標を定めていません
       <% else %>
-        あなたの理想は　<%= current_user.goal %>　です
+        あなたの理想は<br />
+        <%= current_user.goal %>　です
       <% end %>
     </span>
   </div>
 </div>
 <div class="row mt-3">
   <div class="col-8">
-    <span><%= current_user.protein %></span>
+    <span>タンパク質：<%= current_user.protein %></span>
   </div>
 </div>
 <div class="row mt-3">
   <div class="col-8">
-    <span><%= current_user.fat %></span>
+    <span>脂質：<%= current_user.fat %></span>
   </div>
 </div>
 <div class="row mt-3">
   <div class="col-8">
-    <span><%= current_user.carbo %></span>
+    <span>炭水化物：<%= current_user.carbo %></span>
   </div>
 </div>
 <div class="row mt-3">
   <% if current_user.user_name != "guestuser" %>
-    <div class='row'>
-    <%= link_to "投稿する", new_post_path %>
+    <div class='col-8'>
+      <%= link_to new_post_path do %>
+        <i class="fa-solid fa-pen-to-square"></i>
+      <% end %>
     </div>
   <% end %>
 </div>

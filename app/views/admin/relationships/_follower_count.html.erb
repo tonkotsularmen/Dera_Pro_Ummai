@@ -1,0 +1,7 @@
+<% if user.followers.exists? %>
+  <%= link_to followers_admin_user_path(user) do %>
+    サポーター<%= user.followers.count %>人
+  <% end %>
+<% else %>
+  サポーター0人
+<% end %>

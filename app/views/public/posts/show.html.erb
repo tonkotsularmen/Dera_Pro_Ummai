@@ -22,7 +22,7 @@
                 <span id="comments_count" class="mt-3">
                   <i class="fa fa-comment"></i>
                   <%= render partial: "public/comments/comments_count", locals: { post: @post } %>
-                　｜　
+                　｜
                 </span>
                 <span id="like_buttons_<%= @post.id %>"><%= render partial: "public/likes/likes", locals: { post: @post } %></span>
                 <% if @post.user == current_user %>

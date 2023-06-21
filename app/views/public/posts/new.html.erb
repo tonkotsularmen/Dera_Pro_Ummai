@@ -1,7 +1,7 @@
 <main class="page-post-new">
   <div class="container">
     <div class="row">
-      <div class="col">
+      <div class="col-4">
         <% if flash[:error].present? %>
           <div id="error_explanation">
             <h3><%= flash[:error].count %> 件のエラーがあります</h3>
@@ -14,6 +14,30 @@
         <% end %>
         <h1>投稿フォーム</h1>
         <%= form_with model: @post do |f| %>
+          <h4>画像</h4>
+            <%= f.file_field :image, accept: "image/*", required: true %>
+          <h4>タイトル</h4>
+            <%= f.text_field :title, required: true %>
+          <h4>説明</h4>
+            <%= f.text_area :caption, required: true %>
+          <%= f.submit '投稿' %>
+        <% end %>
+      </div>
+      <div class="col-4">
+        <h1>やばいフォーム</h1>
+        <%= form_with model: @yabai do |f| %>
+          <h4>画像</h4>
+            <%= f.file_field :image, accept: "image/*", required: true %>
+          <h4>タイトル</h4>
+            <%= f.text_field :title, required: true %>
+          <h4>説明</h4>
+            <%= f.text_area :caption, required: true %>
+          <%= f.submit '投稿' %>
+        <% end %>
+      </div>
+      <div class="col-4">
+        <h1>挫折フォーム</h1>
+        <%= form_with model: @zasetsu do |f| %>
           <h4>画像</h4>
             <%= f.file_field :image, accept: "image/*", required: true %>
           <h4>タイトル</h4>

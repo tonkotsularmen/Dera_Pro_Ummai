@@ -6,12 +6,18 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @yabai = Post.new(title: "食欲がやばいです", caption:"食欲がやばいです。どう対処したらいいですか？")
+    @zasetsu = Post.new(title: "やりたくなーい!！", caption:"やる気が起きません！！鼓舞してくれませんか！？")
   end
 
   def create
     @post = Post.new(post_params)
+    @yabai = Post.new(post_params)
+    @zasetsu = Post.new(post_params)
     @post.user_id = current_user.id
-    if @post.save
+    @yabai.user_id = current_user.id
+    @zasetsu.user_id = current_user.id
+    if @post.save || @yabai.save || @zasetsu.save
       flash[:notice] = "投稿が成功しました"
       redirect_to post_path(@post.id)
     else

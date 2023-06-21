@@ -1,0 +1,97 @@
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="offset-2 col-8">
+        <div class="row border-bottom">
+          <h3 class="mx-auto mt-5 mb-0">ユーザー情報編集</h3>
+        </div>
+        <%= form_with model: @user, url: admin_user_path(@user) do |f| %>
+        <div class="row mt-3">
+          <div class="offset-1 col-3">
+            <span>プロフィール画像</span>
+          </div>
+          <div class="col-8"><!--時間あればプレビュー機能-->
+            <span><%= f.file_field :profile_image, accept: "image/*" %></span>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="offset-1 col-3">
+            <span>メールアドレス</span>
+          </div>
+          <div class="col-8">
+            <span><%= f.email_field :email, class: "form-control" %></span>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="offset-1 col-3">
+            <span>ユーザーネーム</span>
+          </div>
+          <div class="col-8">
+            <span><%= f.text_field :user_name, class: "form-control" %></span>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="offset-1 col-3">
+            <span>目的</span>
+          </div>
+          <div class="col-8">
+            <span><%= f.text_field :goal, class: "form-control" %></span>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="offset-1 col-3">
+            <span>タンパク質</span>
+          </div>
+          <div class="col-8">
+            <span><%= f.text_field :protein, class: "form-control" %></span>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="offset-1 col-3">
+            <span>脂質</span>
+          </div>
+          <div class="col-8">
+            <span><%= f.text_field :fat, class: "form-control" %></span>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="offset-1 col-3">
+            <span>炭水化物</span>
+          </div>
+          <div class="col-8">
+            <span><%= f.text_field :carbo, class: "form-control" %></span>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="offset-1 col-3">
+            <span>自己紹介</span>
+          </div>
+          <div class="col-8">
+            <span><%= f.text_area :introduction, rows: '3', class: "form-control" %></span>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="offset-1 col-3">
+            <span>会員ステータス</span>
+          </div>
+          <div class="col-8">
+            <span><%= f.select :user_status, {'退会済み': 0, '有効会員': 1}, { selected: 1 }, { class: 'form-control' , required: true } %></span>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-4 d-flex justify-content-center">
+            <span><%= link_to "戻る", admin_user_path(@user), class: "btn btn-info" %></span>
+          </div>
+          <div class="col-4 d-flex justify-content-center">
+            <span><%= f.submit '保　存', class: "btn btn-primary" %></span>
+          </div>
+        <% end %>
+          <div class="col-4 d-flex justify-content-center">
+            <span><%= link_to "退会確認画面", admin_unsubscribe_path(@user), class: "btn btn-danger" %></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-2"></div>
+    </div>
+  </div>
+</main>
