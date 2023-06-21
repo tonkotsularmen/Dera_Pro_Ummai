@@ -1,6 +1,8 @@
 @use '~bootstrap/scss/bootstrap';
 @import "homes";
 
+@charset "UTF-8";
+
 body {
   display: flex;
   flex-direction: column;
@@ -25,4 +27,22 @@ footer {
 
 a {
     text-decoration: none !important;
+}
+
+.indexcomment {
+  border: none;
+  border-bottom: 1px solid #a9a9a9;
+}
+
+.backtop {
+  text-align: center;
+}
+
+#back {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+#back-image {
+  width: 30px;
 }

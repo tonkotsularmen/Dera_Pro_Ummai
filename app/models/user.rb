@@ -33,12 +33,12 @@ class User < ApplicationRecord
                                   foreign_key: 'visited_id',
                                     dependent: :destroy
 
-  validates :user_name, length: { minimum: 2, maximum: 30 }, uniqueness: true
+  validates :user_name, length: { minimum: 1, maximum: 30 }, uniqueness: true
   validates :protein, numericality: { in: 0..999 }
   validates :fat, numericality: { in: 0..999 }
   validates :carbo, numericality: { in: 0..999 }
   validates :introduction, length: { maximum: 100 }
-
+  validates :goal, length: { maximum: 50 }
   # ユーザーをフォローする
   def follow(other_user)
     following << other_user
