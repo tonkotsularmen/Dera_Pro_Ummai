@@ -13,7 +13,7 @@ class Public::PostsController < ApplicationController
   end
 
   def zasetsu_new
-    @zasetsu = Post.new(title: "やりたくなーい!！", caption:"やる気が起きません！！鼓舞してくれませんか！？")
+    @zasetsu = Post.new(title: "やりたくなーい！！", caption:"やる気が起きません！！鼓舞してくれませんか！？")
   end
 
   def create
