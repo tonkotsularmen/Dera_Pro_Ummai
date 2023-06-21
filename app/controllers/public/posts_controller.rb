@@ -6,7 +6,13 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
+  end
+
+  def shokuyoku_new
     @yabai = Post.new(title: "食欲がやばいです", caption:"食欲がやばいです。どう対処したらいいですか？")
+  end
+
+  def zasetsu_new
     @zasetsu = Post.new(title: "やりたくなーい!！", caption:"やる気が起きません！！鼓舞してくれませんか！？")
   end
 
