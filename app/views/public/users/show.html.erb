@@ -9,20 +9,23 @@
       <!--プロフィール-->
       <div class="col-6">
         <div class="row mt-2">
-          <h3 class="mt-1"><%= @user.user_name %></h3>
-          <span class="ml-3 mt-2">
-            <% if @user.user_name != "guestuser" %>
-              <% if current_user == @user%>
-                <%= link_to edit_user_path(@user.id) do %>
-                  <i class="fa-solid fa-user-gear fa-lg"></i>
+          <div class="col">
+            <h3 class="mt-1"><%= @user.user_name %></h3>
+            <span class="ml-3 mt-2">
+              <% if @user.user_name != "guestuser" %>
+                <% if current_user == @user%>
+                  <%= link_to edit_user_path(@user.id) do %>
+                    <i class="fa-solid fa-user-gear fa-lg"></i>
+                  <% end %>
                 <% end %>
               <% end %>
-            <% end %>
-          </span>
-          <span class="ml-3 mt-2">P:<%= @user.protein %>g</span>
-          <span class="ml-3 mt-2">F:<%= @user.fat %>g</span>
-          <span class="ml-3 mt-2">C:<%= @user.carbo %>g</span>
+            </span>
+            <span class="ml-3 mt-2">P : <%= @user.protein %>g</span>
+            <span class="ml-3 mt-2">F : <%= @user.fat %>g</span>
+            <span class="ml-3 mt-2">C : <%= @user.carbo %>g</span>
+          </div>
         </div>
+        <div class="row"><span class="ml-3 mt-2">会員カテゴリ : <%= @user.user_type %></span></div>
         <div class="row">
           <span>
             <% if @user.goal.blank? %>

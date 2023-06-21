@@ -39,6 +39,10 @@ class User < ApplicationRecord
   validates :carbo, numericality: { in: 0..999 }
   validates :introduction, length: { maximum: 100 }
   validates :goal, length: { maximum: 50 }
+
+  enum user_type: { トレーニー: 0, トレーナー: 1, サポーター: 2 }
+
+
   # ユーザーをフォローする
   def follow(other_user)
     following << other_user
