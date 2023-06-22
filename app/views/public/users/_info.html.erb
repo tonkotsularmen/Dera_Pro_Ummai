@@ -24,6 +24,7 @@
     </span>
   </div>
 </div>
+<!--新規投稿リンク-->
 <div class="row mt-3">
   <div class="col-8">
     <span>タンパク質：<%= current_user.protein %></span>
@@ -43,7 +44,7 @@
   <% if current_user.user_name != "guestuser" %>
     <div class='col-8'>
       <%= link_to new_post_path do %>
-        <i class="fa-solid fa-pen-to-square"></i>
+        <i class="fa-solid fa-pen-to-square"></i>新規投稿
       <% end %>
     </div>
   <% end %>
@@ -52,7 +53,7 @@
   <% if current_user.user_name != "guestuser" %>
     <div class='col-8'>
       <%= link_to new_shokuyoku_post_path do %>
-        <i class="fa-solid fa-bacon"></i>
+        <i class="fa-solid fa-bacon"></i>食欲がやばいとき
       <% end %>
     </div>
   <% end %>
@@ -61,7 +62,7 @@
   <% if current_user.user_name != "guestuser" %>
     <div class='col-8'>
       <%= link_to new_zasetsu_post_path do %>
-        <i class="fa-solid fa-face-tired"></i>
+        <i class="fa-solid fa-face-tired"></i>やりたくないとき
       <% end %>
     </div>
   <% end %>

@@ -6,19 +6,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-2">
-        <% if flash[:error].present? %>
-          <div id="error_explanation">
-            <h3><%= flash[:error].count %> 件のエラーがあります</h3>
-            <ul>
-              <% flash[:error].each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-      </div>
-      <div class="offset-2 col-4">
+      <div class="offset-4 col-4">
         <%= form_with model: @zasetsu do |f| %>
           <div class="mt-3">
             <div class="pb-4">

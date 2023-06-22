@@ -33,12 +33,14 @@ class User < ApplicationRecord
                                   foreign_key: 'visited_id',
                                     dependent: :destroy
 
-  validates :user_name, length: { minimum: 1, maximum: 30 }, uniqueness: true
-  validates :protein, numericality: { in: 0..999 }
-  validates :fat, numericality: { in: 0..999 }
-  validates :carbo, numericality: { in: 0..999 }
-  validates :introduction, length: { maximum: 100 }
-  validates :goal, length: { maximum: 50 }
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  validates :password    , format:       { with: VALID_PASSWORD_REGEX }, on: :create
+  validates :user_name   , length:       { minimum: 1, maximum: 30 }, uniqueness: true
+  validates :protein     , numericality: { in: 0..999 }
+  validates :fat         , numericality: { in: 0..999 }
+  validates :carbo       , numericality: { in: 0..999 }
+  validates :introduction, length:       { maximum: 100 }
+  validates :goal        , length:       { maximum: 50 }
 
   enum user_type: { トレーニー: 0, トレーナー: 1, サポーター: 2 }
 
@@ -70,9 +72,19 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && (user_status == 1)
   end
-  #ransackの引数の設定
-  def self.ransackable_attributes(auth_object = nil)
-    ["user_name"]
+  #検索機能
+  def self.looks(search,word)
+    if search == "perfect_match"
+      @user = User.where("user_name LIKE?", "#{word}")
+    elsif search == "forword_match"
+      @user = User.where("user_name LIKE?", "#{word}%")
+    elsif search == "backward_match"
+      @user = User.where("user_name LIKE?", "%#{word}")
+    elsif search == "partial_match"
+      @user = User.where("user_name LIKE?", "%#{word}%")
+    else
+      @user = User.all
+    end
   end
 
   #ゲストログイン

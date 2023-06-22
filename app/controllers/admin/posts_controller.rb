@@ -13,5 +13,4 @@ class Admin::PostsController < ApplicationController
     redirect_to admin_user_path(@user)
   end
 
-
 end

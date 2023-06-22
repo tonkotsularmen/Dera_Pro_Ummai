@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'users#index'
     get 'admin/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    get "search" => "searches#search"
     resources :users, only: [:show, :index, :edit, :update, :destroy] do
       member do
         get :following, :followers
@@ -30,7 +31,9 @@ Rails.application.routes.draw do
     end
     resources :posts, only: [:show, :destroy] do
       resources :comments, only: [:destroy]
+
     end
+
   end
 
 
@@ -38,6 +41,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get '/about' => 'homes#about'
+    get "search" => "searches#search"
     get '/newcomer' => 'homes#newcomer'
     get '/posts/new/yabai' => 'posts#shokuyoku_new', as: 'new_shokuyoku_post'
     get '/posts/new/zasetsu' => 'posts#zasetsu_new', as: 'new_zasetsu_post'
