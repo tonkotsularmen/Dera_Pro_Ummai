@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
    before_action :authenticate_admin!
+   before_action :set_q, only: [:index, :search]
 
   def index
     @users = User.page(params[:page])
@@ -48,11 +49,19 @@ class Admin::UsersController < ApplicationController
     flash[:notice] = 'ユーザーを削除しました。'
     redirect_to admin_users_path
   end
-
-private
+  
+  def search
+    @results = @q.result
+  end
+  
+  private
 
     def user_params
       params.require(:user).permit(:user_name, :email, :introduction, :profile_image, :goal, :protein, :fat, :carbo, :user_status)
     end
-
+    
+    def set_q
+      @q = Post.ransack(params[:q])
+    end
+    
 end

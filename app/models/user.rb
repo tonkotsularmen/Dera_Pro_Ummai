@@ -72,10 +72,20 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && (user_status == 1)
   end
-  #ransackの引数の設定
-  def self.ransackable_attributes(auth_object = nil)
-    ["user_name"]
-  end
+  
+  def self.looks(search,word)
+    if search == "perfect_match"
+      @user = User.where("user_name LIKE?", "#{word}")
+    elsif search == "forword_match"
+      @user = User.where("user_name LIKE?", "#{word}%")
+    elsif search == "backward_match"
+      @user = User.where("user_name LIKE?", "%#{word}")
+    elsif search == "partial_match"
+      @user = User.where("user_name LIKE?", "%#{word}%")
+    else 
+      @user = User.all
+    end 
+  end 
 
   #ゲストログイン
   def self.guest

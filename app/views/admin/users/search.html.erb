@@ -1,0 +1,15 @@
+<main class="page-search-result">
+  <div class="container-fluid">
+    <div class="row mt-1 mb-2">
+      <div class="offset-3 col-6">
+        <div class="row">
+          <% @results.each do |result| %>
+          <div class="col-4 p-1">
+            <%= result.user.user_name %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

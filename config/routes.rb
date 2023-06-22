@@ -20,17 +20,20 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'users#index'
     get 'admin/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    get "search" => "searches#search"
     resources :users, only: [:show, :index, :edit, :update, :destroy] do
       member do
         get :following, :followers
         # GET /users/1/following
         # GET /users/1/followers
       end
-
+      
     end
     resources :posts, only: [:show, :destroy] do
       resources :comments, only: [:destroy]
+      
     end
+    
   end
 
 
