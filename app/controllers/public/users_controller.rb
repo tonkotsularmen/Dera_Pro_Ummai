@@ -37,7 +37,7 @@ class Public::UsersController < ApplicationController
         flash[:notice] = "情報が更新されました"
         redirect_to user_path(@user.id)
       else
-        flash[:notice] = "情報の更新に失敗しました"
+        flash[:error] = "情報の更新に失敗しました"
         redirect_to edit_user_path(@user)
       end
     else
@@ -56,7 +56,7 @@ class Public::UsersController < ApplicationController
   def withdrawal
     @user.update(user_status: 0)
     reset_session
-    flash[:notice] = "退会処理を実行いたしました"
+    flash[:erro] = "退会処理を実行いたしました"
     redirect_to root_path
   end
 

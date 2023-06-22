@@ -27,7 +27,8 @@ class Public::PostsController < ApplicationController
       flash[:notice] = "投稿が成功しました"
       redirect_to post_path(@post.id)
     else
-      redirect_to new_post_path, flash: { error: @post.errors.full_messages }
+      flash[:error] = "投稿が失敗しました"
+      redirect_to users_path
     end
   end
 
@@ -43,6 +44,7 @@ class Public::PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
+    flash[:error] = "投稿をしました"
     redirect_to users_path
   end
 
