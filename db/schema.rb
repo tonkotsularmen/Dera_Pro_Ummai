@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2023_06_20_004041) do
   create_table "comments", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "post_id", null: false
-    t.text "comment", limit: 120, null: false
+    t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
@@ -88,8 +88,8 @@ ActiveRecord::Schema.define(version: 2023_06_20_004041) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "title", limit: 30, null: false
-    t.text "caption", limit: 150, null: false
+    t.string "title", null: false
+    t.text "caption", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -111,10 +111,10 @@ ActiveRecord::Schema.define(version: 2023_06_20_004041) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "user_name", limit: 30, null: false
+    t.string "user_name", null: false
     t.integer "user_status", default: 1, null: false
     t.integer "user_type", default: 0, null: false
-    t.text "goal", limit: 50
+    t.text "goal"
     t.integer "protein", default: 0, null: false
     t.integer "fat", default: 0, null: false
     t.integer "carbo", default: 0, null: false
