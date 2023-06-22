@@ -27,13 +27,13 @@ Rails.application.routes.draw do
         # GET /users/1/following
         # GET /users/1/followers
       end
-      
+
     end
     resources :posts, only: [:show, :destroy] do
       resources :comments, only: [:destroy]
-      
+
     end
-    
+
   end
 
 
@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get '/about' => 'homes#about'
+    get "search" => "searches#search"
     get '/newcomer' => 'homes#newcomer'
     get '/posts/new/yabai' => 'posts#shokuyoku_new', as: 'new_shokuyoku_post'
     get '/posts/new/zasetsu' => 'posts#zasetsu_new', as: 'new_zasetsu_post'
