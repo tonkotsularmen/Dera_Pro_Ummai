@@ -2,8 +2,6 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :unsubscribe, :withdrawal]
   before_action :ensure_guest_user, only: [:edit]
-  before_action :set_user, except: [:index, :update, :unsubscribe ]
-
 
   def index
     @posts = current_user.feed.order(created_at: :desc)
@@ -32,12 +30,16 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      flash[:notice] = "情報が更新されました"
-      redirect_to user_path(@user.id)
+    if @user == current_user
+      if @user.update(user_params)
+        flash[:notice] = "情報が更新されました"
+        redirect_to user_path(@user.id)
+      else
+        flash[:error] = "情報の更新に失敗しました"
+        redirect_to edit_user_path(@user)
+      end
     else
-      flash[:notice] = "情報の更新に失敗しました"
-      redirect_to edit_user_path(@user)
+      redirect_to user_path(@user)
     end
   end
 
@@ -52,7 +54,7 @@ class Public::UsersController < ApplicationController
   def withdrawal
     @user.update(user_status: 0)
     reset_session
-    flash[:notice] = "退会処理を実行いたしました"
+    flash[:erro] = "退会処理を実行いたしました"
     redirect_to root_path
   end
 
@@ -76,7 +78,4 @@ class Public::UsersController < ApplicationController
       end
     end
 
-    def set_user
-      @user = User.find(params[:id])
-    end
 end
