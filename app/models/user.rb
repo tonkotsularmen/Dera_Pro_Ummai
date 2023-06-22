@@ -33,12 +33,14 @@ class User < ApplicationRecord
                                   foreign_key: 'visited_id',
                                     dependent: :destroy
 
-  validates :user_name, length: { minimum: 1, maximum: 30 }, uniqueness: true
-  validates :protein, numericality: { in: 0..999 }
-  validates :fat, numericality: { in: 0..999 }
-  validates :carbo, numericality: { in: 0..999 }
-  validates :introduction, length: { maximum: 100 }
-  validates :goal, length: { maximum: 50 }
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  validates :password    , format:       { with: VALID_PASSWORD_REGEX }
+  validates :user_name   , length:       { minimum: 1, maximum: 30 }, uniqueness: true
+  validates :protein     , numericality: { in: 0..999 }
+  validates :fat         , numericality: { in: 0..999 }
+  validates :carbo       , numericality: { in: 0..999 }
+  validates :introduction, length:       { maximum: 100 }
+  validates :goal        , length:       { maximum: 50 }
 
   enum user_type: { トレーニー: 0, トレーナー: 1, サポーター: 2 }
 
