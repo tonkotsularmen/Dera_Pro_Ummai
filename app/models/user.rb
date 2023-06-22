@@ -72,7 +72,7 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && (user_status == 1)
   end
-  
+  #検索機能
   def self.looks(search,word)
     if search == "perfect_match"
       @user = User.where("user_name LIKE?", "#{word}")
@@ -82,10 +82,10 @@ class User < ApplicationRecord
       @user = User.where("user_name LIKE?", "%#{word}")
     elsif search == "partial_match"
       @user = User.where("user_name LIKE?", "%#{word}%")
-    else 
+    else
       @user = User.all
-    end 
-  end 
+    end
+  end
 
   #ゲストログイン
   def self.guest

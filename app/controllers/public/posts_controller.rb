@@ -1,7 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:destroy]
-  before_action :set_q, only: [:index, :search]
   before_action :ensure_guest_user, only: [:new]
 
   def new
@@ -48,10 +47,6 @@ class Public::PostsController < ApplicationController
     redirect_to users_path
   end
 
-  def search
-    @results = @q.result
-  end
-
   private
 
     def post_params
@@ -63,10 +58,6 @@ class Public::PostsController < ApplicationController
       unless @post.user == current_user
         redirect_to posts_path
       end
-    end
-
-    def set_q
-      @q = Post.ransack(params[:q])
     end
 
     def ensure_guest_user
