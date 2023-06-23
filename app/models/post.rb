@@ -9,12 +9,12 @@ class Post < ApplicationRecord
   validates :image,   presence: true
   validates :title,   presence: true, length: { maximum: 30 }
   validates :caption, presence: true, length: { maximum: 150 }
-  
+
   #いいねしてるかどうか
   def liked_by?(user)
     likes.exists?(user_id: user.id)
   end
-  
+
   #検索機能
   def self.looks(search,word)
     if search == "perfect_match"
@@ -25,10 +25,10 @@ class Post < ApplicationRecord
       @post = Post.where("title LIKE?", "%#{word}")
     elsif search == "partial_match"
       @post = Post.where("title LIKE?", "%#{word}%")
-    else 
+    else
       @post = Post.all
-    end 
-  end 
+    end
+  end
 
   #通知機能いいね
   def create_notification_like!(current_user)

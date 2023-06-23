@@ -19,6 +19,8 @@
           <span class="ml-3 mt-2">F:<%= @user.fat %>g</span>
           <span class="ml-3 mt-2">C:<%= @user.carbo %>g</span>
         </div>
+        
+        <div class="row"><span class="ml-3 mt-2">会員カテゴリ : <%= @user.user_type %></span></div>
         <div class="row">
           <span>
             <% if @user.goal.blank? %>
@@ -35,6 +37,7 @@
             <i class="fa-sharp fa-solid fa-medal" aria-hidden="true" style="color: gold;"></i>
             <span style="color: gold;"><%= @user.likes.count %></span>
           </span>
+          
           <span id="follower_count"><!--フォローされている人の数-->
           　<%= render partial: "admin/relationships/follower_count", locals: { user: @user } %>
           </span>
@@ -44,6 +47,7 @@
           </span>
         </div>
       </div>
+      
       <div class="col-4">
         <%= @user.introduction %>
       </div>
@@ -57,14 +61,11 @@
               <div class="card border-0">
                 <%= link_to admin_post_path(post) do %>
                   <% if post.image.present? %>
-                    <%= image_tag post.image, width: "100%", height: "200px" %>
+                    <%= image_tag post.image.variant( resize: "300x200>" ).processed, class: "img-fluid" %>
                   <% else %>
-                    <%= image_tag 'no_image.jpg', width: "100%", height: "200px" %>
+                    <%= image_tag 'no_image.jpg', width: "100%", height: "200px", class: "img-fluid" %>
                   <% end %>
                 <% end %>
-                <div class="card-body">
-                  <h5 class="card-title"><%= post.title %></h5>
-                </div>
               </div>
             </div>
             <% end %>

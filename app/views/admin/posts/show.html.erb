@@ -12,10 +12,10 @@
               <div class="col-10">
                 <p class="card-title">
                   <%= link_to(admin_post_path(@post.id), class:"text-dark") do %>
-                    <strong>タイトル</i><span> <%= @post.title %></span></strong>
+                    <span> <%= @post.title %></span>
                   <% end %>
                 </p>
-                <p class="card-title">説明：<%= @post.caption %></p>
+                <p class="card-title"><%= @post.caption %></p>
                 <span><i class="fas fa-user"></i>
                 By <%= link_to "#{@post.user.user_name}", user_path(@post.user) %> ｜ </span>
                 <span><i class="fa fa-calendar"></i> <%= @post.created_at.strftime('%Y/%m/%d') %> ｜ </span>
@@ -24,7 +24,7 @@
                   <%= render partial: "admin/comments/comments_count", locals: { post: @post } %>
                 　｜
                 </span>
-                <span> 
+                <span>
                   <%= link_to  admin_post_path(@post), method: :delete, class:"text-dark", data: { confirm: "本当に消しますか？間違えていませんか？" } do %>
                     <i class="fa-solid fa-trash-can"></i>
                   <% end %>

@@ -67,10 +67,12 @@
             <% @posts.each do |post| %>
             <div class="col-4 pt-1 px-2">
               <div class="card border-0">
-                <% if post.image.present? %>
-                  <%= image_tag post.image, class: "img-fluid" %>
-                <% else %>
-                  <%= image_tag 'no_image.jpg', class: "img-fluid" %>
+                <%= link_to post_path(post) do %>
+                  <% if post.image.present? %>
+                    <%= image_tag post.image.variant( resize: "300x200>" ).processed, class: "img-fluid" %>
+                  <% else %>
+                    <%= image_tag 'no_image.jpg', class: "img-fluid" %>
+                  <% end %>
                 <% end %>
                 <div class="card-body">
                   <h5 class="card-title"><%= post.title %></h5>
@@ -83,4 +85,3 @@
     </div>
   </div>
 </main>
-
