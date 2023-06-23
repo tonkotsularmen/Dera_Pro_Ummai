@@ -1,0 +1,2 @@
+module Public::ConfigCreatorsHelper
+end
