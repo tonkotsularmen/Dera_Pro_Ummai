@@ -32,7 +32,8 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.page(params[:page]).per(12).order(created_at: :desc)
+    posts = Post.includes(:user).page(params[:page]).per(12)
+    @posts= posts.order(created_at: :desc)
   end
 
   def show
