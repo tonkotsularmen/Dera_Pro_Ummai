@@ -49,8 +49,8 @@ Rails.application.routes.draw do
      # 退会確認画面
     patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
      # アカウント削除
-    get 'download', to: 'config_creators#download_hara'
-    get 'download', to: 'config_creators#download_yaruki'
+    get 'download_hara', to: 'config_creators#download_hara'
+    get 'download_yaruki', to: 'config_creators#download_yaruki'
      # ダウンロードリンク
     resources :users, only: [:index, :show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
