@@ -6,6 +6,7 @@
           <h3 class="mx-auto mt-5 mb-0">ユーザー情報編集</h3>
         </div>
         <%= form_with model: @user do |f| %>
+        
           <div class="row mt-3">
             <div class="offset-1 col-3">
               <span>プロフィール画像</span>
@@ -14,6 +15,7 @@
               <span><%= f.file_field :profile_image, accept: "image/*" %></span>
             </div>
           </div>
+          
           <div class="row mt-3">
             <div class="offset-1 col-3">
               <span>メールアドレス</span>
@@ -22,6 +24,7 @@
               <span><%= f.email_field :email, class: "form-control" %></span>
             </div>
           </div>
+          
           <div class="row mt-3">
             <div class="offset-1 col-3">
               <span>ユーザーネーム</span>
@@ -30,6 +33,7 @@
               <span><%= f.text_field :user_name, class: "form-control" %></span>
             </div>
           </div>
+          
           <div class="row mt-3">
             <div class="offset-1 col-3">
               <span>目的</span>
@@ -38,6 +42,7 @@
               <span><%= f.text_field :goal, class: "form-control" %></span>
             </div>
           </div>
+          
           <div class="row mt-3">
             <div class="offset-1 col-3">
               <span>タンパク質</span>
@@ -46,6 +51,7 @@
               <span><%= f.text_field :protein, class: "form-control" %></span>
             </div>
           </div>
+          
           <div class="row mt-3">
             <div class="offset-1 col-3">
               <span>脂質</span>
@@ -54,6 +60,7 @@
               <span><%= f.text_field :fat, class: "form-control" %></span>
             </div>
           </div>
+          
           <div class="row mt-3">
             <div class="offset-1 col-3">
               <span>炭水化物</span>
@@ -62,6 +69,7 @@
               <span><%= f.text_field :carbo, class: "form-control" %></span>
             </div>
           </div>
+          
           <div class="row mt-3">
             <div class="offset-1 col-3">
               <span>会員カテゴリ</span>
@@ -70,6 +78,7 @@
               <span><%= f.select :user_type, User.user_types.keys.map {|k| [k, k]}, {}, { class: 'form-control' , required: true, data: {} } %></span>
             </div>
           </div>
+          
           <div class="row mt-3">
             <div class="offset-1 col-3">
               <span>自己紹介</span>
@@ -78,19 +87,21 @@
               <span><%= f.text_area :introduction, rows: '3', class: "form-control" %></span>
             </div>
           </div>
+          
           <div class="row mt-3">
             <div class="col-4 d-flex justify-content-center">
-              <span><%= link_to "戻る", user_path(current_user), class: "btn btn-info" %></span>
+              <span><%= link_to "マイページ", user_path(current_user), class: "btn btn-outline-info" %></span>
             </div>
             <% if @user == current_user %>
               <div class="col-4 d-flex justify-content-center">
-                <span><%= f.submit '保　存', class: "btn btn-primary" %></span>
+                <span><%= f.submit '保　存', class: "btn btn-outline-primary" %></span>
               </div>
             <% end %>
         <% end %>
           <div class="col-4 d-flex justify-content-center">
-            <span><%= link_to "退会確認画面", unsubscribe_path(current_user), class: "btn btn-danger" %></span>
+            <span><%= link_to "退会確認画面", unsubscribe_path(current_user), class: "btn btn-outline-danger" %></span>
           </div>
+          
         </div>
       </div>
       <div class="col-2"></div>
