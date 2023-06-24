@@ -8,9 +8,9 @@ class Post < ApplicationRecord
   has_many   :liked_users,     through: :likes,
                                 source: :user
 
-  validates :image,   presence: true
-  validates :title,   presence: true, length: { maximum: 30 }
-  validates :caption, presence: true, length: { maximum: 150 }
+  validates  :image,          presence:  true
+  validates  :title,          presence:  true, length: { maximum: 30 }
+  validates  :caption,        presence:  true, length: { maximum: 150 }
 
   #いいねしてるかどうか
   def liked_by?(user)
