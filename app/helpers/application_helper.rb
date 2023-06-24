@@ -14,6 +14,5 @@ module ApplicationHelper
       t.created_at.strftime('%Y-%m-%d')                       #投稿時間を表示
     end
   end
-
-
+ 
 end

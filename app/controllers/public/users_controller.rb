@@ -3,8 +3,16 @@ class Public::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :unsubscribe, :withdrawal]
   before_action :ensure_guest_user, only: [:edit]
   before_action :set_user, except: [:index, :update, :unsubscribe ]
-  
+
   def index
+    to  = Time.current.at_end_of_day
+    from  = (to - 6.day).at_beginning_of_day
+    best_likes_posts = Post.includes(:liked_users).
+      sort {|a,b|
+        b.liked_users.includes(:likes).where(created_at: from...to).size <=>
+        a.liked_users.includes(:likes).where(created_at: from...to).size
+      }
+    @best_likes_posts = best_likes_posts.first(5)
     @posts = current_user.feed.order(created_at: :desc)
     @users = current_user.following
     @comment = Comment.new
@@ -76,9 +84,9 @@ class Public::UsersController < ApplicationController
         redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
       end
     end
-    
+
     def set_user
       @user = User.find(params[:id])
     end
-    
+
 end

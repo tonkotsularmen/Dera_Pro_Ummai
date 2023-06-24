@@ -1,10 +1,10 @@
 <main class="page-users-index">
-  <div class="container-xl">
-    <div class="row">
-      <div class="col-3">
+  <div class="container-fluid">
+    <div class="row index-box">
+      <div class="col-2 mt-5">
         <%= render 'public/users/info' %>
       </div>
-      <div class="col-8">
+      <div class="col-7">
         <div class="row border-bottom my-4">
           <% @users.each do |user| %>
             <%= link_to user_path(user) do %>
@@ -57,6 +57,28 @@
           </div>
         </div>
         <% end %>
+      </div>
+      <div class="col-3 mt-5">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              メダル数TOP5の投稿
+            </tr>
+          </thead>
+          <tbody>
+            <% @best_likes_posts.each do |best_likes_post| %>
+            <tr>
+              <th scope="row">
+                <%= link_to post_path(best_likes_post) do %>
+                  <%= image_tag best_likes_post.image, size: "50x50", class: "rounded-circle" %>
+                <% end %>
+                </th>
+              <td><%= best_likes_post.title %></td>
+              <td><%= best_likes_post.likes.count %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
