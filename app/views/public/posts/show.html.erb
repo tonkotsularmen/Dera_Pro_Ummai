@@ -2,13 +2,10 @@
   <div class="container">
     <div class="row">
       <div></div>
-      <div class="post-detail py-5">
+      <div class="col-8 post-detail py-5">
+        <!--投稿画像-->
         <div class="card w-75 mx-auto mt-4">
-          <% if @post.image.present? %>
           <%= image_tag @post.image, class:"card-img-top"; %>
-          <% else %>
-            <%= image_tag 'no_image.jpg', class: "img-fluid" %>
-          <% end %>
           <div class="card-body">
             <div class="row">
               <div class="col-2">
@@ -49,6 +46,9 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="col-4 py-5">
+        <%= render partial: "public/posts/best_likes_posts", locals: { best_likes_posts: @best_likes_posts } %>
       </div>
     </div>
   </div>

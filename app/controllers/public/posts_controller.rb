@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  include Common
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:destroy]
   before_action :ensure_guest_user, only: [:new]
@@ -39,6 +40,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
+    @best_likes_posts = best_likes_posts.first(5)
   end
 
   def destroy
@@ -66,4 +68,6 @@ class Public::PostsController < ApplicationController
         redirect_to posts_path , notice: 'ゲストユーザーは新規投稿できません。'
       end
     end
+    
+    
 end
