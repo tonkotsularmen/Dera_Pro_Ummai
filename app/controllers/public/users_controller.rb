@@ -8,8 +8,6 @@ class Public::UsersController < ApplicationController
     @posts = current_user.feed.order(created_at: :desc)
     @users = current_user.following
     @comment = Comment.new
-    @today = Date.today #今日の日付を取得
-    @now = Time.now     #現在時刻を取得
   end
 
   def show

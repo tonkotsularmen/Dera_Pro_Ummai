@@ -23,7 +23,7 @@
                 <p class="card-title"><%= @post.caption %></p>
                 <span><i class="fas fa-user"></i>
                 By <%= link_to "#{@post.user.user_name}", user_path(@post.user) %> ｜ </span>
-                <span><i class="fa fa-calendar"></i> <%= @post.created_at.strftime('%Y/%m/%d') %> ｜ </span>
+                <span><i class="fa-brands fa-creative-commons-share"></i><%= post_time(@post) %> ｜ </span>
                 <i class="fa fa-comment"></i>
                 <span id="comments_count" class="mt-3">
                   <%= render partial: "public/comments/comments_count", locals: { post: @post } %>
