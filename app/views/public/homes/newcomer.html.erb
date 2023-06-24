@@ -51,8 +51,12 @@
       <div class="col-lg-2">
       </div>
       <div class="col-lg-8 mt-3">
-        <%= link_to user_path(current_user) do %>
-          <i class="fa-regular fa-user"></i>マイページ
+        <% if admin_signed_in? %>
+          <%= link_to "管理画面へ", admin_users_path, class: "btn btn-outline-secondary" %>
+        <% else %>
+          <%= link_to user_path(current_user) do %>
+            <i class="fa-regular fa-user"></i>マイページ
+          <% end %>
         <% end %>
       </div>
     </div>
