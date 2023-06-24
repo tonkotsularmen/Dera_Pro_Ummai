@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <div class="text-center p-2">メダル数TOP5の投稿</div>
+    </tr>
+  </thead>
+  <tbody>
+    <% best_likes_posts.each do |best_likes_post| %>
+      <tr class="p-0">
+        <th scope="row">
+          <%= link_to post_path(best_likes_post) do %>
+            <%= image_tag best_likes_post.image, size: "50x50", class: "rounded-circle" %>
+          <% end %>
+        </th>
+        <td>
+          <%= link_to post_path(best_likes_post) do %>
+            <%= best_likes_post.title %>
+          <% end %>
+        </td>
+        <td><i class="fa-sharp fa-solid fa-medal" aria-hidden="true" style="color: gold;"><%= best_likes_post.likes.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
