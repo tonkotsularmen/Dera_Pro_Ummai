@@ -9,42 +9,46 @@
 </div>
 <div class="row mt-3">
   <div class="col-8">
-    <span><%= current_user.user_name %></span>
+    <%= link_to user_path(current_user) do %>
+      <i class="fa-solid fa-face-smile"></i>
+      <%= current_user.user_name %>
+    <% end %>
   </div>
 </div>
 <div class="row mt-3">
   <div class="col-8">
+    <i class="fa-brands fa-golang fa-2xl"></i>
     <span>
       <% if current_user.goal.blank? %>
         No Goal
       <% else %>
-        あなたのゴールは<br />
-        <%= current_user.goal %>　です
+        <br />
+        <%= current_user.goal %>
       <% end %>
     </span>
   </div>
 </div>
 
 <div class="row mt-3">
-  <div class="col-8">
-    <span>タンパク質：<%= current_user.protein %></span>
+  <div class="col">
+    <span>タンパク質<br /><%= current_user.protein %>g</span>
   </div>
 </div>
 <div class="row mt-3">
-  <div class="col-8">
-    <span>脂質：<%= current_user.fat %></span>
+  <div class="col">
+    <span>脂質<br /><%= current_user.fat %>g</span>
   </div>
 </div>
 <div class="row mt-3">
-  <div class="col-8">
-    <span>炭水化物：<%= current_user.carbo %></span>
+  <div class="col">
+    <span>炭水化物<br /><%= current_user.carbo %>g</span>
   </div>
 </div>
 
 <!--新規投稿リンク-->
 <% if current_user.email != "guest@example.com" %>
   <div class="row mt-3">
-    <div class='col-8'>
+    <div class='col'>
       <%= link_to new_post_path do %>
         <i class="fa-solid fa-pen-to-square"></i>新規投稿
       <% end %>
@@ -52,17 +56,19 @@
   </div>
 
   <div class="row mt-3">
-    <div class='col-8'>
+    <div class='col'>
        <%= link_to new_shokuyoku_post_path do %>
-        <i class="fa-solid fa-bacon"></i>食欲がやばいとき
+        <i class="fa-solid fa-bacon"></i>
+        食欲がやばい
       <% end %>
     </div>
   </div>
 
   <div class="row mt-3">
-    <div class='col-8'>
+    <div class='col'>
       <%= link_to new_zasetsu_post_path do %>
-        <i class="fa-solid fa-face-tired"></i>やりたくないとき
+        <i class="fa-solid fa-face-tired"></i>
+        やりたくない
       <% end %>
     </div>
   </div>
