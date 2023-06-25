@@ -7,7 +7,7 @@
       </div>
 
       <div class="col-6">
-        
+
         <div class="row mt-2">
 
           <h3 class="mt-1"><%= @user.user_name %></h3>
@@ -21,13 +21,13 @@
           <span class="ml-3 mt-2">P : <%= @user.protein %>g</span>
           <span class="ml-3 mt-2">F : <%= @user.fat %>g</span>
           <span class="ml-3 mt-2">C : <%= @user.carbo %>g</span>
-          
+
         </div>
-        
+
         <div class="row">
           <span class="ml-3 mt-2">会員カテゴリ : <%= @user.user_type %></span>
         </div>
-        
+
         <div class="row">
           <span>
             <% if @user.goal.blank? %>
@@ -37,9 +37,9 @@
             <% end %>
           </span>
         </div>
-        
+
         <div class="row">
-          
+
           <span>投稿　<%= @posts.count %>　件　</span>
 
           <span>
@@ -48,7 +48,7 @@
               <span style="color: gold;"><%= @user.likes.count %>　</span>
             <% end %>
           </span>
-          
+
           <!--フォローされている人の数-->
           <span id="follower_count">
           　<%= render partial: "public/relationships/follower_count", locals: { user: @user } %>
@@ -63,21 +63,21 @@
           <span id="user_follow_btn">
           　<%= render partial: "public/relationships/follow_btn", locals: { user: @user } %>
           </span>
-          
+
         </div>
-        
+
       </div>
-      
+
       <div class="col-4">
         <%= @user.introduction %>
       </div>
-      
+
     </div>
     <!--投稿一覧-->
     <div class="row">
       <div class="offset-2 col-8">
         <div class="row">
-          
+
           <% @posts.each do |post| %>
             <div class="col-4 pt-1 px-2 card border-0">
               <%= link_to post_path(post) do %>
@@ -88,10 +88,10 @@
               </div>
             </div>
           <% end %>
-          
+
         </div>
       </div>
     </div>
-    
+
   </div>
 </main>
