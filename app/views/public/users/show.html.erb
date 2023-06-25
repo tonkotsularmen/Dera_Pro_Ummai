@@ -1,30 +1,33 @@
 <main class="page-users-show">
   <div class="container">
     <div class="row mt-2 border-bottom">
-      <!--プロフィール画像-->
+
       <div class="col-2 text-center">
         <%= image_tag @user.get_profile_image, size: "120x120", class: "rounded-circle" %>
       </div>
-      <!--プロフィール-->
+
       <div class="col-6">
+        
         <div class="row mt-2">
-          <div class="col">
-            <h3 class="mt-1"><%= @user.user_name %></h3>
-            <span class="ml-3 mt-2">
-              <% if @user.user_name != "guestuser" %>
-                <% if current_user == @user%>
-                  <%= link_to edit_user_path(@user.id) do %>
-                    <i class="fa-solid fa-user-gear fa-lg"></i>
-                  <% end %>
-                <% end %>
+
+          <h3 class="mt-1"><%= @user.user_name %></h3>
+          <span class="ml-3 mt-2">
+            <% if @user.email != "guest@example.com" && @user == current_user %>
+              <%= link_to edit_user_path(@user.id) do %>
+                <i class="fa-solid fa-user-gear fa-lg"></i>
               <% end %>
-            </span>
-            <span class="ml-3 mt-2">P : <%= @user.protein %>g</span>
-            <span class="ml-3 mt-2">F : <%= @user.fat %>g</span>
-            <span class="ml-3 mt-2">C : <%= @user.carbo %>g</span>
-          </div>
+            <% end %>
+          </span>
+          <span class="ml-3 mt-2">P : <%= @user.protein %>g</span>
+          <span class="ml-3 mt-2">F : <%= @user.fat %>g</span>
+          <span class="ml-3 mt-2">C : <%= @user.carbo %>g</span>
+          
         </div>
-        <div class="row"><span class="ml-3 mt-2">会員カテゴリ : <%= @user.user_type %></span></div>
+        
+        <div class="row">
+          <span class="ml-3 mt-2">会員カテゴリ : <%= @user.user_type %></span>
+        </div>
+        
         <div class="row">
           <span>
             <% if @user.goal.blank? %>
@@ -34,54 +37,61 @@
             <% end %>
           </span>
         </div>
+        
         <div class="row">
+          
           <span>投稿　<%= @posts.count %>　件　</span>
-          <!--いいね-->
+
           <span>
             <%= link_to likes_user_path(@user) do %>
               <i class="fa-sharp fa-solid fa-medal" aria-hidden="true" style="color: gold;"></i>
               <span style="color: gold;"><%= @user.likes.count %>　</span>
             <% end %>
           </span>
-          <span id="follower_count"><!--フォローされている人の数-->
+          
+          <!--フォローされている人の数-->
+          <span id="follower_count">
           　<%= render partial: "public/relationships/follower_count", locals: { user: @user } %>
           </span>
 
-          <span id="following_count"><!--フォローしている人の数-->
+          <!--フォローしている人の数-->
+          <span id="following_count">
           　<%= render partial: "public/relationships/following_count", locals: { user: @user } %>
           </span>
 
-          <span id="user_follow_btn"><!--フォローボタン-->
+          <!--フォローボタン-->
+          <span id="user_follow_btn">
           　<%= render partial: "public/relationships/follow_btn", locals: { user: @user } %>
           </span>
+          
         </div>
+        
       </div>
+      
       <div class="col-4">
         <%= @user.introduction %>
       </div>
+      
     </div>
     <!--投稿一覧-->
     <div class="row">
       <div class="offset-2 col-8">
         <div class="row">
-            <% @posts.each do |post| %>
-            <div class="col-4 pt-1 px-2">
-              <div class="card border-0">
-                <%= link_to post_path(post) do %>
-                  <% if post.image.present? %>
-                    <%= image_tag post.image.variant( resize: "300x200>" ).processed, class: "img-fluid" %>
-                  <% else %>
-                    <%= image_tag 'no_image.jpg', class: "img-fluid" %>
-                  <% end %>
-                <% end %>
-                <div class="card-body">
-                  <h5 class="card-title"><%= post.title %></h5>
-                </div>
+          
+          <% @posts.each do |post| %>
+            <div class="col-4 pt-1 px-2 card border-0">
+              <%= link_to post_path(post) do %>
+                <%= image_tag post.image.variant( resize: "300x200>" ).processed, class: "img-fluid" %>
+              <% end %>
+              <div class="card-body">
+                <h5 class="card-title"><%= post.title %></h5>
               </div>
             </div>
-            <% end %>
+          <% end %>
+          
         </div>
       </div>
     </div>
+    
   </div>
 </main>
