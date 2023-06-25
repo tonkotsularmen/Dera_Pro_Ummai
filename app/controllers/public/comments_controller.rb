@@ -3,18 +3,19 @@ class Public::CommentsController < ApplicationController
   before_action :ensure_guest_user
 
   def create
-    post = Post.find(params[:post_id])
-    comment = current_user.comments.new(comment_params)
-    comment.post_id = post.id
-    comment.save
-    post.create_notification_comment!(current_user, comment.id)
     @post = Post.find(params[:post_id])
+    comment = current_user.comments.new(comment_params)
+    comment.post_id = @post.id
+    comment.save
+    @post.create_notification_comment!(current_user, comment.id)
+    @comments = @post.comments
     @comment = Comment.new
   end
 
   def destroy
     Comment.find(params[:id]).destroy
     @post = Post.find(params[:post_id])
+    @comments = @post.comments
   end
 
   private
@@ -29,5 +30,5 @@ class Public::CommentsController < ApplicationController
         redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
       end
     end
-    
+
 end
