@@ -4,8 +4,8 @@
       <%= image_tag comment.user.get_profile_image, size: "64x64", class:"bd-placeholder-img align-self-center mx-3"; %>
     <% end %>
     <div class="media-body ml-4 p-3">
-      <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
-      <p><%= comment.comment %></p>
+      <p><%= comment.created_at.strftime('%Y/%m/%d') %><span class="ml-3"><%= comment.user.user_name %></span></p>
+      <div class="text-wrap"><p class="text-break"><%= comment.comment %></p></div>
         <%= link_to admin_post_comment_path(comment.post, comment), method: :delete, class:"text-dark", remote: true do %>
           <i class="fa-solid fa-trash-can"></i>
         <% end %>

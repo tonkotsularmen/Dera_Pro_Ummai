@@ -1,6 +1,6 @@
 class Public::CommentsController < ApplicationController
   include Common
-  before_action :ensure_guest_user, only: [:create, :destroy]
+  before_action :ensure_guest_user
 
   def create
     post = Post.find(params[:post_id])
@@ -23,4 +23,11 @@ class Public::CommentsController < ApplicationController
       params.require(:comment).permit(:comment)
     end
 
+     # ゲストユーザーを弾く
+    def ensure_guest_user
+      if current_user.email == "guest@example.com"
+        redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+      end
+    end
+    
 end
