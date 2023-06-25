@@ -14,7 +14,4 @@ module Common
     return best_likes_posts
   end
 
-  private
-
-
 end

@@ -4,7 +4,7 @@
       <div class="offset-2 col-8">
         <div class="row">
           <% if @like_posts.count == 0 %>
-            あなたはまだ誰にもマッチョしていません
+            あなたはどの投稿にもメダルをあげていません。
           <% end %>
           <% @like_posts.each do |like_post| %>
           <div class="col-4 pt-5 px-2">

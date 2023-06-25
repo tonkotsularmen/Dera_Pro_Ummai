@@ -23,7 +23,7 @@ class Public::PostsController < ApplicationController
     @post.user_id    = current_user.id
     @yabai.user_id   = current_user.id       #食欲やばい投稿
     @zasetsu.user_id = current_user.id       #やりたくない投稿
-    
+
     if @post.save || @yabai.save || @zasetsu.save
       flash[:notice] = "投稿が成功しました"
       redirect_to post_path(@post.id)
@@ -31,16 +31,17 @@ class Public::PostsController < ApplicationController
       flash[:error]  = "投稿が失敗しました"
       redirect_to users_path
     end
-    
+
   end
 
   def index
-    posts = Post.includes(:user).page(params[:page]).per(12)
+    posts = Post.includes(:user).page(params[:page]).per(20)
     @posts= posts.order(created_at: :desc)
   end
 
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments
     @comment = Comment.new
     @best_likes_posts = best_likes_posts.first(5) #common.rbに記述
   end
@@ -57,7 +58,7 @@ class Public::PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :caption, :image)
     end
-    
+
     # レコードのユーザーと現在のユーザーの比較
     def ensure_correct_user
       @post = Post.find(params[:id])
@@ -65,13 +66,13 @@ class Public::PostsController < ApplicationController
         redirect_to posts_path
       end
     end
-    
+
     # ゲストユーザーを弾く
     def ensure_guest_user
       if current_user.user_name == "guestuser"
         redirect_to posts_path , notice: 'ゲストユーザーは新規投稿できません。'
       end
     end
-    
-    
+
+
 end

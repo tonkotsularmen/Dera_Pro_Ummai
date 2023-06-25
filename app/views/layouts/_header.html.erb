@@ -1,8 +1,18 @@
 <header class="shadow-md">
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-md">
     <div class="container">
-      <%= link_to users_path(current_user), class: "navbar-brand text-light" do %>
-        <span>Dera_Pro_Ummai</span>
+      <% if user_signed_in? %>
+        <%= link_to users_path(current_user), class: "navbar-brand text-light" do %>
+          <span>Dera_Pro_Ummai</span>
+        <% end %>
+      <% elsif admin_signed_in? %>
+        <%= link_to admin_users_path, class: "navbar-brand text-light" do %>
+          <span>Dera_Pro_Ummai</span>
+        <% end %>
+      <% else %>
+        <%= link_to root_path, class: "navbar-brand text-light" do %>
+          <span>Dera_Pro_Ummai</span>
+        <% end %>
       <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,28 +27,28 @@
               Home
             <% end %>
           </li>
-          &nbsp;
+
           <li class="nav-item">
             <%= link_to notifications_path, class:"nav-link text-light" do %>
               <i class="fa-regular fa-bell"></i>
               通知
             <% end %>
           </li>
-          &nbsp;
+
           <li class="nav-item">
             <%= link_to posts_path, class:"nav-link text-light" do %>
               <i class="fa-solid fa-book-open"></i>
               投稿一覧
             <% end %>
           </li>
-          &nbsp;
+
           <li class="nav-item">
             <%= link_to newcomer_path, class:"nav-link text-light" do %>
               <i class="fas fa-book-open"></i>
-              ルールブック
+              ルール
             <% end %>
           </li>
-          &nbsp;
+
           <li class="nav-item">
             <%= link_to destroy_user_session_path, method: :delete, class:"nav-link text-light" do %>
               <i class="fas fa-sign-out-alt"></i>
@@ -54,21 +64,21 @@
               管理画面
             <% end %>
           </li>
-          &nbsp;
+
           <li class="nav-item">
             <%= link_to about_path, class:"nav-link text-light" do %>
               <i class="fa-solid fa-book-open"></i>
               About
             <% end %>
           </li>
-          &nbsp;
+
           <li class="nav-item">
             <%= link_to newcomer_path, class:"nav-link text-light" do %>
               <i class="fas fa-book-open"></i>
-              ルールブック
+              ルール
             <% end %>
           </li>
-          &nbsp;
+
           <li class="nav-item">
             <%= link_to destroy_user_session_path, method: :delete, class:"nav-link text-light" do %>
               <i class="fas fa-sign-out-alt"></i>
