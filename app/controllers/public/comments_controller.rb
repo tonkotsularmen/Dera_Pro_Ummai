@@ -1,4 +1,6 @@
 class Public::CommentsController < ApplicationController
+  include Common
+  before_action :ensure_guest_user, only: [:create, :destroy]
 
   def create
     post = Post.find(params[:post_id])
