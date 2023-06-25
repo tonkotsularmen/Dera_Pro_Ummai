@@ -6,11 +6,19 @@
       </div>
     </div>
     <div class="row">
+
       <div class="offset-2 col-8">
-        <% if @range == "ユーザー" %>
+
+        <% if @range == "ユーザー" %><!--検索対象がユーザーなら-->
+
           <% unless @users.empty? %>
-            <div class="row mb-2"><div class="col d-flex justify-content-end"><%= @users.count %>件が該当しました</div></div>
+
+            <div class="row mb-2">
+              <div class="col d-flex justify-content-end"><%= @users.count %>件が該当しました</div>
+            </div>
+
             <table class="table table-hover border-0">
+
               <thead class="thead-white">
                 <tr>
                   <th scope="col"></th>
@@ -18,6 +26,7 @@
                   <th scope="col" class="text-center">ゴール</th>
                 </tr>
               </thead>
+
               <tbody>
                 <% @users.each do |user| %>
                 <tr>
@@ -35,14 +44,23 @@
                 </tr>
                 <% end %>
               </tbody>
+
             </table>
-          <% else %>
+
+          <% else %><!--検索結果が０なら-->
+
             <div class="text-center">検索結果は０件でした。他のキーワードでもう一度お試しください。</div>
           <% end %>
-        <% else %>
+
+        <% else %><!--検索対象がユーザーでないなら-->
+
           <% unless @posts.empty? %>
-            <div class="row mb-2"><div class="col d-flex justify-content-end"><%= @posts.count %>件が該当しました</div></div>
+            <div class="row mb-2">
+              <div class="col d-flex justify-content-end"><%= @posts.count %>件が該当しました</div>
+            </div>
+
             <div class="row d-flex flex-wrap mb-5">
+
               <% @posts.each do |post| %>
                 <div class="card col-4" style="width: 18rem;">
                   <%= link_to post_path(post.id) do %>
@@ -58,16 +76,23 @@
                   </div>
                 </div>
               <% end %>
+
             </div>
-          <% else %>
+
+          <% else %><!--検索結果が０なら-->
+
             <div class="text-center">検索結果は０件でした。他のキーワードでもう一度お試しください。</div>
           <% end %>
+
         <% end %>
       </div>
+
     </div>
+
     <div class="row">
       <%= link_to "投稿一覧", posts_path, class: "btn-sm btn-outline-secandary" %>
       </div>
     </div>
+
   </div>
 </main>

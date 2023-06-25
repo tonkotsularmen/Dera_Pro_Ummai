@@ -1,60 +1,88 @@
 <main class="page-users-index">
-  <div class="container-fluid">
-    <div class="row index-box">
-      <div class="col-2 mt-3">
-        <%= render 'public/users/info' %>
-      </div>
-      <div class="col-7">
-        <!--ユーザーがフォローしているユーザーの表示-->
-        <div class="row border-bottom my-4">
-          <% @users.each do |user| %>
-            <%= link_to user_path(user) do %>
-                <%= image_tag user.get_profile_image, size: "50x50", class: "rounded-circle" %>
-            <% end %>
+  <div class="container-xl">
+
+    <div class="row d-lg-none border-bottom mt-2">
+
+      <div class="col-1 p-0">
+          <%= link_to user_path(current_user) do %>
+            <%= image_tag current_user.get_profile_image, size: "50x50", class: "rounded-circle" %>
           <% end %>
+      </div>
+      <div class="col-11 d-flex align-items-center">
+        <span class="pr-2">
+          <%= link_to user_path(current_user) do %>
+            <%= current_user.user_name %>
+          <% end %>
+          </span>
+        <span class="ml-2">P : <%= current_user.protein %>g</span>
+        <span class="ml-2">F : <%= current_user.fat %>g</span>
+        <span class="ml-2">C : <%= current_user.carbo %>g</span>
+        <span class="ml-2">
+          <%= link_to new_shokuyoku_post_path do %>
+            <i class="fa-solid fa-bacon"></i>
+          <% end %>
+        </span>
+        <span class="ml-2">
+          <%= link_to new_zasetsu_post_path do %>
+            <i class="fa-solid fa-face-tired"></i>
+          <% end %>
+        </span>
+      </div>
+
+    </div>
+
+    <div class="row d-none d-md-block my-3 border-top border-bottom">
+      <% @users.each do |user| %>
+        <%= link_to user_path(user) do %>
+          <%= image_tag user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="row d-md-none mt-1 border-bottom">
+      <%= render partial: "public/posts/best_likes_posts", locals: { best_likes_posts: @best_likes_posts } %>
+    </div>
+    <div class="row">
+      <div class="d-none d-lg-block col-2 mt-3">
+        <div class="col border p-0">
+          <%= render 'public/users/info' %>
         </div>
-        
+      </div>
+      <div class="col-md-6">
         <% @posts.each do |post| %>
           <div class="card border-0 mb-3">
-            
+
             <div class="card-header p-0 d-flex align-items-center bg-white">
-              <!--ユーザー画像-->
-                <%= link_to user_path(post.user) do %>
-                  <%= image_tag post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
-                <% end %>
-                <!--ユーザーネーム-->
-                <%= link_to user_path(post.user) do %>
-                  <strong><%= post.user.user_name %></strong>
-                <% end %>
-                <!--投稿時間~~前-->
-                <span>
-                  <%= post_time(post) %>
-                </span>
+              <%= link_to user_path(post.user) do %>
+                <%= image_tag post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+              <% end %>
+
+              <%= link_to user_path(post.user) do %>
+                <strong><%= post.user.user_name %></strong>
+              <% end %>
+
+              <span><%= post_time(post) %></span>
             </div>
-            
-            <!--投稿画像-->
+
             <div class="post-image bd-placeholder-img card-img-top">
               <%= link_to post_path(post.id) do %>
                 <%= image_tag post.image, class: "img-fluid" %>
               <% end %>
             </div>
-            
-            <!--カードの下半分-->
+
             <div class="card-body py-1">
+
               <div class="row m-0">
-                <!--いいね-->
                 <div id="like_buttons_<%= post.id %>" class="mr-3">
                   <%= render partial: "public/likes/likes", locals: { post: post } %>
                 </div>
-                <!--メッセージアイコンリンク-->
                 <%= link_to post_path(post) do %>
                   <i class="fa-regular fa-message fa-lg"></i>
                 <% end %>
               </div>
-              
               <div class="row"><h5 class="card-title"><%= post.title %></h5></div>
+
             </div>
-  
+
             <div class="card-footer text-muted border-top-0 border-bottom bg-white pt-1">
               <div id="comments_form" class="form-group">
                 <%= render partial: "public/comments/comments_form", locals: { post: post, comment: @comment } %>
@@ -63,12 +91,10 @@
           </div>
         <% end %>
       </div>
-      
-      <!--メダル多い順-->
-      <div class="col-3 mt-3">
+      <div class="d-none d-md-block col-4">
         <%= render partial: "public/posts/best_likes_posts", locals: { best_likes_posts: @best_likes_posts } %>
       </div>
-      
     </div>
+
   </div>
 </main>

@@ -1,20 +1,23 @@
 <main>
   <div class="container">
     <div class="row">
+      
       <% @users.each do |user| %>
         <div class="col-md-4 border pt-2 pb-1">
-          <%= link_to admin_user_path(user) do %>
-            <div class="p-1"><%= image_tag user.get_profile_image, size: "40x40", class: "rounded-circle" %>
-          <% end %>
-          <span class="ml-3">
+          <div class="p-1">
             <%= link_to admin_user_path(user) do %>
-              <%= user.user_name %>
+              <%= image_tag user.get_profile_image, size: "40x40", class: "rounded-circle" %>
             <% end %>
-          </span>
-        </div>
+            <span class="ml-3">
+              <%= link_to admin_user_path(user) do %>
+                <%= user.user_name %>
+              <% end %>
+            </span>
+          </div>
           <div><%= user.introduction %></div>
         </div>
       <% end %>
+      
     </div>
   </div>
 </main>

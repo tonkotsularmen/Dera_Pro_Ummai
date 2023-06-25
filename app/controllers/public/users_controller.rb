@@ -32,7 +32,7 @@ class Public::UsersController < ApplicationController
   def update
 
     if @user == current_user
-      
+
       if @user.update(user_params)
         flash[:notice] = "情報が更新されました"
         redirect_to user_path(@user.id)
@@ -40,11 +40,11 @@ class Public::UsersController < ApplicationController
         flash[:error] = "情報の更新に失敗しました"
         redirect_to edit_user_path(@user)
       end
-      
+
     else
       redirect_to user_path(@user)
     end
-    
+
   end
 
   def likes
@@ -67,7 +67,7 @@ class Public::UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:user_name, :email, :introduction, :profile_image, :goal, :protein, :fat, :carbo, :user_type)
     end
-    
+
     # レコードのユーザーと現在のユーザーの比較
     def ensure_correct_user
       @user = User.find(params[:id])
@@ -75,11 +75,11 @@ class Public::UsersController < ApplicationController
         redirect_to user_path(current_user)
       end
     end
-    
+
     # ゲストユーザーを弾く
     def ensure_guest_user
       @user = User.find(params[:id])
-      if @user.user_name == "guestuser"
+      if @user.email == "guest@example.com"
         redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
       end
     end

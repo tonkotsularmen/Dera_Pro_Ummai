@@ -1,41 +1,54 @@
 <main class="page-post-show">
   <div class="container">
     <div class="row">
-      <div></div>
-      <div class="col-8 post-detail py-5">
-        <div class="card w-75 mx-auto mt-4"><!--投稿画像-->
+      <div class="col-8 post-detail py-5 px-2">
+        <div class="card w-60 mx-3 mt-4">
+
+          <!--投稿画像-->
           <%= image_tag @post.image, class:"card-img-top"; %>
           <div class="card-body">
             <div class="row">
-              
-              <div class="col-2"><!--投稿者のプロフィール画像-->
+
+              <!--投稿者のプロフィール画像-->
+              <div class="col-2">
                  <%= image_tag @post.user.get_profile_image, size: '64x64', class:"mt-3 rounded-circle";  %>
               </div>
-              
+
               <div class="col-10">
-                <p class="card-title"><!--投稿タイトル-->
+
+                <!--投稿タイトル-->
+                <p class="card-title">
                   <%= link_to(post_path(@post.id), class:"text-dark") do %>
                     <span> <%= @post.title %></span>
                   <% end %>
                 </p>
-                
-                <p class="card-title"><%= @post.caption %></p><!--投稿内容-->
-                
-                <span><i class="fas fa-user"></i><!--投稿者のユーザーネーム-->
-                  <%= link_to "#{@post.user.user_name}", user_path(@post.user) %> ｜ </span>
+
+                <!--投稿内容-->
+                <p class="card-title"><%= @post.caption %></p>
+
+                <!--投稿者のユーザーネーム-->
+                <span>
+                  <i class="fas fa-user"></i>
+                  <%= link_to "#{@post.user.user_name}", user_path(@post.user) %> ｜
+                </span>
+
+                <!--投稿日-->
                 <span><i class="fa-brands fa-creative-commons-share"></i><%= post_time(@post) %> ｜ </span>
-                
-                <i class="fa fa-comment"></i><!--コメント数-->
+
+                <!--コメント数-->
+                <i class="fa fa-comment"></i>
                 <span id="comments_count" class="mt-3">
                   <%= render partial: "public/comments/comments_count", locals: { post: @post } %>
                 　｜
                 </span>
-                
-                <span id="like_buttons_<%= @post.id %>"><!--ボタン-->
+
+                <!--いいねボタン-->
+                <span id="like_buttons_<%= @post.id %>">
                   <%= render partial: "public/likes/likes", locals: { post: @post } %>
                 </span>
-                
-                <% if @post.user == current_user %><!--投稿削除-->
+
+                <!--投稿削除ゴミバケツ-->
+                <% if @post.user == current_user %>
                   <span> ｜
                     <%= link_to post_path(@post), method: :delete, class:"text-dark", data: { confirm: "本当に消しますか？間違えていませんか？" } do %>
                       <i class="fa-solid fa-trash-can"></i>
@@ -43,24 +56,29 @@
                   </span>
                 <% end %>
               </div>
-              
-            </div>
-            <hr><!--コメント-->
-            <div class="comments card-text">
-              <p id="comments_area"><%= render partial: "public/comments/comments", locals: { post: @post } %></p>
+
             </div>
             <hr>
+
+            <!--コメント表示-->
+            <div id="comments_area" class="comments card-text">
+              <%= render partial: "public/comments/comments", locals: { comments: @comments } %>
+            </div>
+            <hr>
+
+            <!--コメントフォーム-->
             <div id="comments_form" class="form-group">
               <%= render partial: "public/comments/comments_form", locals: { post: @post, comment: @comment } %>
             </div>
           </div>
         </div>
       </div>
-      
-      <div class="col-4 py-5"><!--メダル多い順-->
+
+      <!--メダル多い順-->
+      <div class="col-4 py-5">
         <%= render partial: "public/posts/best_likes_posts", locals: { best_likes_posts: @best_likes_posts } %>
       </div>
-      
+
     </div>
   </div>
 </main>
