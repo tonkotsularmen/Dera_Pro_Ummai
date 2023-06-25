@@ -31,7 +31,7 @@
 
     </div>
 
-    <div class="row d-none d-md-block  my-3 border-top border-bottom">
+    <div class="row d-none d-md-block my-3 border-top border-bottom">
       <% @users.each do |user| %>
         <%= link_to user_path(user) do %>
           <%= image_tag user.get_profile_image, size: "50x50", class: "rounded-circle" %>
