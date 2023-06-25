@@ -36,9 +36,9 @@ class User < ApplicationRecord
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
   validates :password    , format:       { with: VALID_PASSWORD_REGEX }, on: :create
   validates :user_name   , length:       { minimum: 1, maximum: 30 }, uniqueness: true
-  validates :protein     , numericality: { in: 0..999 }
-  validates :fat         , numericality: { in: 0..999 }
-  validates :carbo       , numericality: { in: 0..999 }
+  validates :protein     , numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 500 }
+  validates :fat         , numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 500 }
+  validates :carbo       , numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 500 }
   validates :introduction, length:       { maximum: 100 }
   validates :goal        , length:       { maximum: 50 }
 
