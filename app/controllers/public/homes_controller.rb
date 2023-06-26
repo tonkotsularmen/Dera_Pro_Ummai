@@ -9,4 +9,6 @@ class Public::HomesController < ApplicationController
   def newcomer
   end
 
+  def policy
+  end 
 end
