@@ -44,6 +44,9 @@ class User < ApplicationRecord
 
   enum user_type: { トレーニー: 0, トレーナー: 1, サポーター: 2 }
 
+  def get_profile_image
+    (profile_image.attached?) ? profile_image : 'macho3.jpeg'
+  end
 
   # ユーザーをフォローする
   def follow(other_user)
@@ -60,14 +63,11 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
-  def get_profile_image
-    (profile_image.attached?) ? profile_image : 'macho3.jpeg'
-  end
-
   #退会機能
   def active_for_authentication?
     super && (user_status == 1)
   end
+
   #検索機能
   def self.looks(search,word)
     if search == "perfect_match"
@@ -101,7 +101,6 @@ class User < ApplicationRecord
     Post.where("user_id IN (#{following_ids})
                      OR user_id = :user_id", user_id: id)
   end
-
 
   #フォロー時の通知
   def create_notification_follow!(current_user)

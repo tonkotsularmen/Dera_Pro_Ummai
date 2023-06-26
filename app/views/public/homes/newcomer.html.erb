@@ -4,13 +4,14 @@
       <div class="col-lg-2">
       </div>
       <div class="col-lg-8">
-        <div class="border-bottom border-secondary pb-2 mb-3 d-flex align-items-center justify-content-between">
-          <h3 class="m-0">ご利用上の注意</h3>
+        <div class="border-bottom border-secondary pb-2 mb-3 d-flex align-items-center">
+          <%= image_tag 'macho1.jpeg' %><h3 class="m-0">ご利用上の遵守事項</h3><%= image_tag 'macho1.jpeg' %>
         </div>
         <div>
           <ul>
             <li>人を誹謗中傷することはやめましょう</li>
             <li>人を不快にする発信はやめましょう</li>
+            <li>一方的な意見の押し付けや否定をすることはやめましょう</li>
             <li>露出の高い画像や人を不快にさせる画像の投稿はやめましょう</li>
             <li>明らかなアダルト画像や、社会的に不適切な投稿はやめましょう</li>
             <li>運動やトレーニングに関係のある発信をお願いします</li>
@@ -25,24 +26,54 @@
       <div class="col-lg-2">
       </div>
       <div class="col-lg-8">
-        <div class="border-bottom border-secondary pb-2 mb-3 d-flex align-items-center justify-content-between">
-          <h3 class="m-0">ご利用方法の一例</h3>
+        <div class="border-bottom border-secondary pb-2 mb-3 d-flex align-items-center ">
+          <h3 class="m-0">ご利用方法の一例</h3><%= image_tag 'macho4.jpeg' %>
         </div>
         <div>
           <ul>
-            <li>まずは、ゴールを明確にしましょう</li>
-            <li>次は、誰かをフォローしてあげてください</li>
-            <li>フォローされた人はフォローバックしてあげましょう</li>
-            <li>お互いにサポートしながらゴールに近づいていきましょう</li>
-            <li>トレーニングや運動の成果や頑張ったことを発信しましょう</li>
-            <li>
-              仲間の頑張りをメダル <i class="fa-sharp fa-solid fa-medal" aria-hidden="true" style="color: gold;"></i> や
-              メッセージ <i class="fa-regular fa-message fa-lg"></i> で応援したり、褒めてあげましょう！
+            <li>まず最初に
+              <ul>
+                <li>ゴールを明確にしましょう</li>
+                <li>誰かをフォローしてあげてください</li>
+                <li>フォローされた人はフォローバックしてあげましょう</li>
+              </ul>
             </li>
-            <li>もし仲間が挫折しそうな時や食欲と戦っている時はサポートしてあげましょう</li>
-            <li>週１回、月１回、歩く、その場で自体重スクワット、なんでもいいので体を動かしましょう</li>
-            <li>少しずつ頻度や強度を高めていけば大丈夫です</li>
-            <li>そしてその記録を仲間に発信して褒めてもらいましょう</li>
+            <li>お互いにサポートしながらゴールに近づいていきましょう
+              <ul>
+                <li>トレーニングや運動の成果や頑張ったことを発信しましょう</li>
+                <li>もし仲間が挫折しそうな時や食欲と戦っている時はサポートしてあげましょう</li>
+              </ul>
+            </li>
+            <li>運動をしてみよう
+              <ul>
+                <li>週１、月１回、歩く、その場で自体重スクワット、なんでもいいので体を動かしましょう</li>
+                <li>少しずつ頻度や強度を高めていけば大丈夫です</li>
+              </ul>
+            </li>
+            <li>発信しみよう
+              <ul>
+                <li>頑張ったことを写真や画像とともに発信して仲間に褒めてもらいましょう</li>
+                <li>
+                  仲間の頑張りをメダル <i class="fa-sharp fa-solid fa-medal" aria-hidden="true" style="color: gold;"></i> や
+                  メッセージ <i class="fa-regular fa-message fa-lg"></i> で応援したり、褒めてあげましょう！
+                </li>
+              </ul>
+            </li>
+            <li>会員カテゴリについて
+              <ul>
+                <li>トレーニー：トレーニングや運動を頑張る人です</li>
+                <li>トレーナー：頑張る人を知識や技術面からサポートする人です。
+                  <ul>
+                    <li>自己紹介のところにこれまでの運動歴やスポーツジムで
+                    インストラクターの経験があるなどを書いておくとトレーニーが安心できます。
+                    </li>
+                  </ul>
+                </li>
+                <li>サポーター：頑張るトレーニーを応援する人です。頑張っている人を応援したいけど、
+                  筋トレや運動はしたくない、もう極めたという人はこちらをご利用ください。
+                </li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
@@ -50,7 +81,7 @@
     <div class="row">
       <div class="col-lg-2">
       </div>
-      <div class="col-lg-8 mt-3">
+      <div class="col-lg-8 my-3">
         <% if admin_signed_in? %>
           <%= link_to "管理画面へ", admin_users_path, class: "btn btn-outline-secondary" %>
         <% else %>
