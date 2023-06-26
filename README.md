@@ -44,6 +44,7 @@
 - [ICOOON MONO](https://icooon-mono.com/category/game/page/8/)
 - [Bootstrap Icons](https://icons.getbootstrap.com/)
 - [Webサイトの利用規約kiyaku.jp](https://kiyaku.jp/index.html)
+- [Google Fonts](https://fonts.google.com/)
 
 ## 参考
 - [厚生労働省　生活習慣病予防のための健康情報サイト](https://www.e-healthnet.mhlw.go.jp/information/hale/h-01-002.html)
