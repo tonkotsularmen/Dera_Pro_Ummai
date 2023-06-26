@@ -1,12 +1,13 @@
 @use '~bootstrap/scss/bootstrap';
 @import "homes";
-
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDMincho&display=swap');
 @charset "UTF-8";
 
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  font-family: 'BIZ UDMincho', serif;
 }
 header {
   background-color: #c6d166;
