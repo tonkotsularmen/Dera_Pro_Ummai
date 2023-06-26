@@ -74,6 +74,8 @@ Rails.application.routes.draw do
         get 'search'
       end
     end
+    post '/posts/:post_id/show_comments' => 'comments#show_create', as: 'show_comments_create'
+    delete '/posts/:post_id/show_comments/:id' => 'comments#show_destroy', as: 'show_comments_destroy'
     resources :notifications, only: :index
   end
 

@@ -6,16 +6,39 @@ class Public::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     comment = current_user.comments.new(comment_params)
     comment.post_id = @post.id
+    if comment.save
+      @post.create_notification_comment!(current_user, comment.id)
+      @comments = @post.comments
+      @comment = Comment.new
+    else
+      flash[:error]  = "コメントの送信に失敗しました。"
+      redirect_to request.referer
+    end
+
+  end
+
+  def show_create
+    @post = Post.find(params[:post_id])
+    comment = current_user.comments.new(comment_params)
+    comment.post_id = @post.id
     comment.save
     @post.create_notification_comment!(current_user, comment.id)
     @comments = @post.comments
     @comment = Comment.new
+    render 'public/comments/show_create.js.erb'
   end
 
   def destroy
     Comment.find(params[:id]).destroy
     @post = Post.find(params[:post_id])
     @comments = @post.comments
+  end
+
+  def show_destroy
+    Comment.find(params[:id]).destroy
+    @post = Post.find(params[:post_id])
+    @comments = @post.comments
+    render 'public/comments/show_destroy.js.erb'
   end
 
   private
