@@ -1,7 +1,7 @@
 <main>
   <div class="container">
-    <div class="row">
-      
+    <div class="row mt-3">
+
       <% @users.each do |user| %>
         <div class="col-md-4 border pt-2 pb-1">
           <div class="p-1">
@@ -9,15 +9,21 @@
               <%= image_tag user.get_profile_image, size: "40x40", class: "rounded-circle" %>
             <% end %>
             <span class="ml-3">
-              <%= link_to user_path(user) do %>
-                <%= user.user_name %>
+              <% if user.user_status == 0 %>
+                このユーザーは退会しています
+              <% else %>
+                <%= link_to user_path(user) do %>
+                  <%= user.user_name %>
+                <% end %>
               <% end %>
             </span>
           </div>
-          <div><%= user.introduction %></div>
+          <% if user.user_status != 0 %>
+            <div><%= user.introduction %></div>
+          <% end %>
         </div>
       <% end %>
-      
+
     </div>
   </div>
 </main>
