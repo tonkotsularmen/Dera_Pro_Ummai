@@ -1,5 +1,6 @@
 <main class="page-users-show">
   <div class="container">
+    
     <div class="row mt-3">
       <div class="col">
         <div class="row">
@@ -12,6 +13,7 @@
         </div>
       </div>
     </div>
+    
     <div class="row mt-3 pb-2 border-bottom border-secondary">
       <div class="offset-md-1 col-md">
         <div class="row">
@@ -29,6 +31,7 @@
           <span class="ml-2">C : <%= current_user.carbo %>g</span>
         </div>
       </div>
+      
       <div class="col-md">
         <div class="row user_goal">
           <% if @user.goal.blank? %>
@@ -47,6 +50,7 @@
           <% end %>
         </div>
       </div>
+      
       <div class="col-md">
         <div class="row">
           <!--フォローされている人の数-->
@@ -59,8 +63,9 @@
           　<%= render partial: "public/relationships/following_count", locals: { user: @user } %>
           </span>
         </div>
+        
+          <!--フォローボタン-->
           <% if @user.user_status != 0 %>
-            <!--フォローボタン-->
             <span id="user_follow_btn">
             　<%= render partial: "public/relationships/follow_btn", locals: { user: @user } %>
             </span>
@@ -74,6 +79,7 @@
         </div>
       </div>
     </div>
+    
     <div class="row mt-3">
       <div class="col d-flex flex-wrap mt-3">
         <% @posts.each do |post| %>
@@ -85,5 +91,6 @@
         <% end %>
       </div>
     </div>
+    
   </div>
 </main>
