@@ -47,9 +47,11 @@ class User < ApplicationRecord
   validate   :profile_image_type
 
   def profile_image_type
+    if profile_image.blob != nil
       if !profile_image.blob.content_type.in?(%('image/jpeg image/png'))
         errors.add(:profile_image, 'はjpegまたはpng形式でアップロードしてください')
       end
+    end
   end
 
   def get_profile_image
