@@ -13,14 +13,11 @@ class Post < ApplicationRecord
   validates  :caption,        presence:  true, length: { maximum: 150 }
   validate   :image_type
 
-
   def image_type
       if !image.blob.content_type.in?(%('image/jpeg image/png'))
         errors.add(:image, 'はjpegまたはpng形式でアップロードしてください')
       end
   end
-
-
 
   #validates :image,               format: { with: %r{.(gif|jpg|png)\Z}i, message: 'must be a URL for GIF, JPG or PNG image.' }
   #いいねしてるかどうか

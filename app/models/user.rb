@@ -33,6 +33,8 @@ class User < ApplicationRecord
                                   foreign_key: 'visited_id',
                                     dependent: :destroy
 
+  enum user_type: { トレーニー: 0, トレーナー: 1, サポーター: 2 }
+
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
   validates :password    , format:       { with: VALID_PASSWORD_REGEX }, on: :create
   validates :user_name   , length:       { minimum: 1, maximum: 30 }, uniqueness: true
@@ -42,7 +44,13 @@ class User < ApplicationRecord
   validates :introduction, length:       { maximum: 100 }
   validates :goal        , length:       { maximum: 50 }
 
-  enum user_type: { トレーニー: 0, トレーナー: 1, サポーター: 2 }
+  validate   :profile_image_type
+
+  def profile_image_type
+      if !profile_image.blob.content_type.in?(%('image/jpeg image/png'))
+        errors.add(:profile_image, 'はjpegまたはpng形式でアップロードしてください')
+      end
+  end
 
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'macho3.jpeg'
