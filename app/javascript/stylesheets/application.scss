@@ -1,6 +1,8 @@
 @use '~bootstrap/scss/bootstrap';
 @import "homes";
 @import url('https://fonts.googleapis.com/css2?family=BIZ+UDMincho&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDMincho&family=Rampart+One&display=swap');
+
 @charset "UTF-8";
 
 body {
@@ -46,4 +48,14 @@ a {
 }
 #back-image {
   width: 30px;
+}
+
+.medal {
+  font-family: 'BIZ UDMincho', serif;
+  font-family: 'Rampart One', cursive;
+}
+
+.user_details {
+  font-family: 'BIZ UDMincho', serif;
+  font-family: 'Rampart One', cursive;
 }
