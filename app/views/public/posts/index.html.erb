@@ -7,13 +7,15 @@
       </div>
     </div>
     <div class="row mt-2">
-      <% @posts.each do |post| %>
-        <div class="mx-auto">
-          <%= link_to post_path(post) do %>
-            <%= image_tag post.image.variant( resize: "300x200>" ).processed, class: "img-fluid" %>
-          <% end %>
-        </div>
-      <% end %>
+      <div class="col d-flex flex-wrap mt-2">
+        <% @posts.each do |post| %>
+          <div class="col-3">
+            <%= link_to post_path(post) do %>
+              <%= image_tag post.image.variant( resize: "300x200>" ).processed, class: "img-fluid" %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
     <%= paginate @posts, theme: 'twitter-bootstrap-4' %>
   </div>
