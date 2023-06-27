@@ -92,14 +92,19 @@
           <span id="following_count">
           　<%= render partial: "public/relationships/following_count", locals: { user: @user } %>
           </span>
-
-          <!--フォローボタン-->
-          <span id="user_follow_btn">
-          　<%= render partial: "public/relationships/follow_btn", locals: { user: @user } %>
-          </span>
+          <% if @user.user_status != 0 %>
+            <!--フォローボタン-->
+            <span id="user_follow_btn">
+            　<%= render partial: "public/relationships/follow_btn", locals: { user: @user } %>
+            </span>
+          <% end %>
         </div>
         <div class="row">
-          会員カテゴリ ：　<%= @user.user_type %>
+          <% if @user.user_status != 0 %>
+            <div style="color: green;">会員カテゴリ ：　<%= @user.user_type %></div>
+          <% else %>
+            <div style="color: red;">このユーザーは退会しています</div>
+          <% end %>
         </div>
       </div>
       <div class="d-none d-md-block col-md-4 border-bottom  mt-3">

@@ -2,15 +2,16 @@
   <div class="container">
     <div class="row">
       <div class="offset-2 col-8">
-        <div class="row">
+        <div class="row mt-3">
           <% if @like_posts.count == 0 %>
             <strong class="medal">あなたはどの投稿にもメダルを授与していません。</strong>
-          <% end %>
+          <% else %>
             <div class="medal my-3"><strong>あなたがメダルを授与した投稿</strong></div>
+          <% end %>
         </div>
         <div class="row">
           <% @like_posts.each do |like_post| %>
-          <div class="col-4 px-2">
+          <div class="col-4 pt-5 px-2">
             <%= link_to post_path(like_post) do %>
               <%= image_tag like_post.image.variant( resize: "300x200>" ).processed, class: "img-fluid" %>
             <% end %>
