@@ -75,7 +75,7 @@
       <div class="col d-flex flex-wrap mt-3">
         <% @posts.each do |post| %>
           <div class="col-3">
-            <%= link_to post_path(post) do %>
+            <%= link_to admin_post_path(post) do %>
               <%= image_tag post.image.variant( resize: "300x200>" ).processed, class: "img-fluid" %>
             <% end %>
           </div>
