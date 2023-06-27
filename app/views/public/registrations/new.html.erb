@@ -9,9 +9,12 @@
         <%= render "public/shared/error_messages", resource: resource %>
         <div class="row mt-3">
           <div class="offset-1 col-3">
-            <span>プロフィール画像</span>
+            <span>
+              プロフィール画像<br />
+              <em>(jpegまたはpng形式)</em>
+              </span>
           </div>
-          <div class="col-8"><!--時間あればプレビュー機能-->
+          <div class="col-8">
             <span><%= f.file_field :profile_image, accept: "image/*" %></span>
           </div>
         </div>
@@ -20,7 +23,7 @@
             <span>メールアドレス</span>
           </div>
           <div class="col-8">
-            <span><%= f.email_field :email, class: "form-control" %></span>
+            <span><%= f.email_field :email, required: true, class: "form-control" %></span>
           </div>
         </div>
         <div class="row mt-3">
@@ -28,7 +31,7 @@
             <span>ユーザーネーム</span>
           </div>
           <div class="col-8">
-            <span><%= f.text_field :user_name, class: "form-control" %></span>
+            <span><%= f.text_field :user_name, required: true, class: "form-control" %></span>
           </div>
         </div>
         <div class="row mt-3">

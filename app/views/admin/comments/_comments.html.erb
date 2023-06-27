@@ -12,13 +12,11 @@
       <!--コメント-->
       <div class="text-wrap"><p class="text-break"><%= comment.comment %></p></div>
       <!--コメントのユーザーが現在のユーザーなら-->
-      <% if comment.user == current_user %>
+
         <!--コメントの削除ボタン-->
         <%= link_to admin_post_comment_path(comment.post, comment), method: :delete, class:"text-dark", remote: true do %>
           <i class="fa-solid fa-trash-can"></i>
         <% end %>
-
-      <% end %>
 
     </div>
 

@@ -11,13 +11,13 @@
   <div class="col-8">
     <%= link_to user_path(current_user) do %>
       <i class="fa-solid fa-face-smile"></i>
-      <%= current_user.user_name %>
+      <div><%= current_user.user_name %></div>
     <% end %>
   </div>
 </div>
 <div class="row mt-3">
   <div class="col-8">
-    <i class="fa-brands fa-golang fa-2xl"></i>
+    <div><i class="fa-brands fa-golang fa-2xl"></i></div>
     <span>
       <% if current_user.goal.blank? %>
         No Goal

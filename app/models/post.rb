@@ -11,7 +11,15 @@ class Post < ApplicationRecord
   validates  :image,          presence:  true
   validates  :title,          presence:  true, length: { maximum: 30 }
   validates  :caption,        presence:  true, length: { maximum: 150 }
+  validate   :image_type
 
+  def image_type
+    if !image.blob.content_type.in?(%('image/jpeg image/png'))
+      errors.add(:image, 'はjpegまたはpng形式でアップロードしてください')
+    end
+  end
+
+  #validates :image,               format: { with: %r{.(gif|jpg|png)\Z}i, message: 'must be a URL for GIF, JPG or PNG image.' }
   #いいねしてるかどうか
   def liked_by?(user)
     likes.exists?(user_id: user.id)
@@ -21,7 +29,7 @@ class Post < ApplicationRecord
   def self.looks(search,word)
     if search == "perfect_match"
       @post = Post.where("title LIKE?", "#{word}")
-    elsif search == "forword_match"
+    elsif search == "forward_match"
       @post = Post.where("title LIKE?", "#{word}%")
     elsif search == "backward_match"
       @post = Post.where("title LIKE?", "%#{word}")

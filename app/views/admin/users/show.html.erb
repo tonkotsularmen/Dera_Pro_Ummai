@@ -1,85 +1,85 @@
 <main class="page-users-show">
   <div class="container">
-    <%= flash[:notice]%>
-    <div class="row mt-2 border-bottom">
 
-      <div class="col-2 text-center">
-        <%= image_tag @user.get_profile_image, size: "120x120", class: "rounded-circle" %>
+    <div class="row mt-3">
+      <div class="col">
+        <div class="row">
+          <div class="col-md-3 text-center">
+            <%= image_tag @user.get_profile_image, size: "120x120", class: "rounded-circle" %>
+          </div>
+          <div class="col-md-9 mt-md-3">
+            <%= @user.introduction %>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <div class="col-6">
-
-        <div class="row mt-2">
-
-          <h3 class="mt-1"><%= @user.user_name %></h3>
-          <span class="ml-3 mt-2">
-            <%= link_to edit_admin_user_path(@user) do %>
+    <div class="row mt-3 pb-2 border-bottom border-secondary">
+      <div class="offset-md-1 col-md">
+        <div class="row">
+          <span class="ml-2 user_details">〜　<%= @user.user_name %>　〜</span>
+        </div>
+        <div class="row ml-2">
+            <%= link_to edit_admin_user_path(@user.id) do %>
               <i class="fa-solid fa-user-gear fa-lg"></i>
             <% end %>
-          </span>
-          <span class="ml-3 mt-2">P:<%= @user.protein %>g</span>
-          <span class="ml-3 mt-2">F:<%= @user.fat %>g</span>
-          <span class="ml-3 mt-2">C:<%= @user.carbo %>g</span>
-
         </div>
-
-        <div class="row">
-          <span class="ml-3 mt-2">会員カテゴリ : <%= @user.user_type %></span>
+        <div class="row ml-1">
+          <span class="ml-2">P : <%= @user.protein %>g</span>
+          <span class="ml-2">F : <%= @user.fat %>g</span>
+          <span class="ml-2">C : <%= @user.carbo %>g</span>
         </div>
+      </div>
 
-        <div class="row">
-          <span>
-            <% if @user.goal.blank? %>
-              さあ、Goalを決めて一歩踏み出しましょう！
-            <% else %>
-              あなたの理想は　<%= @user.goal %>　です
-            <% end %>
-          </span>
+      <div class="col-md ">
+        <div class="row ml-2 user_details">
+          <% if @user.goal.blank? %>
+            No Goal
+          <% else %>
+            <%= @user.goal %>
+          <% end %>
         </div>
+        <div class="row ml-2">
+          投稿<%= @posts.count %>件
+        </div>
+        <div class="row ml-2">
+          <i class="fa-sharp fa-solid fa-medal" aria-hidden="true" style="color: gold;"></i>
+          <span style="color: gold;"><%= @user.likes.count %>　</span>
+        </div>
+      </div>
 
-        <div class="row">
-
-          <span>投稿　<%= @posts.count %>　件　</span>
-
-          <span>
-            <i class="fa-sharp fa-solid fa-medal" aria-hidden="true" style="color: gold;"></i>
-            <span style="color: gold;"><%= @user.likes.count %></span>
-          </span>
-
+      <div class="col-md">
+        <div class="row ml-2">
           <!--フォローされている人の数-->
           <span id="follower_count">
-          　<%= render partial: "admin/relationships/follower_count", locals: { user: @user } %>
+            <%= render partial: "admin/relationships/follower_count", locals: { user: @user } %>
           </span>
 
           <!--フォローしている人の数-->
           <span id="following_count">
           　<%= render partial: "admin/relationships/following_count", locals: { user: @user } %>
           </span>
-
         </div>
 
+        <div class="row ml-2">
+          <% if @user.user_status != 0 %>
+            <div style="color: green;">会員カテゴリ ：　<%= @user.user_type %></div>
+          <% else %>
+            <div style="color: red;">このユーザーは退会しています</div>
+          <% end %>
+        </div>
       </div>
-
-      <div class="col-4">
-        <%= @user.introduction %>
-      </div>
-
     </div>
 
-    <!--投稿一覧-->
-    <div class="row">
-      <div class="offset-2 col-8">
-        <div class="row">
-
-          <% @posts.each do |post| %>
-            <div class="col-4 pt-1 px-2 card border-0">
-              <%= link_to admin_post_path(post) do %>
-                <%= image_tag post.image.variant( resize: "300x200>" ).processed, class: "img-fluid" %>
-              <% end %>
-            </div>
-          <% end %>
-
-        </div>
+    <div class="row mt-3">
+      <div class="col d-flex flex-wrap mt-3">
+        <% @posts.each do |post| %>
+          <div class="col-3">
+            <%= link_to admin_post_path(post) do %>
+              <%= image_tag post.image.variant( resize: "300x200>" ).processed, class: "img-fluid" %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_20_004041) do
+ActiveRecord::Schema.define(version: 2023_06_26_132755) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2023_06_20_004041) do
   create_table "comments", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "post_id", null: false
-    t.text "comment", null: false
+    t.text "comment", limit: 65535, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 2023_06_20_004041) do
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title", null: false
-    t.text "caption", null: false
+    t.text "caption", limit: 65535, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -114,13 +114,13 @@ ActiveRecord::Schema.define(version: 2023_06_20_004041) do
     t.string "user_name", null: false
     t.integer "user_status", default: 1, null: false
     t.integer "user_type", default: 0, null: false
-    t.text "goal"
+    t.text "goal", limit: 65535
     t.integer "protein", default: 0, null: false
     t.integer "fat", default: 0, null: false
     t.integer "carbo", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "introduction"
+    t.text "introduction", limit: 65535
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
