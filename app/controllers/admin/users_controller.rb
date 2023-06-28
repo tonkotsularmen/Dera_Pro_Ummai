@@ -11,13 +11,13 @@ class Admin::UsersController < ApplicationController
     @posts = @user.posts.order(created_at: :desc)
   end
 
-  def following
+  def following #ユーザーがフォローしているユーザー
     @user = User.find(params[:id])
     @users = @user.following
     render 'show_follow'
   end
 
-  def followers
+  def followers #ユーザーをフォローしているユーザー
     @user = User.find(params[:id])
     @users = @user.followers
     render 'show_follow'
@@ -38,7 +38,7 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  def unsubscribe
+  def unsubscribe #退会確認画面
     @user = User.find(params[:id])
   end
 
