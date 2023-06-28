@@ -59,3 +59,11 @@ a {
   font-family: 'BIZ UDMincho', serif;
   font-family: 'Rampart One', cursive;
 }
+
+.top-image {
+  position: relative;
+  overflow: hidden;
+  background-image: url(../../assets/images/Haikei.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

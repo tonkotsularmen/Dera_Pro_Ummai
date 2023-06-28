@@ -10,4 +10,5 @@ class Public::SearchesController < ApplicationController
       @posts = Post.looks(params[:search], params[:word])
     end
   end
+  
 end
