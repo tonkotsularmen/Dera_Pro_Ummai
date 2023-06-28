@@ -69,7 +69,7 @@
             <hr>
 
             <!--コメントフォーム-->
-            <div id="comments_form" class="form-group">
+            <div id="comments_form_<%= @post.id %>" class="form-group">
               <%= render partial: "public/comments/comments_form", locals: { post: @post, comment: @comment } %>
             </div>
           </div>

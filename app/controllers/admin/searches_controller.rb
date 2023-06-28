@@ -1,7 +1,7 @@
 class Admin::SearchesController < ApplicationController
   before_action :authenticate_admin!
-  
-  
+
+
   def search
     @range = params[:range]#検索範囲をフォームから受け取る
 
