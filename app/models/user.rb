@@ -43,7 +43,8 @@ class User < ApplicationRecord
   validates :carbo       , numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 500 }
   validates :introduction, length:       { maximum: 100 }
   validates :goal        , length:       { maximum: 50 }
-
+  
+  # 投稿画像の拡張子のバリデーション
   validate   :profile_image_type
 
   def profile_image_type
@@ -99,7 +100,7 @@ class User < ApplicationRecord
   def self.guest
     find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64
-      user.name = "guestuser"
+      user.user_name = "guestuser"
     end
   end
 

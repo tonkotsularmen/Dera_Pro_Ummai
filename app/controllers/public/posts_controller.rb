@@ -8,7 +8,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new
   end
 
-  def shokuyoku_new
+  def shokuyoku_new 
     @yabai = Post.new(title: "食欲がやばいです", caption:"食欲がやばいです。どう対処したらいいですか？")
   end
 
