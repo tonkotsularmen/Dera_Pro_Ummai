@@ -25,7 +25,7 @@ class Public::CommentsController < ApplicationController
     @post.create_notification_comment!(current_user, comment.id)
     @comments = @post.comments
     @comment = Comment.new
-    render 'public/comments/show_create.js.erb'
+    redirect_to request.referer
   end
 
   def destroy
@@ -34,12 +34,6 @@ class Public::CommentsController < ApplicationController
     @comments = @post.comments
   end
 
-  def show_destroy
-    Comment.find(params[:id]).destroy
-    @post = Post.find(params[:post_id])
-    @comments = @post.comments
-    render 'public/comments/show_destroy.js.erb'
-  end
 
   private
 

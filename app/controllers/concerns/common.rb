@@ -14,4 +14,20 @@ module Common
     return best_likes_posts
   end
 
+  def search
+    @range = params[:range]#検索範囲をフォームから受け取る
+
+    if @range == "ユーザー"
+      @users = User.looks(params[:search], params[:word])
+    else                  # 検索方法         検索ワード
+      @posts = Post.looks(params[:search], params[:word])
+    end
+  end
+
+  private
+    
+    def set_user
+      @user = User.find(params[:id])
+    end
+  
 end
