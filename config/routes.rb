@@ -73,6 +73,7 @@ Rails.application.routes.draw do
       collection do
         get 'search'
       end
+      post '/posts/:post_id/show_comments' => 'comments#show_create', as: 'show_comments_create'
     end
     resources :notifications, only: :index
   end
