@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :unsubscribe, :withdrawal]
   before_action :ensure_guest_user, only: [:edit]
-  before_action :set_user, except: [:index, :update, :unsubscribe ]
+  before_action :set_user, except: [:index, :unsubscribe ]
 
   def index
     @posts = current_user.feed.order(created_at: :desc)

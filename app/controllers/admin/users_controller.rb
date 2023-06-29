@@ -1,5 +1,7 @@
 class Admin::UsersController < ApplicationController
+  include Common
    before_action :authenticate_admin!
+   before_action :set_user, except: [:index, :unsubscribe ]
 
   def index
     @users = User.page(params[:page])
@@ -7,28 +9,23 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     @posts = @user.posts.order(created_at: :desc)
   end
 
   def following #ユーザーがフォローしているユーザー
-    @user = User.find(params[:id])
     @users = @user.following
     render 'show_follow'
   end
 
   def followers #ユーザーをフォローしているユーザー
-    @user = User.find(params[:id])
     @users = @user.followers
     render 'show_follow'
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "情報が更新されました"
       redirect_to admin_user_path(@user.id)
@@ -39,11 +36,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def unsubscribe #退会確認画面
-    @user = User.find(params[:id])
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     flash[:notice] = 'ユーザーを削除しました。'
     redirect_to admin_users_path
