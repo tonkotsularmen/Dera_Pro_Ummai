@@ -8,7 +8,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new
   end
 
-  def shokuyoku_new 
+  def shokuyoku_new
     @yabai = Post.new(title: "食欲がやばいです", caption:"食欲がやばいです。どう対処したらいいですか？")
   end
 
@@ -28,7 +28,6 @@ class Public::PostsController < ApplicationController
       flash[:notice] = "投稿が成功しました"
       redirect_to post_path(@post.id)
     else
-      flash[:error]  = "投稿が失敗しました"
       redirect_to users_path
     end
 

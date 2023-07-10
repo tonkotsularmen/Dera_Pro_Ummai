@@ -4,9 +4,9 @@
     <div class="row d-lg-none border-bottom mt-2">
 
       <div class="col-1 p-0">
-          <%= link_to user_path(current_user) do %>
-            <%= image_tag current_user.get_profile_image, size: "50x50", class: "rounded-circle" %>
-          <% end %>
+        <%= link_to user_path(current_user) do %>
+          <%= image_tag current_user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+        <% end %>
       </div>
       <div class="col-11 d-flex align-items-center">
         <span class="pr-2">
@@ -17,16 +17,23 @@
         <span class="ml-2">P : <%= current_user.protein %>g</span>
         <span class="ml-2">F : <%= current_user.fat %>g</span>
         <span class="ml-2">C : <%= current_user.carbo %>g</span>
-        <span class="ml-2">
-          <%= link_to new_shokuyoku_post_path do %>
-            <i class="fa-solid fa-bacon"></i>
-          <% end %>
-        </span>
-        <span class="ml-2">
-          <%= link_to new_zasetsu_post_path do %>
-            <i class="fa-solid fa-face-tired"></i>
-          <% end %>
-        </span>
+        <% if current_user.email != "guest@example.com" %>
+          <span class="ml-2">
+            <%= link_to new_post_path do %>
+              <i class="fa-solid fa-pen-to-square"></i>
+            <% end %>
+          </span>
+          <span class="ml-2">
+            <%= link_to new_shokuyoku_post_path do %>
+              <i class="fa-solid fa-bacon"></i>
+            <% end %>
+          </span>
+          <span class="ml-2">
+            <%= link_to new_zasetsu_post_path do %>
+              <i class="fa-solid fa-face-tired"></i>
+            <% end %>
+          </span>
+        <% end %>
       </div>
 
     </div>
