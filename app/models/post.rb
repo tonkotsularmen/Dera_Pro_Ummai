@@ -43,7 +43,7 @@ class Post < ApplicationRecord
   #通知機能いいね
   # 関数に!ついているときは明示的に破壊的な処理を行っていることを一目でわかるようにするため。
   # 今回は関数内でデータ登録もしているので!をつけている
-  def create_notification_like! 
+  def create_notification_like! # => likes_controller.rb
     #すでにいいねされているか検索
     temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
     # visitor_id にはcurrent_user.id、visited_id にはuser_id、post_id にはid、action にはlikeが入る
@@ -63,11 +63,11 @@ class Post < ApplicationRecord
     end
   end
 
-  #通知機能コメント
+  #通知機能コメント # => comments_controller.rb
   def create_notification_comment!(current_user, comment_id)
     #自分以外にコメントしている人を全て取得し、全員に通知を送る
     temp_ids = Comment.select(:user_id).where(post_id: id).where.not(user_id: current_user.id).distinct
-    # Commentからuser_idを取得してそこからpost_idを探して、user_idが現在ログイン中のuserのidでないものを重複を削除する
+    # 投稿にコメントしているユーザーIDを全て取得する=>自分のコメントは削除する=>重複したものは削除する
     temp_ids.each do |temp_id|
       save_notification_comment!(current_user, comment_id, temp_id['user_id'])
     end
