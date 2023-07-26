@@ -117,7 +117,7 @@ class User < ApplicationRecord
   end
 
   #フォロー時の通知
-  def create_notification_follow!(current_user)
+  def create_notification_follow!(current_user) # => relationships_controller.rb
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow' ])
     if temp.blank?
       notification = current_user.active_notifications.new(
