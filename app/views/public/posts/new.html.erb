@@ -1,29 +1,61 @@
 <main class="page-post-new">
-  <div class="container">
-    <div class="row mt-4">
-      <div class="offset-4 col-4 border-bottom">
-        <h2>投稿フォーム</h2>
+  <div class="container-xl">
+    <!--最初は表示、lgのサイズになったら消える-->
+    <div class="row d-lg-none mt-2 mx-4">
+      <div class="col p-0">
+        <div class="row d-flex justify-content-center">
+          <div><h2>投稿フォーム</h2></div>
+        </div>
+        <div class="row">
+          <div class="offset-2 col-8 p-0">
+            <%= form_with model: @post do |f| %>
+            <div class="mt-3">
+              <div class="pb-4">
+                <h4 class="mt-3 border-bottom">画像<br /><em>(jpegまたはpng形式)</em></h4>
+                <%= f.file_field :image, accept: "image/*", required: true %>
+              </div>
+              <div class="pb-4">
+                <h4 class="mt-3 border-bottom">タイトル</h4>
+                <%= f.text_field :title, class:"form-control", required: true, placeholder: "30文字以内でタイトルをつけよう" %>
+              </div>
+              <div class="pb-4">
+                <h4 class="mt-3">説明</h4>
+                <%= f.text_area :caption, class:"form-control", required: true, placeholder: "150文字以内で内容を伝えよう" %>
+              </div>
+              <%= f.submit '投稿' %>
+            </div>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">
-      <div class="offset-4 col-4">
-        <%= form_with model: @post do |f| %>
-        <div class="mt-3">
-          <div class="pb-4">
-            <h4 class="mt-3 border-bottom">画像<em>(jpegまたはpng形式)</em></h4>
-            <%= f.file_field :image, accept: "image/*", required: true %>
-          </div>
-          <div class="pb-4">
-            <h4 class="mt-3 border-bottom">タイトル</h4>
-            <%= f.text_field :title, class:"form-control", required: true, placeholder: "30文字以内でタイトルをつけよう" %>
-          </div>
-          <div class="pb-4">
-            <h4 class="mt-3 border-bottom">説明</h4>
-            <%= f.text_area :caption, class:"form-control", required: true, placeholder: "150文字以内で内容を伝えよう" %>
-          </div>
-          <%= f.submit '投稿' %>
+      <!--最初は消えてて、lgのサイズになったらcol-4のサイズで表示-->
+      <div class="d-none d-lg-block col mt-3">
+        <div class="row d-flex justify-content-center">
+          <div><h2>投稿フォーム</h2></div>
         </div>
-        <% end %>
+        <div class="row">
+          <div class="offset-3 col-6 p-0">
+            <%= form_with model: @post do |f| %>
+            <div class="mt-3">
+              <div class="pb-4">
+                <h4 class="mt-3 border-bottom">画像<em>(jpegまたはpng形式)</em></h4>
+                <%= f.file_field :image, accept: "image/*", required: true %>
+              </div>
+              <div class="pb-4">
+                <h4 class="mt-3 border-bottom">タイトル</h4>
+                <%= f.text_field :title, class:"form-control", required: true, placeholder: "30文字以内でタイトルをつけよう" %>
+              </div>
+              <div class="pb-4">
+                <h4 class="mt-3 border-bottom">説明</h4>
+                <%= f.text_area :caption, class:"form-control", required: true, placeholder: "150文字以内で内容を伝えよう" %>
+              </div>
+              <%= f.submit '投稿' %>
+            </div>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
