@@ -19,7 +19,9 @@ class User < ApplicationRecord
 
   has_many :following,                through: :active_relationships,
                                        source: :followed
-
+  # followingっていうメソッドを形成する。Userクラスのインスタンスに対してactive_relationshipsメソッドを実行して得られた
+  # インスタンスデータに一つ一つに対してfollowedメソッドを実行して、その結果を返すfollowingメソッド。
+  # @user.active_relationships.map(&:followed) => active_relationshipsで呼び出した各要素に対してfollowedメソッドを実行する
   has_many :followers,                through: :passive_relationships,
                                        source: :follower
 
@@ -78,6 +80,7 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && (user_status == 1)
   end
+   # superで親クラスのApplicationRecordと同じ名前のメソッドを呼び出す
 
   #検索機能
   def self.looks(search,word)
@@ -103,9 +106,10 @@ class User < ApplicationRecord
       user.user_name = "guestuser"
     end
   end
+   # alphanumericにしているのはパスワード英数字に引っかかる可能性があるため
 
   # ユーザーのステータスフィードを返す
-  def feed
+  def feed # current_user.posts + current_user.following.map {|u| u.posts}
     #Post.where("user_id IN (?) OR user_id = ?",
     #                      following_ids,        id)
     #Post.where("user_id IN (:following_ids) OR user_id = :user_id",

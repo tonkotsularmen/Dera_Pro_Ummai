@@ -56,8 +56,8 @@ class Public::UsersController < ApplicationController
   end
 
   def withdrawal
-    @user.update(user_status: 0)
-    reset_session
+    @user.update(user_status: 0) # ここで退会状態にする
+    reset_session # session情報を全て削除している
     flash[:erro] = "退会処理を実行いたしました"
     redirect_to root_path
   end
