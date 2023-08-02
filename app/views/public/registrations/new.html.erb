@@ -1,59 +1,41 @@
-<main class="page-registarations-new">
-  <div class="container">
-    <div class="row">
-      <div class="offset-2 col-8">
+<main class="page-users-index">
+  <div class="container-xl">
+
+    <div class="row d-lg-none  mt-2">
+      <div class="ml-2 col-9">
         <div class="row border-bottom">
           <h3 class="mx-auto mt-5 mb-0">アカウント登録</h3>
         </div>
         <%= form_with model: @user, url: user_registration_path do |f| %>
         <%= render "public/shared/error_messages", resource: resource %>
         <div class="row mt-3">
-          <div class="offset-1 col-3">
-            <span>
-              プロフィール画像<br />
-              <em>(jpegまたはpng形式)</em>
-              </span>
-          </div>
+          <span>
+            プロフィール画像
+            <em>(jpegまたはpng形式)</em>
+          </span>
           <div class="col-8">
             <span><%= f.file_field :profile_image, accept: "image/*" %></span>
           </div>
         </div>
         <div class="row mt-3">
-          <div class="offset-1 col-3">
-            <span>メールアドレス</span>
-          </div>
-          <div class="col-8">
-            <span><%= f.email_field :email, required: true, class: "form-control" %></span>
+          <div class="col">
+            <span><%= f.email_field :email, required: true, class: "form-control", placeholder: "メールアドレス" %></span>
           </div>
         </div>
         <div class="row mt-3">
-          <div class="offset-1 col-3">
-            <span>ユーザーネーム</span>
-          </div>
-          <div class="col-8">
-            <span><%= f.text_field :user_name, required: true, class: "form-control" %></span>
+          <div class="col">
+            <span><%= f.text_field :user_name, required: true, class: "form-control", placeholder: "ユーザーネーム" %></span>
           </div>
         </div>
         <div class="row mt-3">
-          <div class="offset-1 col-3">
-            <span>
-              パスワード<br />
-              <% if @minimum_password_length %>
-            <em>(英数字<%= @minimum_password_length %>文字以上)</em>
-            <% end %>
-            </span>
-          </div>
-          <div class="field col-8">
-            <%= f.password_field :password, required: true, autocomplete: "new-password", class: "form-control" %>
+          <div class="field col">
+            <%= f.password_field :password, required: true, autocomplete: "new-password", class: "form-control", placeholder: "パスワード英数字6文字以上" %>
           </div>
         </div>
         <div class="row mt-3">
-          <div class="offset-1 col-3">
-            <span>パスワード確認用</span>
-          </div>
-          <div class="field col-8">
+          <div class="field col">
             <div class="field">
-              <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password", class: "form-control" %>
+              <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password", class: "form-control", placeholder: "再度パスワードをご入力ください" %>
             </div>
           </div>
         </div>
@@ -69,7 +51,80 @@
           </div>
         </div>
       </div>
-      <div class="col-2"></div>
+    </div>
+
+    <div class="row d-none d-lg-block my-3">
+      <div class="row">
+        <div class="offset-2 col-8">
+          <div class="row border-bottom">
+            <h3 class="mx-auto mt-5 mb-0">アカウント登録</h3>
+          </div>
+          <%= form_with model: @user, url: user_registration_path do |f| %>
+          <%= render "public/shared/error_messages", resource: resource %>
+          <div class="row mt-3">
+            <div class="offset-1 col-3">
+              <span>
+                プロフィール画像<br />
+                <em>(jpegまたはpng形式)</em>
+              </span>
+            </div>
+            <div class="col-8">
+              <span><%= f.file_field :profile_image, accept: "image/*" %></span>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="offset-1 col-3">
+              <span>メールアドレス</span>
+            </div>
+            <div class="col-8">
+              <span><%= f.email_field :email, required: true, class: "form-control" %></span>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="offset-1 col-3">
+              <span>ユーザーネーム</span>
+            </div>
+            <div class="col-8">
+              <span><%= f.text_field :user_name, required: true, class: "form-control" %></span>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="offset-1 col-3">
+              <span>
+                パスワード<br />
+                <% if @minimum_password_length %>
+              <em>(英数字<%= @minimum_password_length %>文字以上)</em>
+              <% end %>
+              </span>
+            </div>
+            <div class="field col-8">
+              <%= f.password_field :password, required: true, autocomplete: "new-password", class: "form-control" %>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="offset-1 col-3">
+              <span>パスワード確認用</span>
+            </div>
+            <div class="field col-8">
+              <div class="field">
+                <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password", class: "form-control" %>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="offset-4 col-4 d-flex justify-content-center">
+              <div class="actions"><%= f.submit "登 録", class: "btn btn-outline-success" %></div>
+            </div>
+          <% end %>
+          </div>
+          <div class="row mt-3">
+            <div class="col d-flex justify-content-center">
+              アカウント登録がお済みの方は<%= render "public/shared/links" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-2"></div>
+      </div>
     </div>
   </div>
 </main>
