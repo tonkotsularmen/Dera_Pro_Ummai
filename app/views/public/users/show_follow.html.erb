@@ -6,7 +6,7 @@
         <div class="col-md-4 border pt-2 pb-1">
           <div class="p-1">
             <%= link_to user_path(user) do %>
-              <%= image_tag user.get_profile_image, size: "40x40", class: "rounded-circle" %>
+              <%= image_tag user.get_profile_image, class: "rounded-circle icon-40" %>
             <% end %>
             <span class="ml-3">
               <% if user.user_status == 0 %>
