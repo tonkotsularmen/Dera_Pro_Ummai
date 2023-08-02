@@ -35,7 +35,8 @@ class Public::PostsController < ApplicationController
 
   def index
     posts = Post.includes(:user).page(params[:page]).per(16)
-    @posts= posts.order(created_at: :desc)
+    # includes(:user)で1回でpostの投稿とそれに紐づいたuserの情報を取り出せる。pageはページネーションkaminari
+    @posts= posts.order(created_at: :desc) # created_atでdesc(降順)最新順に並び替え
   end
 
   def show
