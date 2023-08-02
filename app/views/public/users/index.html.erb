@@ -5,7 +5,7 @@
 
       <div class="col-1 p-0">
         <%= link_to user_path(current_user) do %>
-          <%= image_tag current_user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+          <%= image_tag current_user.get_profile_image, class: "rounded-circle icon-50" %>
         <% end %>
       </div>
       <div class="col-11 d-flex align-items-center">
@@ -41,7 +41,7 @@
     <div class="row d-none d-md-block my-3 border-top border-bottom">
       <% @users.each do |user| %>
         <%= link_to user_path(user) do %>
-          <%= image_tag user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+          <%= image_tag user.get_profile_image, class: "rounded-circle icon-50" %>
         <% end %>
       <% end %>
     </div>
@@ -60,7 +60,7 @@
 
             <div class="card-header p-0 d-flex align-items-center bg-white">
               <%= link_to user_path(post.user) do %>
-                <%= image_tag post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+                <%= image_tag post.user.get_profile_image, class: "rounded-circle icon-50" %>
               <% end %>
 
               <%= link_to user_path(post.user) do %>

@@ -11,9 +11,9 @@ module ApplicationHelper
     elsif (today - apost.created_at.to_date) <= 30           #もし、現在時刻-投稿時間が30日以下なら
       (today - apost.created_at.to_date).to_i.to_s + "日前"  #日前と表示
     else                                                      #それ以外なら
-      t.created_at.strftime('%Y-%m-%d')                       #投稿時間を表示
+      apost.created_at.strftime('%Y-%m-%d')                       #投稿時間を表示
     end
   end
-  
-  
+
+
 end

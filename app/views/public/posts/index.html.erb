@@ -9,10 +9,15 @@
     <div class="row mt-2">
       <div class="col d-flex flex-wrap mt-2">
         <% @posts.each do |post| %>
-          <div class="col-3">
-            <%= link_to post_path(post) do %>
-              <%= image_tag post.image.variant( resize: "300x200>" ).processed, class: "img-fluid" %>
-            <% end %>
+          <div class="col-3 m-1">
+            <div class="row">
+              <%= link_to post_path(post) do %>
+                <%= image_tag post.image.variant( resize: "300x200>" ).processed, class: "img-fluid" %>
+              <% end %>
+            </div>
+            <div class="row">
+              <%= post_time(post) %>
+            </div>
           </div>
         <% end %>
       </div>
