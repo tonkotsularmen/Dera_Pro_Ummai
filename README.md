@@ -33,7 +33,8 @@
 ![スクリーンショット 2023-08-03 16 20 47](https://github.com/tonkotsularmen/Dera_Pro_Ummai/assets/129633387/6ca3cb4a-89cc-458e-b629-18c8b0d37f47)
 
 ## インフラ構築
-![Uploading スクリーンショット 2023-08-03 17.39.00.jpg…]()
+![スクリーンショット 2023-08-03 17 39 00](https://github.com/tonkotsularmen/Dera_Pro_Ummai/assets/129633387/6c9d5de7-6ee9-4aec-90c6-36917eb0a151)
+
 
 
 ## 開発環境
