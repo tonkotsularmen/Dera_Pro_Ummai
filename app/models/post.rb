@@ -43,7 +43,7 @@ class Post < ApplicationRecord
   #通知機能いいね
   # 関数に!ついているときは明示的に破壊的な処理を行っていることを一目でわかるようにするため。
   # 今回は関数内でデータ登録もしているので!をつけている
-  def create_notification_like! # => likes_controller.rb
+  def create_notification_like!(current_user) # => likes_controller.rb
     #すでにいいねされているか検索
     temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
     # visitor_id にはcurrent_user.id、visited_id にはuser_id、post_id にはid、action にはlikeが入る
