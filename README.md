@@ -29,8 +29,8 @@
 - 挫折しそうなとき
 - 食欲に負けそうなとき
 
-## 設計書
-
+## ER図
+![スクリーンショット 2023-08-03 16 20 47](https://github.com/tonkotsularmen/Dera_Pro_Ummai/assets/129633387/6ca3cb4a-89cc-458e-b629-18c8b0d37f47)
 
 ## 開発環境
 - OS：Amazon Linux 2
