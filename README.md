@@ -32,6 +32,10 @@
 ## ER図
 ![スクリーンショット 2023-08-03 16 20 47](https://github.com/tonkotsularmen/Dera_Pro_Ummai/assets/129633387/6ca3cb4a-89cc-458e-b629-18c8b0d37f47)
 
+## インフラ構築
+![Uploading スクリーンショット 2023-08-03 17.39.00.jpg…]()
+
+
 ## 開発環境
 - OS：Amazon Linux 2
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
